@@ -1,0 +1,1133 @@
+const request = require('request');
+const config = require('../../config/env.config');
+const { response } = require('express');
+const url = require('url');
+const querystring = require('querystring');
+const cookieLocal = require('cookie');
+
+exports.EMRWidgetConfigSet = (req,res) =>{
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint);
+
+    const options = {
+        url: config.apiEndpointEMR + decodeURI(req.url),
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json',
+            'Cookie':mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+}
+
+exports.WidgetInfoSet = (req,res) =>{
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+
+    const options = {
+        url: config.apiEndpointEMR + decodeURI(req.url),
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json',
+            'Cookie':mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+}
+
+exports.WidgetFltFldPropSet = (req,res) =>{
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint);
+
+    const options = {
+        url: config.apiEndpointEMR + decodeURI(req.url),
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json',
+            'Cookie':mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+}
+
+exports.WidgetFieldVHelpSet = (req,res) =>{
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint);
+
+    const options = {
+        url: config.apiEndpointEMR + decodeURI(req.url),
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json',
+            'Cookie':mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+}
+
+exports.EMRPATFALAPPSet = (req,res) =>{
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    console.log(mySAPSSO2Cookie);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint );
+    console.log(config.apiEndpointEMR + decodeURI(req.url));    
+    const options = {
+        url: config.apiEndpointEMR + decodeURI(req.url),
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json',
+            'Cookie':mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+}
+
+exports.WidgetDataSet = (req, res) => {
+     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'POST',
+        uri: config.apiEndpointEMR + "/WidgetDataSet",
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie':mySAPSSO2Cookie,
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.WidgetActionRespSet = (req, res) => {
+     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'POST',
+        uri: config.apiEndpointEMR + "/WidgetActionRespSet",
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            //'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie':mySAPSSO2Cookie,
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        //console.log(response);
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length,sap-message');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('sap-message',response.headers['sap-message']);
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
+            //console.log(body);
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.EMRWidgetConfigSetPost = (req, res) => {
+     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'POST',
+        uri: config.apiEndpointEMR + "/EMRWidgetConfigSet",
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie':mySAPSSO2Cookie,
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.EMRWidgetConfigSetDelete = (req, res) => {
+    //if(req.cookies['MYSAPSSO2'] != null && req.cookies['MYSAPSSO2'] !== undefined){
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+
+    const options = {
+        url: config.apiEndpointEMR + decodeURI(req.url),
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Cookie':mySAPSSO2Cookie,
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            'sap-client': config.client,
+        },
+        jar : j
+    };
+
+    request({
+        method: 'DELETE',
+        uri: config.apiEndpointEMR + decodeURI(req.url),
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie':mySAPSSO2Cookie,
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.loginUser = (req, res) => {
+    //console.log("***********************");
+    //console.log(req.headers.authorization);
+       
+    const options = {
+        url: config.apiEndpointEMR + "/EMRUserInfoSet?spnego=disabled",
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Authorization': req.headers.authorization,
+            'sap-client': config.client,
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json'
+        }
+    };
+    //console.log(options.url);
+    console.log(options);
+    request.get(options, (error, response, body) => {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+             ////console.log(body);
+            //console.log(response.headers);
+            var responseCookies = response.headers['set-cookie'];
+            //console.log(responseCookies + "/" + responseCookies.length);
+            for (var i = 0; i < responseCookies.length; i++) {
+                //console.log("******" + responseCookies[i]);
+                var oneCookie = responseCookies[i];
+                //oneCookie = oneCookie.split(';');
+                if (oneCookie.indexOf("MYSAPSSO2") != -1) {
+                    if(config.isLocalHost)
+                    {
+                        oneCookie=oneCookie.replace(".ach.jo",'localhost');
+                    }
+
+                    res.header('Set-Cookie', oneCookie);
+                }
+
+            }
+
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    })
+}
+
+exports.InPatientList = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   if (req.body.module === 'home') {
+    if (req.body.hasOwnProperty('AdmDateFrom')) {
+       var ipSetFilter = `/IPLISTSET?$filter=( (AdmDateFrom eq datetime'${req.body.AdmDateFrom}') and (AdmDateTo eq datetime'${req.body.AdmDateTo}') and (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    } else {
+        var ipSetFilter = `/IPLISTSET?$filter=( (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }
+   
+   }
+   if (req.body.module === 'My_IP_consultations') {
+    if (req.body.hasOwnProperty('AdmDateFrom')) {
+    var ipSetFilter = `/ConsultationSet?$filter=( (AdmDateFrom eq datetime'${req.body.AdmDateFrom}') and (AdmDateTo eq datetime'${req.body.AdmDateTo}') and (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }
+    else{
+        var ipSetFilter = `/ConsultationSet?$filter=( (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }
+   }
+   if (req.body.module === 'Abnormal_Lab_Results') {
+    if (req.body.hasOwnProperty('AdmDateFrom')) {
+    var ipSetFilter = `/AbnormalLabSet?$filter=( (AdmDateFrom eq datetime'${req.body.AdmDateFrom}') and (AdmDateTo eq datetime'${req.body.AdmDateTo}') and (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }
+    else{
+        var ipSetFilter = `/AbnormalLabSet?$filter=( (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }
+   }
+   if (req.body.module === 'Abnormal_Rad_Findings') {
+    if (req.body.hasOwnProperty('AdmDateFrom')) {
+    var ipSetFilter = `/AbnormalRabSet?$filter=( (AdmDateFrom eq datetime'${req.body.AdmDateFrom}') and (AdmDateTo eq datetime'${req.body.AdmDateTo}') and (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }else{
+        var ipSetFilter = `/AbnormalRabSet?$filter=( (Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+    }
+   }
+   if (req.body.module === 'Missed_Medications_Doses') {
+    var ipSetFilter = `/MissedMedicationSet?$filter=((Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+   }
+   if (req.body.module === 'Not_Released_Documents') {
+    var ipSetFilter = `/NotReleasedDocSet`;
+   }
+   if (req.body.module === 'Not_Executed_Physician_Order') {
+    var ipSetFilter = `/PhyorderNotExecutedSet?$filter=((Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
+   }
+   console.log(ipSetFilter);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + ipSetFilter,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           var ipBody = {
+            module:req.body.module,
+            result:body
+           }
+           return res.status(response.statusCode).json(ipBody);
+       }
+   })
+}
+
+exports.getWardList = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + '/WardListSet',
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+//high dependency
+exports.getHighDependencyOfPatientList = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +'ZAB_CASE_HDFLAG_SRV'+ `/HighDependencySet?$filter=( (Einri eq '${req.body.Einri}') and (Falnr eq '${req.body.Falnr}') )`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.HighDependencyOfPatientList = (req, res) => {
+    console.log('req---'+ req.body.Floor);
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'POST',
+       uri: config.apiEndpointEMRInPatient +'ZAB_CASE_HDFLAG_SRV'+ "/HighDependencySet",
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+//config tools
+exports.getConfigTools = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +'ZAB_COMP_CONFIG_SRV'+ `/CompConfigSet?$expand=ConfigHeaderItem&$filter=( (Compid eq '${req.body.Compid
+       }') )`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.postConfigTools = (req, res) => {
+
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'POST',
+       uri: config.apiEndpointEMRInPatient +'ZAB_COMP_CONFIG_SRV'+ "/CompConfigSet",
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+//count
+exports.getCountForModules = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   if (req.body.module === 'home') {
+    var ipCount = `/IPLISTSET/$count`;
+   }
+   if (req.body.module === 'My_IP_consultations') {
+    var ipCount =  `/ConsultationSet/$count`;
+   }
+   if (req.body.module === 'Abnormal_Lab_Results') {
+    var ipCount = `/AbnormalLabSet/$count`;
+   }
+   if (req.body.module === 'Abnormal_Rad_Findings') {
+    var ipCount = `/AbnormalRabSet/$count`;
+   }
+   if (req.body.module === 'Missed_Medications_Doses') {
+    var ipCount = `/MissedMedicationSet/$count`;
+   }
+   if (req.body.module === 'Not_Released_Documents') {
+    var ipCount = `/NotReleasedDocSet/$count`;
+   }
+   if (req.body.module === 'Not_Executed_Physician_Order') {
+    var ipCount = `/PhyorderNotExecutedSet/$count`;
+   }
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_IP_LIST_SRV'+ ipCount,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           var newBody = {
+            count:body,
+            module:req.body.module
+           }
+           return res.status(response.statusCode).json(newBody);
+       }
+   })
+}
+
+exports.getCountForPhOrderModules = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
+   var ipCount = `/PhyorderNotExecutedSet/$count?$filter=(Deptou eq 'EMEMDAMC' and (Bwidt ge datetime'${req.body.fromDate}' and Bwidt le datetime'${req.body.toDate}'))`;
+   let url = config.apiEndpointEMRInPatient +config.apiZABEMRNURSESRVPH + ipCount
+   console.log(url,"===");
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +config.apiZABEMRNURSESRVPH + ipCount,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           var newBody = {
+            count:body,
+            module:req.body.module
+           }
+           return res.status(response.statusCode).json(newBody);
+       }
+   })
+}
+
+// physician order
+exports.physicianOrderSet = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'PUT',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderSet('${req.body.PorderId}')`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.CancelReasonSet = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/CancelReasonSet`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.createPhysicianOrder = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'POST',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderSet`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.createMultiplePhysicianOrder = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'POST',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderMultipleSet`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.occupationalGroupList = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_MD_SRV'+ `/OccupationalGroupSet`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.createProgressEntry = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'POST',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PDC_NOTES_SRV'+ `/ProgressNoteSet`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+
+exports.consultationCompletion = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'PUT',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_CONSULT_ORD_SRV'+ `/ConsultationOrderSet('${req.body.Vkgid}')`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+exports.changeStatus = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'PUT',
+       uri: config.apiEndpointEMRInPatient +'ZN_UPDATE_CASE_STATUS_SRV'+ `/StatusUpdateSet('${req.body.Einri}')`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
+exports.physicianOrderText = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+   let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
+
+   var j = request.jar();
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   request({
+       method: 'GET',
+       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderTextSet`,
+       body: req.body,
+       json: true,
+       headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json',
+           'X-Requested-With': 'XMLHttpRequest',
+           'sap-client': config.client,
+           'Cookie':mySAPSSO2Cookie,
+          
+           //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+       }
+   }, function (error, response, body) {
+       if (error) {
+           res.json(error);
+           return console.dir(error);
+       }
+       else {
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+           res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+           res.header('Access-Control-Expose-Headers', 'Content-Length');
+           res.header('Access-Control-Allow-Credentials', 'true');
+           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+           return res.status(response.statusCode).json(body);
+       }
+   })
+}
