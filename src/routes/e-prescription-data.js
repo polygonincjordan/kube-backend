@@ -1452,7 +1452,7 @@ router.get("/VitalChart/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Einri,Patnr, Odatege, Odatele, Extid} = req.query;
+    const { Einri, Patnr, Odatege, Odatele, Extid } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationVital}/VitalChartSet?$filter=Einri eq '${Einri}' and Patnr eq '${Patnr}' and ( Odate ge datetime'${Odatege}' and Odate le datetime'${Odatele}' )&$expand=ToVitalChartItems`;
 
     const options = {
@@ -1496,7 +1496,7 @@ router.get("/OrderTemplateget", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Einri,Falnr, Tpgid, Ordtype} = req.query;
+    const { Einri, Falnr, Tpgid, Ordtype } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationAdministration}/OrderTemplateSet?$filter=Einri eq '${Einri}' and Falnr eq '${Falnr}' and Tpgid eq '${Tpgid}' and Ordtype eq '${Ordtype}'&$expand=TOORDERTEMPLATE/TOCOMPLEX&$format=json`;
 
     const options = {
@@ -1573,7 +1573,7 @@ router.get("/FSourcelist/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const {Meevtid} = req.query;
+    const { Meevtid } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationAdminister}/FSourceF4Set?$filter=Meevtid eq '${Meevtid}'&$format=json`;
     const options = {
         url: `${urlEndpoint}`,
@@ -1616,7 +1616,7 @@ router.get("/EmarEventSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-const { Einri,Falnr } = req.query;
+    const { Einri, Falnr } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationEPrescriptionOrder}/EmarEventSet?$filter=Einri eq '${Einri}' and Falnr eq '${Falnr}'&$format=json`;
     console.log(urlEndpoint)
     const options = {
@@ -1660,7 +1660,7 @@ router.get("/RequestStat/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const {Meevtid} = req.query;
+    const { Meevtid } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationAdminister}/RequestStatSet?$format=json`;
 
     const options = {
@@ -1959,7 +1959,7 @@ router.get("/PatHeightWeight/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Falnr,Lfdnr} = req.query;
+    const { Falnr, Lfdnr } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/PatHgtWgtSet(Falnr='${Falnr}',Lfdnr='${Lfdnr}')`;
 
 
@@ -2051,7 +2051,7 @@ router.get("/PreviousCycle/", (req, res) => {
 
 //     const { Patnr } = req.query;
 //     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/ManualLogSet?$filter=Patnr eq '${Patnr}'`;
-    
+
 //     const options = {
 //         url: `${urlEndpoint}`,
 //         headers: {
@@ -2095,7 +2095,7 @@ router.get("/getAttachDocument/", (req, res) => {
 
     const { Falnr } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/DocAttachSet?$filter=Falnr eq '${Falnr}'`;
-    
+
     const options = {
         url: `${urlEndpoint}`,
         headers: {
@@ -2169,9 +2169,9 @@ router.get("/Protocal/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { ProtoId ,Patnr} = req.query;
+    const { ProtoId, Patnr } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/ProtocalSet?$filter=ProtoId eq '${ProtoId}'and Patnr eq '${Patnr}'&$expand=TOCYCLE,TOCHEMO,TOPREHDY,TOPOSTHDY,TOCHEMOPREMED,TOCHEMODISCH`;
-    
+
     const options = {
         url: `${urlEndpoint}`,
         headers: {
@@ -2179,7 +2179,7 @@ router.get("/Protocal/", (req, res) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Cookie': mySAPSSO2Cookie,
-            'sap-client': config.client 
+            'sap-client': config.client
         },
         jar: j
     };
@@ -2275,8 +2275,8 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { searchstring} = req.query;
-    
+    const { searchstring } = req.query;
+
     const urlEndpoint = String.raw`${baseDiagnosisURl}/DiagnosisCodeSet?$filter=(startswith(Dkey, '${searchstring}'))`;
 
     const options = {
@@ -2315,10 +2315,10 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 });
 router.post("/updateFavoriteSurgery/", async (req, res) => {
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationsurgery}/FavoriteSet`;
-  
+
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    
+
     request({
         method: 'POST',
         uri: urlEndpoint,
@@ -2342,13 +2342,13 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
             return res.status(response.statusCode).json(body);
         }
     })
-  });
-  router.post("/getFavoriteListSurgery/", async (req, res) => {
+});
+router.post("/getFavoriteListSurgery/", async (req, res) => {
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationsurgery}/FavoriteSet`;
-  
+
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    
+
     request({
         method: 'GET',
         uri: urlEndpoint,
@@ -2372,15 +2372,15 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
             return res.status(response.statusCode).json(body);
         }
     })
-  });
+});
 
-  router.get("/eOrderFavoriteSet/", (req, res) => {
+router.get("/eOrderFavoriteSet/", (req, res) => {
     let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-  
+
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRCONSULTORDSRV}/FavoriteSet`;
     console.log(urlEndpoint)
     const options = {
@@ -2395,7 +2395,7 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
         },
         jar: j
     };
-  
+
     request.get(options, (error, response, body) => {
         if (error) {
             res.json({ message: err });
@@ -2408,7 +2408,7 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if (response.statusCode == 401) {
-  
+
                 return res.status(response.statusCode).json(body);
             }
             else {
@@ -2416,14 +2416,14 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
             }
         }
     });
-  });
-  
-  router.post("/eOrderFavoriteSetSave/", async (req, res) => {
+});
+
+router.post("/eOrderFavoriteSetSave/", async (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRCONSULTORDSRV}/FavoriteSet`;
 
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    
+
     request({
         method: 'POST',
         uri: urlEndpoint,
@@ -2447,8 +2447,8 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
             return res.status(response.statusCode).json(body);
         }
     })
-  });
-  router.get("/protocolListget/", (req, res) => {
+});
+router.get("/protocolListget/", (req, res) => {
     let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
@@ -2457,7 +2457,7 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
 
     const { ProtoId } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/ProtocolF4Set`;
-    
+
     const options = {
         url: `${urlEndpoint}`,
         headers: {
@@ -2465,7 +2465,7 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Cookie': mySAPSSO2Cookie,
-            'sap-client': config.client 
+            'sap-client': config.client
         },
         jar: j
     };
@@ -2501,7 +2501,7 @@ router.get("/cycleNolist/", (req, res) => {
 
     const { ProtoId } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/CycleNoF4Set?$filter=ProtoId eq '${ProtoId}'`;
-    
+
     const options = {
         url: `${urlEndpoint}`,
         headers: {
@@ -2509,7 +2509,7 @@ router.get("/cycleNolist/", (req, res) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Cookie': mySAPSSO2Cookie,
-            'sap-client': config.client 
+            'sap-client': config.client
         },
         jar: j
     };
@@ -2676,7 +2676,7 @@ router.get("/PriorToAdmissionget/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Einri,Falnr } = req.query;
+    const { Einri, Falnr } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationOrderdetails}/PriorToAdmissionSet?$filter=Einri eq '${Einri}' and Falnr eq '${Falnr}'&$format=json`;
 
     const options = {
@@ -2822,7 +2822,7 @@ router.get("/ApptgetSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Tmndtge,Tmndtle,Pernr } = req.query;
+    const { Tmndtge, Tmndtle, Pernr } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationAppointments}/ApptSet?$filter=( Pernr eq '${Pernr}' ) and (Tmndt ge datetime'${Tmndtge}' and Tmndt le datetime'${Tmndtle}')&$format=json`;
     const options = {
         url: `${urlEndpoint}`,
@@ -2863,7 +2863,7 @@ router.get("/clinicConfigSet/", (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-    
+
     const { Username } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationClinicConfig}/ClinicConfigSet?$filter=Username eq '${Username}'&$format=json`;
     const options = {
@@ -2905,11 +2905,30 @@ router.get("/ExceptCheckedOut/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { einri , Erdat ,datetime, Clinic , AttendPhy} = req.query;
-    const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/ExceptCheckedOutSet?$filter=( Einri eq '${einri}' and ( Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and ( Clinic eq '${Clinic}') and ( AttendPhy eq '${AttendPhy}') )&$format=json`;
+    const { einri, Erdat, datetime, Clinic, AttendPhy } = req.query;
+    // Split Clinic and AttendPhy values into arrays
+    // Prepare the Clinic filter condition
+    const clinicArray = Clinic.trim().split(',').map(item => item.trim()).filter(item => item !== '');
 
+    // Prepare the Clinic filter condition
+    let clinicFilter;
+    if (clinicArray.length === 1) {
+        clinicFilter = `(Clinic eq '${clinicArray[0]}')`;
+    } else {
+        clinicFilter = `(${clinicArray.map(clinic => `Clinic eq '${clinic}'`).join(' or ')})`;
+    }
+    // Prepare the AttendPhy filter condition
+    const attendPhyArray = AttendPhy.split(',').map(item => item.trim()).filter(item => item !== '');
+    let attendPhyFilter;
+    if (attendPhyArray.length === 1) {
+        attendPhyFilter = `(AttendPhy eq '${attendPhyArray[0]}')`;
+    } else {
+        attendPhyFilter = `(${attendPhyArray.map(attendPhy => `AttendPhy eq '${attendPhy}'`).join(' or ')})`;
+    }
+    // Construct the URL endpoint with the updated filter conditions
+    const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/ExceptCheckedOutSet?$filter=(Einri eq '${einri}' and (Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and (${clinicFilter}) and (${attendPhyFilter}))&$format=json`;
+    // const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/ExceptCheckedOutSet?$filter=( Einri eq '${einri}' and ( Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and ( Clinic eq '${Clinic}') and ( AttendPhy eq '${AttendPhy}') )&$format=json`;
     // const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/ExceptCheckedOutSet?$filter=( Einri eq '1000' and ( Erdat eq datetime'2023-01-14T00:00:00' or Erdat eq datetime'2024-04-19T00:00:00' ) and ( Clinic eq 'CAROPAMC' or Clinic eq 'CAROPAMC' ) and ( AttendPhy eq '9000000000' or AttendPhy eq '9000000051' ) )&$format=json`;
-   console.log(urlEndpoint);
     const options = {
         url: `${urlEndpoint}`,
         headers: {
@@ -2949,11 +2968,36 @@ router.get("/CheckedOut/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { einri , Erdat ,datetime,Clinic , AttendPhy} = req.query;
-    const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=( Einri eq '${einri}' and ( Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and ( Clinic eq '${Clinic}') and ( AttendPhy eq '${AttendPhy}') )&$format=json`;
+    const { einri, Erdat, datetime, Clinic, AttendPhy } = req.query;
 
+
+    // Split Clinic and AttendPhy values into arrays
+    const clinicArray = Clinic.split(',');
+    const attendPhyArray = AttendPhy.split(',');
+
+    // Prepare the Clinic filter condition
+    let clinicFilter;
+    if (clinicArray.length === 1) {
+        clinicFilter = `(Clinic eq '${clinicArray[0]}')`;
+    } else {
+        clinicFilter = `(${clinicArray.map(clinic => `Clinic eq '${clinic}'`).join(' or ')})`;
+    }
+
+    // Prepare the AttendPhy filter condition
+    let attendPhyFilter;
+    if (attendPhyArray.length === 1) {
+        attendPhyFilter = `(AttendPhy eq '${attendPhyArray[0]}')`;
+    } else {
+        attendPhyFilter = `(${attendPhyArray.map(attendPhy => `AttendPhy eq '${attendPhy}'`).join(' or ')})`;
+    }
+
+    // Construct the URL endpoint with the updated filter conditions
+    const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=(Einri eq '${einri}' and (Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and (${clinicFilter}) and (${attendPhyFilter}))&$format=json`;
+    console.log('CheckedOutSet : urlEndpoint', urlEndpoint)
+
+
+    // const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=( Einri eq '${einri}' and ( Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and ( Clinic eq '${Clinic}') and ( AttendPhy eq '${AttendPhy}') )&$format=json`;
     // const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=( Einri eq '1000' and ( Erdat eq datetime'2023-01-14T00:00:00' or Erdat eq datetime'2024-04-19T00:00:00' ) and ( Clinic eq 'CAROPAMC' or Clinic eq 'CAROPAMC' ) and ( AttendPhy eq '9000000000' or AttendPhy eq '9000000051' ) )&$format=json`;
-   console.log(urlEndpoint);
     const options = {
         url: `${urlEndpoint}`,
         headers: {
