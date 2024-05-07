@@ -79,6 +79,7 @@ module.exports = {
   "apiZNSOCIALHABITSSRV":"ZN_SOCIAL_HABITS_SRV",
   "apiZNERELAPSEDTIMESRV":"ZN_ER_ELAPSED_TIME_SRV",
   "apiZNCARTRECEIVESRV":"ZN_CART_RECEIVE_SRV",
+  "apiZNNURSEENDORSSRV":"ZN_NURSE_ENDORS_SRV",
   "apiDomain": "ach.jo",
   "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
   "environment": "prod",

@@ -630,5 +630,20 @@ router.post("/addReceiveCart", (req, res, next) => {
 router.get("/getElepsedTime", (req, res, next) => {
     emergencyController.getElepsedTime(req, res);
 });
+router.post("/getNurseEndsorment", (req, res, next) => {
+    emergencyController.getNurseEndsorment(req, res);
+});
+router.post("/postOfNurseEndsorment", (req, res, next) => {
+    emergencyController.postOfNurseEndsorment(req, res);
+});
+router.get("/getNurseEndsormentDetail", (req, res, next) => {
+    emergencyController.getNurseEndsormentDetail(req, res);
+});
+router.post("/updateNurseEndDetail", (req, res, next) => {
+    emergencyController.updateNurseEndDetail(req, res);
+});
+router.delete("/deleteNurseEndDoc", (req, res, next) => {
+    emergencyController.deleteNurseEndDoc(req, res);
+});
 module.exports = router;
 
