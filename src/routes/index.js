@@ -645,5 +645,8 @@ router.post("/updateNurseEndDetail", (req, res, next) => {
 router.delete("/deleteNurseEndDoc", (req, res, next) => {
     emergencyController.deleteNurseEndDoc(req, res);
 });
+router.delete("/deleteNurEmrTriage", (req, res, next) => {
+    emergencyController.deleteNurEmrTriage(req, res);
+});
 module.exports = router;
 
