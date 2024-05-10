@@ -299,7 +299,11 @@ exports.nursingLabListSet = (req, res) => {
 
 
     let isMultipleFilter = false;
-
+    let deptcodefilter = '';
+    if (req.body.Deptcode) {
+        isMultipleFilter = true;
+        deptcodefilter = `Deptcode eq '${req.body.Deptcode}'`;
+    }
     let roomfilter = '';
     if (req.body.ROOM1) {
         isMultipleFilter = true;
@@ -324,12 +328,12 @@ exports.nursingLabListSet = (req, res) => {
     if (req.body.fromDate) {
         dateFromfilter = isMultipleFilter ? ` and ` : '';
         isMultipleFilter = true;
-        dateFromfilter += ` Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate}'`;
+        dateFromfilter += ` (Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate})`;
     }
 
     let allFIlter = '';
-    if (roomfilter || Behpersonfilter || Posstatusfilter || dateFromfilter) {
-        allFIlter = `?$filter=(${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
+    if (deptcodefilter || roomfilter || Behpersonfilter || Posstatusfilter || dateFromfilter) {
+        allFIlter = `?$filter=(${deptcodefilter}${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
     }
     let url = baseURL + config.apiZABEMRNURSESRV + `/LabExtractionSet${allFIlter}`
     //    const { Behperson } = req.query;
@@ -369,11 +373,11 @@ exports.MedicationAdministrationSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')$format=json`
-    console.log(url);
+    uri = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and ( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`,
+    console.log(uri);
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')&$format=json`,
+        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=(Deptcode eq ${req.query.Deptcode} and( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`,
         body: req.body,
         json: true,
         headers: {
@@ -5547,7 +5551,7 @@ exports.getMissedDocsSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/MissedDocsSet?$format=json`;
+    let url = baseURL + config.apiZABEMRNURSESRV + `/MissedDocsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Date ge datetime'${req.query.Datege}' and Date le datetime'${req.query.Datele}'))&$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
@@ -5619,7 +5623,7 @@ exports.getNoConsumablesCount = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet/$count`;
+    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet?Deptcode eq '${req.query.Deptcode}$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
@@ -5993,6 +5997,75 @@ exports.deleteNurseEndDoc = (req, res) => {
     request({
         method: 'DELETE',
         uri: baseURL + config.apiZNNURSEENDORSSRV + `/NurseEndorsSet(Dockey='${req.query.Dockey}')`,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+exports.dialysisTAget = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'GET',
+        uri: baseURL + config.apiZABEMRNURSESRV + `/DialysisTASet?$filter=( Bwidt ge datetime'${req.query.Bwidtge}' and Bwidt le datetime'${req.query.Bwidtle}')&$format=json`,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.Dialysisget = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'GET',
+        uri: baseURL + config.apiZABEMRNURSESRV + `/DialysisSet?$filter=(( Bwidt ge datetime'${req.query.Bwidtge}' and Bwidt le datetime'${req.query.Bwidtle}'))&$format=json`,
+        body: req.body,
         json: true,
         headers: {
             'Content-Type': 'application/json',
