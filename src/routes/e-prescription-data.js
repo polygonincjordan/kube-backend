@@ -2004,8 +2004,8 @@ router.get("/PreviousCycle/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Patnr } = req.query;
-    const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/PreviousCycleSet?$filter=Patnr eq '${Patnr}'&$format=json`;
+    const { Patnr ,PrevProtoId} = req.query;
+    const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/PreviousCycleSet?$filter=Patnr eq '${Patnr}' and PrevProtoId eq '${PrevProtoId}'&$format=json`;
 
 
     const options = {
