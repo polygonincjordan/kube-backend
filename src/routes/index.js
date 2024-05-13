@@ -656,5 +656,9 @@ router.get("/dialysisTAget", (req, res, next) => {
 router.get("/Dialysisget", (req, res, next) => {
     emergencyController.Dialysisget(req, res);
 });
+
+router.post("/DailysisSet", (req, res, next) => {
+    emergencyController.DailysisSet(req, res);
+});
 module.exports = router;
 
