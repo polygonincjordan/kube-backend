@@ -660,5 +660,11 @@ router.get("/Dialysisget", (req, res, next) => {
 router.post("/DailysisSet", (req, res, next) => {
     emergencyController.DailysisSet(req, res);
 });
+router.get("/LatestDocSet", (req, res, next) => {
+    emergencyController.LatestDocSet(req, res);
+});
+router.get("/DailysisSet", (req, res, next) => {
+    emergencyController.getDailysisSet(req, res);
+});
 module.exports = router;
 
