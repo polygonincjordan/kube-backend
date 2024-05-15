@@ -80,6 +80,7 @@ module.exports = {
     "apiZNERELAPSEDTIMESRV":"ZN_ER_ELAPSED_TIME_SRV",
     "apiZNCARTRECEIVESRV":"ZN_CART_RECEIVE_SRV",
     "apiZNNURSEENDORSSRV":"ZN_NURSE_ENDORS_SRV",
+    "apiZNSURGICALPASSPORTSRV":"ZN_SURGICAL_PASSPORT_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
     "environment": "qa",
