@@ -639,6 +639,9 @@ router.post("/postOfNurseEndsorment", (req, res, next) => {
 router.get("/getNurseEndsormentDetail", (req, res, next) => {
     emergencyController.getNurseEndsormentDetail(req, res);
 });
+router.get("/getSurgicalPassPortDetail", (req, res, next) => {
+    emergencyController.getSurgicalPassPortDetail(req, res);
+});
 router.post("/updateNurseEndDetail", (req, res, next) => {
     emergencyController.updateNurseEndDetail(req, res);
 });
@@ -659,6 +662,15 @@ router.get("/Dialysisget", (req, res, next) => {
 
 router.post("/DailysisSet", (req, res, next) => {
     emergencyController.DailysisSet(req, res);
+})
+router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
+    emergencyController.deleteSurgicalPassDoc(req, res);
+});
+router.post("/getSurgicalPassportDoc", (req, res, next) => {
+    emergencyController.getSurgicalPassportDoc(req, res);
+});
+router.post("/postOfSurgicalPassp", (req, res, next) => {
+    emergencyController.postOfSurgicalPassp(req, res);
 });
 router.get("/LatestDocSet", (req, res, next) => {
     emergencyController.LatestDocSet(req, res);
