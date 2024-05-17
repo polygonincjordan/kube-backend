@@ -480,7 +480,7 @@ router.post("/getNotPhysicionOrder/", (req, res) => {
   var j = request.jar();
   var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
   j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-  const urlEndpoint = String.raw`${baseURL}ZAB_EMR_PHY_ORDER_SRV/PhyorderNotExecutedSet?$filter=(Deptcode eq '${req.body.Deptcode}' and Deptou eq 'EMEMDAMC' and (Bwidt ge datetime'${req.body.fromDate}' and Bwidt le datetime'${req.body.toDate}')`;
+  const urlEndpoint = String.raw`${baseURL}ZAB_EMR_PHY_ORDER_SRV/PhyorderNotExecutedSet?$filter=Deptou eq 'EMEMDAMC' and (Bwidt ge datetime'${req.body.fromDate}' and Bwidt le datetime'${req.body.toDate}')`;
   console.log(urlEndpoint);
   const options = {
     url: `${urlEndpoint}`,
