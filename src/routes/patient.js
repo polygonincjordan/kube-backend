@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPEndpoint}${config.apiPatientEndpoint}`;
 
 
@@ -44,6 +44,7 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
 
   request.get(options, (error, response, body) => {
       if (error) {
+           logger.log('error',error.message)
           res.json({ message: err });
           return console.dir(error);
       }
@@ -54,6 +55,9 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
           res.header('Access-Control-Expose-Headers', 'Content-Length');
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+          if(response.statusCode != 200){
+            logger.log('error',`${response.statusCode + ' ' + body}`)
+          }
           if (response.statusCode == 401) {
 
             return res.status(response.statusCode).json(body);
@@ -91,6 +95,7 @@ router.get("/getDataConsultations/:encounterId", (req, res) => {
     
       request.get(options, (error, response, body) => {
           if (error) {
+               logger.log('error',error.message)
               res.json({ message: err });
               return console.dir(error);
           }
@@ -101,6 +106,9 @@ router.get("/getDataConsultations/:encounterId", (req, res) => {
               res.header('Access-Control-Expose-Headers', 'Content-Length');
               res.header('Access-Control-Allow-Credentials', 'true');
               res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+               logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
               if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);

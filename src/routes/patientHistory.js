@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNPMDDOCUMENTSRV}`;
 const baseURLForNurs = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNNURSINGASSESMENTSSRV}`;
 const baseURLForPatHist = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNEMERGENCYDASHBOARDSRV}`;
@@ -42,6 +42,7 @@ router.get("/getPhyAssessmentDoc/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -51,6 +52,9 @@ router.get("/getPhyAssessmentDoc/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -87,6 +91,7 @@ router.get("/getChiefTemplate/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -96,6 +101,9 @@ router.get("/getChiefTemplate/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -127,11 +135,15 @@ router.post("/createPhyAssessmentDoc/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -156,11 +168,15 @@ router.put("/updatePhyAssessmentDoc/", (req, res) => {
     }, function (error, response, body) {
         console.log(response);
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -186,11 +202,15 @@ router.delete("/deletePhyAssessmentDoc/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -218,6 +238,7 @@ router.get("/getDocPdf/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -227,6 +248,9 @@ router.get("/getDocPdf/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -264,6 +288,7 @@ router.get("/getNursAssessmentDoc/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -273,6 +298,9 @@ router.get("/getNursAssessmentDoc/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -304,11 +332,15 @@ router.post("/createNursAssessmentDoc/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -333,11 +365,15 @@ router.post("/updateNursAssessmentDoc/", (req, res) => {
     }, function (error, response, body) {
         console.log(response);
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -363,11 +399,15 @@ router.delete("/deleteNursAssessmentDoc/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -395,6 +435,7 @@ router.get("/getNursDocPdf/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -404,6 +445,9 @@ router.get("/getNursDocPdf/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -439,6 +483,7 @@ router.get("/getAttachmentsList", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -448,6 +493,9 @@ router.get("/getAttachmentsList", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -479,11 +527,15 @@ router.post("/createAttachmentDoc", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -512,6 +564,7 @@ router.get("/getSpecialNotes", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -521,6 +574,9 @@ router.get("/getSpecialNotes", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -551,11 +607,15 @@ router.post("/saveSpecialNotes/", (req, res) => {
     }, function (error, response, body) {
         console.log(response);
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -580,11 +640,15 @@ router.delete("/deleteSpecialNotes/", (req, res) => {
     }, function (error, response, body) {
         console.log(response);
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -614,6 +678,7 @@ router.get("/getPastMedicalHistory", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -623,6 +688,9 @@ router.get("/getPastMedicalHistory", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -657,6 +725,7 @@ router.get("/getProblemCatalogSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -666,6 +735,9 @@ router.get("/getProblemCatalogSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -697,11 +769,15 @@ router.post("/deleteForPastMed", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -728,11 +804,15 @@ router.post("/savePastMedList", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -762,6 +842,7 @@ router.get("/getPastSurgicalHistory", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -771,6 +852,9 @@ router.get("/getPastSurgicalHistory", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -805,6 +889,7 @@ router.get("/getSurgicalCatalogSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -814,6 +899,9 @@ router.get("/getSurgicalCatalogSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -845,11 +933,15 @@ router.post("/savePastSurList", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -875,11 +967,15 @@ router.post("/deleteForPastSurg", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -911,6 +1007,7 @@ router.get("/getProblemList/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -920,6 +1017,9 @@ router.get("/getProblemList/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -951,11 +1051,15 @@ router.post("/createFamilyHistory/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -988,6 +1092,7 @@ router.get("/getFamilyHistory/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -997,6 +1102,9 @@ router.get("/getFamilyHistory/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -1028,11 +1136,15 @@ router.post("/updateFamilyHistory/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1058,11 +1170,15 @@ router.post("/deleteFamilyHistory/", (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })

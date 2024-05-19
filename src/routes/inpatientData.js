@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiPatientUserEndpoint}`;
 const baseDocumentURl = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNPATIENTDOCUMENTSRV}`;
 const baseDischargeURl = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiDischargeSummarySet}`;
@@ -40,6 +40,7 @@ router.get("/getInPatientAllDocumentSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -49,6 +50,9 @@ router.get("/getInPatientAllDocumentSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -85,6 +89,7 @@ router.get("/getInPatientAllDocumentFalnrSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -94,6 +99,9 @@ router.get("/getInPatientAllDocumentFalnrSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -130,6 +138,7 @@ router.get("/getInPatientDocumentSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -139,6 +148,9 @@ router.get("/getInPatientDocumentSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -177,6 +189,7 @@ router.get("/getPatientCaseSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -186,6 +199,9 @@ router.get("/getPatientCaseSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -218,11 +234,15 @@ router.post("/saveInPatientDataSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -250,11 +270,15 @@ router.delete("/deleteInPatientData/:docKey", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -286,6 +310,7 @@ router.get("/getDiagnosisData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -295,6 +320,9 @@ router.get("/getDiagnosisData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -332,6 +360,7 @@ router.get("/getSurgeryTeamData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -341,6 +370,9 @@ router.get("/getSurgeryTeamData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -378,6 +410,7 @@ router.get("/getDischargeSummarySet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -387,6 +420,9 @@ router.get("/getDischargeSummarySet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -420,11 +456,15 @@ router.post("/saveReleaseDischargeSummarySet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -453,11 +493,15 @@ router.post("/releaseDischargeSummarySet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -488,6 +532,7 @@ router.get("/savedDocumentGetData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -497,6 +542,9 @@ router.get("/savedDocumentGetData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -529,11 +577,15 @@ router.delete("/deleteDischargeSummarySet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -565,6 +617,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -574,6 +627,9 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -616,6 +672,7 @@ router.get("/getDiagnosisSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -625,6 +682,9 @@ router.get("/getDiagnosisSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);

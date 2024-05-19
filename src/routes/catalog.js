@@ -3,7 +3,7 @@ const router = express.Router();
 const axios = require("axios");
 const request = require('request');
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiCatalogEndpoint}`;
 
 const auth = {
@@ -43,6 +43,7 @@ router.get("/getAll", (req, res) => {
     request.get(options, (error, response, body) => {
         if (error) {
             res.json({ message: err });
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
@@ -52,6 +53,9 @@ router.get("/getAll", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -90,10 +94,14 @@ router.put("/update/:catKey/:catItemKey", async (req, res) => {
         //console.log(response);
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })

@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
@@ -43,6 +43,7 @@ router.get("/getOrderSetHeaderSet/", (req, res) => {
   
     request.get(options, (error, response, body) => {
       if (error) {
+         logger.log('error',error.message)
         res.json({ message: err });
         return console.dir(error);
       } else {
@@ -57,6 +58,9 @@ router.get("/getOrderSetHeaderSet/", (req, res) => {
           "Access-Control-Allow-Headers",
           "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
         );
+        if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
         if (response.statusCode == 401) {
           return res.status(response.statusCode).json(body);
         } else {
@@ -91,6 +95,7 @@ router.get("/getDeptSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -105,6 +110,9 @@ router.get("/getDeptSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -138,6 +146,7 @@ router.get("/getEmployeeResponsibleSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -152,6 +161,9 @@ router.get("/getEmployeeResponsibleSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -185,6 +197,7 @@ router.get("/getAgeRangeSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -199,6 +212,9 @@ router.get("/getAgeRangeSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -234,6 +250,7 @@ router.get("/getOrderSetByOrderId/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -248,6 +265,9 @@ router.get("/getOrderSetByOrderId/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -278,11 +298,15 @@ router.post("/saveOrderSetHeaderSet/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -316,6 +340,7 @@ router.get("/getOrdersetSubtitle/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -330,6 +355,9 @@ router.get("/getOrdersetSubtitle/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -360,11 +388,15 @@ router.post("/saveOrdersetSubtitle/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -392,11 +424,15 @@ router.get("/sendForStatusChange/", (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -429,6 +465,7 @@ router.get("/getOrderServicesSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -443,6 +480,9 @@ router.get("/getOrderServicesSet", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -479,6 +519,7 @@ router.get("/getOrderServicesSetWithDistinct", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -493,6 +534,9 @@ router.get("/getOrderServicesSetWithDistinct", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -529,6 +573,7 @@ router.get("/getOrderTreatmentOUSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -543,6 +588,9 @@ router.get("/getOrderTreatmentOUSet", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -578,6 +626,7 @@ router.get("/getOrderTreatmentDOUSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -592,6 +641,9 @@ router.get("/getOrderTreatmentDOUSet", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -628,6 +680,7 @@ router.get("/getOrderDeptOUSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -642,6 +695,9 @@ router.get("/getOrderDeptOUSet", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -674,11 +730,15 @@ router.delete("/deleteOrderSetHeaderSet/:ordersetkey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+        if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
           return res.status(response.statusCode).json(body);
       }
   })

@@ -5,7 +5,7 @@ const axios = require("axios");
 const config = require('../../config/env.config');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiPatientUserEndpoint}`;
 const baseURLForSoap = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNSOAPSRV}`;
-
+const logger = require('../../utils/logger');
 router.use((req, res, next) => {
     console.log("Patient Data Middleware Time: ", Date.now());
     next();
@@ -34,10 +34,14 @@ router.post("/savePatientVisitDataSet", async (req, res) => {
         console.log(JSON.stringify(body));
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -64,10 +68,14 @@ router.put("/updatePatientVisitDataSet", async (req, res) => {
         console.log(JSON.stringify(body));
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -96,10 +104,14 @@ router.delete("/deletePatientVisitDataSet/:docKey", async (req, res) => {
         console.log(JSON.stringify(body));
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -126,10 +138,14 @@ console.log('toReleaseSoapPatientVisitData',urlEndpoint);
         console.log(JSON.stringify(body));
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -156,10 +172,14 @@ router.post("/saveVisitnotePatientVisitDataSet", async (req, res) => {
         console.log(JSON.stringify(body));
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -188,10 +208,14 @@ router.delete("/deleteVisitnotePatientVisitDataSet/:docKey/:etag", async (req, r
         console.log(JSON.stringify(body));
         if (error) {
             res.json(error);
+            logger.log('error',error.message)
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             return res.status(response.statusCode).json(body);
         }
     })

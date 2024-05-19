@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
@@ -43,6 +43,7 @@ router.get("/getPhyOrderSet/", (req, res) => {
   
     request.get(options, (error, response, body) => {
       if (error) {
+         logger.log('error',error.message)
         res.json({ message: err });
         return console.dir(error);
       } else {
@@ -57,6 +58,9 @@ router.get("/getPhyOrderSet/", (req, res) => {
           "Access-Control-Allow-Headers",
           "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
         );
+      if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
         if (response.statusCode == 401) {
           return res.status(response.statusCode).json(body);
         } else {
@@ -91,6 +95,7 @@ router.get("/getTemplateSet/", (req, res) => {
   
     request.get(options, (error, response, body) => {
       if (error) {
+         logger.log('error',error.message)
         res.json({ message: err });
         return console.dir(error);
       } else {
@@ -105,6 +110,9 @@ router.get("/getTemplateSet/", (req, res) => {
           "Access-Control-Allow-Headers",
           "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
         );
+        if(response.statusCode != 200){
+          logger.log('error',`${response.statusCode + ' ' + body}`)
+        }
         if (response.statusCode == 401) {
           return res.status(response.statusCode).json(body);
         } else {
@@ -136,11 +144,15 @@ router.post("/saveTemplateSet", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
+           logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -169,11 +181,15 @@ router.delete("/deleteTemplateSet/:templateKey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -218,6 +234,7 @@ router.get("/getProgressNote/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -232,6 +249,10 @@ router.get("/getProgressNote/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -267,6 +288,7 @@ router.get("/getCategorySet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -281,6 +303,10 @@ router.get("/getCategorySet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -316,6 +342,7 @@ router.get("/getCancelReasonSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -330,6 +357,10 @@ router.get("/getCancelReasonSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -363,6 +394,7 @@ router.get("/getTextModulesSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -377,6 +409,10 @@ router.get("/getTextModulesSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -409,11 +445,15 @@ router.delete("/deleteProgressNote/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -453,6 +493,7 @@ router.get("/getDiagnosisSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -467,6 +508,10 @@ router.get("/getDiagnosisSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -498,11 +543,15 @@ router.post("/saveDiagnosisSet", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -535,6 +584,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -549,6 +599,10 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -586,6 +640,7 @@ router.get("/getDiagnosisImport/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -600,6 +655,10 @@ router.get("/getDiagnosisImport/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -644,6 +703,7 @@ router.get("/getFavrDiagnosisSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -658,6 +718,10 @@ router.get("/getFavrDiagnosisSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -688,11 +752,15 @@ router.post("/updateDiagnosisFavrOUSet", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -736,6 +804,7 @@ router.get("/getProfileDocsSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -750,6 +819,10 @@ router.get("/getProfileDocsSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -781,11 +854,15 @@ router.post("/saveEduAssesSet", async (req, res) => {
     console.log(response);
     console.log(JSON.stringify(body));
     if (error) {
+       logger.log('error',error.message)
       res.json(error);
       return console.dir(error);
     }
     else {
       //console.log(body);
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
       return res.status(response.statusCode).json(body);
     }
   })
@@ -817,6 +894,7 @@ router.get("/getEduAssesSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -831,6 +909,10 @@ router.get("/getEduAssesSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -865,6 +947,7 @@ router.post("/getEduAssesLatestDocSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -879,6 +962,10 @@ router.post("/getEduAssesLatestDocSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -910,11 +997,15 @@ router.delete("/deleteEduAssesSet/:dockey", async (req, res) => {
     console.log(response);
     console.log(JSON.stringify(body));
     if (error) {
+       logger.log('error',error.message)
       res.json(error);
       return console.dir(error);
     }
     else {
       //console.log(body);
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
       return res.status(response.statusCode).json(body);
     }
   })
@@ -944,6 +1035,7 @@ router.get("/getPDFFileSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -958,6 +1050,10 @@ router.get("/getPDFFileSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -989,6 +1085,7 @@ router.get("/getPDFFileSoapSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -1003,6 +1100,10 @@ router.get("/getPDFFileSoapSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+        if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
+      
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -1035,6 +1136,7 @@ router.get("/getPatientProfilePDFFileSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -1049,6 +1151,9 @@ router.get("/getPatientProfilePDFFileSet/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -1080,11 +1185,15 @@ router.post("/saveProgressNotesTemplate", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -1109,11 +1218,15 @@ router.post("/saveVisitNoteDocument", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -1143,6 +1256,7 @@ router.get("/getVisitNoteDocument/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
+       logger.log('error',error.message)
       res.json({ message: err });
       return console.dir(error);
     } else {
@@ -1157,6 +1271,9 @@ router.get("/getVisitNoteDocument/", (req, res) => {
         "Access-Control-Allow-Headers",
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
+      if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -1187,11 +1304,15 @@ router.post("/releaseVisitNoteDocument", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
+         logger.log('error',error.message)
           // res.json(error);
           // return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -1219,11 +1340,15 @@ router.delete("/deleteVisitNotDocument/:dockey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
+         logger.log('error',error.message)
           res.json(error);
           return console.dir(error);
       }
       else {
           //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
           return res.status(response.statusCode).json(body);
       }
   })
