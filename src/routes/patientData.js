@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
-
+const logger = require('../../utils/logger');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiPatientUserEndpoint}`;
 const baseURLSoap = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNSOAPSRV}`;
 router.use((req, res, next) => {
@@ -33,6 +33,7 @@ router.get("/UserConfigSet", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -42,6 +43,9 @@ router.get("/UserConfigSet", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -79,11 +83,15 @@ router.put("/updateUserConfigSet/:vma", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
+             logger.log('error',error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error',`${response.statusCode + ' ' + body}`)
+              }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -126,6 +134,7 @@ router.get("/PatientVisitDataSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -135,6 +144,9 @@ router.get("/PatientVisitDataSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -182,6 +194,7 @@ router.get("/PatientVisitfalnrSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -191,6 +204,9 @@ router.get("/PatientVisitfalnrSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -227,6 +243,7 @@ console.log(urlEndpoint);
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -236,6 +253,9 @@ console.log(urlEndpoint);
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -272,6 +292,7 @@ router.get("/getSoapPatientVisitData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -281,6 +302,9 @@ router.get("/getSoapPatientVisitData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -318,6 +342,7 @@ router.get("/getAttachmentData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -327,6 +352,9 @@ router.get("/getAttachmentData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -365,6 +393,7 @@ router.get("/getHistoryOfPatientData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
+             logger.log('error',error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -374,6 +403,9 @@ router.get("/getHistoryOfPatientData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+              if(response.statusCode != 200){
+        logger.log('error',`${response.statusCode + ' ' + body}`)
+      }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
