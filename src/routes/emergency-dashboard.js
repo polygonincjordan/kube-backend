@@ -29,7 +29,7 @@ exports.getOrderSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -39,8 +39,8 @@ exports.getOrderSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -68,7 +68,7 @@ exports.getOrderSetBySubtitles = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -78,8 +78,8 @@ exports.getOrderSetBySubtitles = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -107,7 +107,7 @@ exports.createOrderSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -117,8 +117,8 @@ exports.createOrderSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -146,7 +146,7 @@ exports.getFavSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -156,8 +156,8 @@ exports.getFavSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -185,7 +185,7 @@ exports.getOrderSetByFavId = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -195,8 +195,8 @@ exports.getOrderSetByFavId = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -224,7 +224,7 @@ exports.emergencyListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -234,8 +234,8 @@ exports.emergencyListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -265,7 +265,7 @@ exports.emergencyListCheckInSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -275,8 +275,8 @@ exports.emergencyListCheckInSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -305,7 +305,7 @@ exports.assignToMe = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -315,8 +315,8 @@ exports.assignToMe = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -386,7 +386,7 @@ exports.nursingLabListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -396,8 +396,8 @@ exports.nursingLabListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -410,7 +410,7 @@ exports.MedicationAdministrationSet = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     uri = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and ( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`,
-    console.log(uri);
+        console.log(uri);
     request({
         method: 'GET',
         uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')&$format=json`,
@@ -427,7 +427,7 @@ exports.MedicationAdministrationSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -437,8 +437,8 @@ exports.MedicationAdministrationSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -466,7 +466,7 @@ exports.actionlistSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -476,8 +476,8 @@ exports.actionlistSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -508,7 +508,7 @@ exports.nursingLabListPrintSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -518,8 +518,8 @@ exports.nursingLabListPrintSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -549,7 +549,7 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -559,8 +559,8 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -590,7 +590,7 @@ exports.getCountField = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -604,8 +604,8 @@ exports.getCountField = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -633,7 +633,7 @@ exports.triagePriorityList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -643,8 +643,8 @@ exports.triagePriorityList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -672,7 +672,7 @@ exports.saveTriage = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -682,8 +682,8 @@ exports.saveTriage = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -711,7 +711,7 @@ exports.patientsListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -721,8 +721,8 @@ exports.patientsListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -750,7 +750,7 @@ exports.actionPhysicianSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -760,8 +760,8 @@ exports.actionPhysicianSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -789,7 +789,7 @@ exports.getRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -799,8 +799,8 @@ exports.getRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -828,7 +828,7 @@ exports.getRiskValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -838,8 +838,8 @@ exports.getRiskValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -868,7 +868,7 @@ exports.saveRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -878,8 +878,8 @@ exports.saveRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -907,7 +907,7 @@ exports.getCancelReasons = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -917,8 +917,8 @@ exports.getCancelReasons = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -946,7 +946,7 @@ exports.getAllergenValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -956,8 +956,8 @@ exports.getAllergenValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -985,7 +985,7 @@ exports.getAllergenGroupValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -995,8 +995,8 @@ exports.getAllergenGroupValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1024,7 +1024,7 @@ exports.getAllergyCertaintyValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1034,8 +1034,8 @@ exports.getAllergyCertaintyValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1063,7 +1063,7 @@ exports.getAllergyEvaluationValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1073,8 +1073,8 @@ exports.getAllergyEvaluationValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1102,7 +1102,7 @@ exports.getAllergyReactionValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1112,8 +1112,8 @@ exports.getAllergyReactionValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1141,7 +1141,7 @@ exports.getSeverityValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1151,8 +1151,8 @@ exports.getSeverityValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1180,7 +1180,7 @@ exports.getAllergyTypeValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1190,8 +1190,8 @@ exports.getAllergyTypeValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1219,7 +1219,7 @@ exports.getAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1229,8 +1229,8 @@ exports.getAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1258,7 +1258,7 @@ exports.SaveAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1268,8 +1268,8 @@ exports.SaveAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1297,7 +1297,7 @@ exports.getPatientLabHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1307,8 +1307,8 @@ exports.getPatientLabHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1336,7 +1336,7 @@ exports.getPatientRadHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1346,8 +1346,8 @@ exports.getPatientRadHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1376,7 +1376,7 @@ exports.getErRadPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1386,8 +1386,8 @@ exports.getErRadPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1415,7 +1415,7 @@ exports.getMedCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1425,8 +1425,8 @@ exports.getMedCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1454,7 +1454,7 @@ exports.getMedNotCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1464,8 +1464,8 @@ exports.getMedNotCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1493,7 +1493,7 @@ exports.getVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1503,8 +1503,8 @@ exports.getVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1532,7 +1532,7 @@ exports.deleteVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1542,8 +1542,8 @@ exports.deleteVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1571,7 +1571,7 @@ exports.updateVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1581,8 +1581,8 @@ exports.updateVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1610,7 +1610,7 @@ exports.createVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1620,8 +1620,8 @@ exports.createVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1649,7 +1649,7 @@ exports.deleteReasonsList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1659,8 +1659,8 @@ exports.deleteReasonsList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1688,7 +1688,7 @@ exports.getAllVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1698,8 +1698,8 @@ exports.getAllVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1728,7 +1728,7 @@ exports.getLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1738,8 +1738,8 @@ exports.getLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1767,7 +1767,7 @@ exports.getPhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1777,8 +1777,8 @@ exports.getPhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1806,7 +1806,7 @@ exports.createPhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1816,8 +1816,8 @@ exports.createPhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1845,7 +1845,7 @@ exports.updatePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1855,8 +1855,8 @@ exports.updatePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1884,7 +1884,7 @@ exports.releasePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1894,8 +1894,8 @@ exports.releasePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1923,7 +1923,7 @@ exports.getReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1933,8 +1933,8 @@ exports.getReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1962,7 +1962,7 @@ exports.deletePhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -1972,8 +1972,8 @@ exports.deletePhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2002,7 +2002,7 @@ exports.PatientSearchSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2012,8 +2012,8 @@ exports.PatientSearchSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2042,7 +2042,7 @@ exports.getMedLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2052,8 +2052,8 @@ exports.getMedLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2081,7 +2081,7 @@ exports.getMedReportData = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2091,8 +2091,8 @@ exports.getMedReportData = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2120,7 +2120,7 @@ exports.createMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2130,8 +2130,8 @@ exports.createMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2159,7 +2159,7 @@ exports.deleteMedReport = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2169,8 +2169,8 @@ exports.deleteMedReport = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2198,7 +2198,7 @@ exports.updateMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2208,8 +2208,8 @@ exports.updateMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2237,7 +2237,7 @@ exports.releaseMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2247,8 +2247,8 @@ exports.releaseMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2276,7 +2276,7 @@ exports.getMedReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2286,8 +2286,8 @@ exports.getMedReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2317,7 +2317,7 @@ exports.getAnalysisDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2327,8 +2327,8 @@ exports.getAnalysisDetails = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2357,7 +2357,7 @@ exports.getErBedList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2367,8 +2367,8 @@ exports.getErBedList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2396,7 +2396,7 @@ exports.SaveBedForPatient = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2406,8 +2406,8 @@ exports.SaveBedForPatient = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2436,7 +2436,7 @@ exports.changePassword = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2446,8 +2446,8 @@ exports.changePassword = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2482,7 +2482,7 @@ exports.getLevelOrderHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2492,8 +2492,8 @@ exports.getLevelOrderHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2520,7 +2520,7 @@ exports.actionlistSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2530,8 +2530,8 @@ exports.actionlistSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2561,7 +2561,7 @@ exports.nursingLabListPrintSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2571,8 +2571,8 @@ exports.nursingLabListPrintSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2603,7 +2603,7 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2613,8 +2613,8 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2645,7 +2645,7 @@ exports.getCountField = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2659,8 +2659,8 @@ exports.getCountField = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -2689,7 +2689,7 @@ exports.MedicationAdministrationCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2703,8 +2703,8 @@ exports.MedicationAdministrationCount = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -2735,7 +2735,7 @@ exports.NoConsumablesSetCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2749,8 +2749,8 @@ exports.NoConsumablesSetCount = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -2778,7 +2778,7 @@ exports.triagePriorityList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2788,8 +2788,8 @@ exports.triagePriorityList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2817,7 +2817,7 @@ exports.saveTriage = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2827,8 +2827,8 @@ exports.saveTriage = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2856,7 +2856,7 @@ exports.patientsListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2866,8 +2866,8 @@ exports.patientsListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2895,7 +2895,7 @@ exports.actionPhysicianSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2905,8 +2905,8 @@ exports.actionPhysicianSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2934,7 +2934,7 @@ exports.getRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2944,8 +2944,8 @@ exports.getRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2973,7 +2973,7 @@ exports.getRiskValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -2983,8 +2983,8 @@ exports.getRiskValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3012,7 +3012,7 @@ exports.saveRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3022,8 +3022,8 @@ exports.saveRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3051,7 +3051,7 @@ exports.getCancelReasons = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3061,8 +3061,8 @@ exports.getCancelReasons = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3090,7 +3090,7 @@ exports.getAllergenValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3100,8 +3100,8 @@ exports.getAllergenValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3129,7 +3129,7 @@ exports.getAllergenGroupValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3139,8 +3139,8 @@ exports.getAllergenGroupValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3168,7 +3168,7 @@ exports.getAllergyCertaintyValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3178,8 +3178,8 @@ exports.getAllergyCertaintyValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3207,7 +3207,7 @@ exports.getAllergyEvaluationValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3217,8 +3217,8 @@ exports.getAllergyEvaluationValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3246,7 +3246,7 @@ exports.getAllergyReactionValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3256,8 +3256,8 @@ exports.getAllergyReactionValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3285,7 +3285,7 @@ exports.getSeverityValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3295,8 +3295,8 @@ exports.getSeverityValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3324,7 +3324,7 @@ exports.getAllergyTypeValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3334,8 +3334,8 @@ exports.getAllergyTypeValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3363,7 +3363,7 @@ exports.getAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3373,8 +3373,8 @@ exports.getAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3402,7 +3402,7 @@ exports.SaveAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3412,8 +3412,8 @@ exports.SaveAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3441,7 +3441,7 @@ exports.getPatientLabHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3451,8 +3451,8 @@ exports.getPatientLabHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3480,7 +3480,7 @@ exports.getPatientRadHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3490,8 +3490,8 @@ exports.getPatientRadHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3519,7 +3519,7 @@ exports.getErRadPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3529,8 +3529,8 @@ exports.getErRadPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3558,7 +3558,7 @@ exports.getMedCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3568,8 +3568,8 @@ exports.getMedCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3597,7 +3597,7 @@ exports.getMedNotCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3607,8 +3607,8 @@ exports.getMedNotCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3636,7 +3636,7 @@ exports.getVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3646,8 +3646,8 @@ exports.getVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3675,7 +3675,7 @@ exports.deleteVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3685,8 +3685,8 @@ exports.deleteVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3714,7 +3714,7 @@ exports.updateVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3724,8 +3724,8 @@ exports.updateVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3754,7 +3754,7 @@ exports.createVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3764,8 +3764,8 @@ exports.createVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3793,7 +3793,7 @@ exports.deleteReasonsList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3803,8 +3803,8 @@ exports.deleteReasonsList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3832,7 +3832,7 @@ exports.getAllVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3842,8 +3842,8 @@ exports.getAllVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3872,7 +3872,7 @@ exports.getLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3882,8 +3882,8 @@ exports.getLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3911,7 +3911,7 @@ exports.getPhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3921,8 +3921,8 @@ exports.getPhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3950,7 +3950,7 @@ exports.createPhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3960,8 +3960,8 @@ exports.createPhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3989,7 +3989,7 @@ exports.updatePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -3999,8 +3999,8 @@ exports.updatePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4028,7 +4028,7 @@ exports.releasePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4038,8 +4038,8 @@ exports.releasePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4067,7 +4067,7 @@ exports.getReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4077,8 +4077,8 @@ exports.getReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4106,7 +4106,7 @@ exports.deletePhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4116,8 +4116,8 @@ exports.deletePhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4146,7 +4146,7 @@ exports.PatientSearchSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4156,8 +4156,8 @@ exports.PatientSearchSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4186,7 +4186,7 @@ exports.getMedLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4196,8 +4196,8 @@ exports.getMedLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4225,7 +4225,7 @@ exports.getMedReportData = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4235,8 +4235,8 @@ exports.getMedReportData = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4264,7 +4264,7 @@ exports.createMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4274,8 +4274,8 @@ exports.createMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4303,7 +4303,7 @@ exports.deleteMedReport = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4313,8 +4313,8 @@ exports.deleteMedReport = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4342,7 +4342,7 @@ exports.updateMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4352,8 +4352,8 @@ exports.updateMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4381,7 +4381,7 @@ exports.releaseMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4391,8 +4391,8 @@ exports.releaseMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4420,7 +4420,7 @@ exports.getMedReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4430,8 +4430,8 @@ exports.getMedReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4461,7 +4461,7 @@ exports.getAnalysisDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4471,8 +4471,8 @@ exports.getAnalysisDetails = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4501,7 +4501,7 @@ exports.getErBedList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4511,8 +4511,8 @@ exports.getErBedList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4540,7 +4540,7 @@ exports.SaveBedForPatient = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4550,8 +4550,8 @@ exports.SaveBedForPatient = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4580,7 +4580,7 @@ exports.changePassword = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4590,8 +4590,8 @@ exports.changePassword = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4623,7 +4623,7 @@ exports.getLevelOrderHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4633,8 +4633,8 @@ exports.getLevelOrderHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4666,7 +4666,7 @@ exports.getMaterialSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4676,8 +4676,8 @@ exports.getMaterialSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4709,7 +4709,7 @@ exports.getMaterialStockSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4719,8 +4719,8 @@ exports.getMaterialStockSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4749,7 +4749,7 @@ exports.saveConsumableDataSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4759,8 +4759,8 @@ exports.saveConsumableDataSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4790,7 +4790,7 @@ exports.getConsumablesHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4800,8 +4800,8 @@ exports.getConsumablesHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4830,7 +4830,7 @@ exports.getNoConsumablesSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -4840,8 +4840,8 @@ exports.getNoConsumablesSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4870,7 +4870,7 @@ exports.nurEmrFaceScaleSetPost = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -4885,9 +4885,9 @@ exports.nurEmrFaceScaleSetPost = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -4917,7 +4917,7 @@ exports.nurEmrGlasgowScaleSetPost = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -4932,9 +4932,9 @@ exports.nurEmrGlasgowScaleSetPost = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -4964,7 +4964,7 @@ exports.nurEmrNumericScaleSetPost = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -4979,9 +4979,9 @@ exports.nurEmrNumericScaleSetPost = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5013,7 +5013,7 @@ exports.getFacePainScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5028,9 +5028,9 @@ exports.getFacePainScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5062,7 +5062,7 @@ exports.getGlowgosScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5077,9 +5077,9 @@ exports.getGlowgosScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5111,7 +5111,7 @@ exports.getNumericScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5126,9 +5126,9 @@ exports.getNumericScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5157,7 +5157,7 @@ exports.getFeeServiceSearchSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5167,8 +5167,8 @@ exports.getFeeServiceSearchSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5198,7 +5198,7 @@ exports.saveNurEmrTriage = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5213,9 +5213,9 @@ exports.saveNurEmrTriage = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5244,7 +5244,7 @@ exports.getRoomDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5254,8 +5254,8 @@ exports.getRoomDetails = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5283,7 +5283,7 @@ exports.getEmployeeId = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5293,8 +5293,8 @@ exports.getEmployeeId = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5323,7 +5323,7 @@ exports.saveAssignedRoom = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5333,8 +5333,8 @@ exports.saveAssignedRoom = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5362,7 +5362,7 @@ exports.getAssignedRoom = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5372,8 +5372,8 @@ exports.getAssignedRoom = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5401,7 +5401,7 @@ exports.getServiceHistorySet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5411,8 +5411,8 @@ exports.getServiceHistorySet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5443,7 +5443,7 @@ exports.getLatestAssesmentResult = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5453,8 +5453,8 @@ exports.getLatestAssesmentResult = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5483,7 +5483,7 @@ exports.putGlasgowScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5493,8 +5493,8 @@ exports.putGlasgowScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5523,7 +5523,7 @@ exports.putFaceScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5533,8 +5533,8 @@ exports.putFaceScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5563,7 +5563,7 @@ exports.putNRSScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5573,8 +5573,8 @@ exports.putNRSScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5603,7 +5603,7 @@ exports.postBradenScaleSet = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5618,9 +5618,9 @@ exports.postBradenScaleSet = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5651,7 +5651,7 @@ exports.getBradenScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5666,9 +5666,9 @@ exports.getBradenScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5692,7 +5692,7 @@ exports.putBradenScaleSet = (req, res) => {
         //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
     }), function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -5702,8 +5702,8 @@ exports.putBradenScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5732,7 +5732,7 @@ exports.getTriageLatestDocumentSet = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5747,9 +5747,9 @@ exports.getTriageLatestDocumentSet = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5779,7 +5779,7 @@ exports.getTriagePdfUrl = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5794,9 +5794,9 @@ exports.getTriagePdfUrl = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5826,7 +5826,7 @@ exports.getTriageDataStatusDraft = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5841,9 +5841,9 @@ exports.getTriageDataStatusDraft = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5872,7 +5872,7 @@ exports.getSocialHabitList = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5887,9 +5887,9 @@ exports.getSocialHabitList = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5922,7 +5922,7 @@ exports.calculateAlcoholConsumption = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5937,9 +5937,9 @@ exports.calculateAlcoholConsumption = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -5972,7 +5972,7 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -5987,9 +5987,9 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -6022,7 +6022,7 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -6037,9 +6037,9 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -6072,7 +6072,7 @@ exports.postDrugsHabit = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -6087,9 +6087,9 @@ exports.postDrugsHabit = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -6122,7 +6122,7 @@ exports.postOtherHabit = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -6137,9 +6137,9 @@ exports.postOtherHabit = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -6169,7 +6169,7 @@ exports.getMissedDocsSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6179,8 +6179,8 @@ exports.getMissedDocsSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6209,7 +6209,7 @@ exports.getMissedDocsCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6219,8 +6219,8 @@ exports.getMissedDocsCount = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6231,9 +6231,10 @@ exports.getNoConsumablesCount = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet?Deptcode eq '${req.query.Deptcode}$format=json`;
+    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet/$count`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    console.log('Test', url);
     request({
         method: 'GET',
         uri: url,
@@ -6249,7 +6250,7 @@ exports.getNoConsumablesCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6259,8 +6260,8 @@ exports.getNoConsumablesCount = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6289,7 +6290,7 @@ exports.getTriagePatientNo = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6299,8 +6300,8 @@ exports.getTriagePatientNo = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6331,7 +6332,7 @@ exports.getStoragelocationList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6341,8 +6342,8 @@ exports.getStoragelocationList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6355,7 +6356,7 @@ exports.getSentCartRecesive = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-        request({
+    request({
         method: 'GET',
         uri: baseURL + config.apiZNCARTRECEIVESRV + `/CartSet?$filter=Einri eq '1000' and Nursingou eq '${req.query.Nursingou}' and FromDt eq datetime'${req.query.FromDt}' and FromTm eq time'${req.query.FromTm}' and ToDt eq datetime'${req.query.ToDt}' and ToTm eq time'${req.query.ToTm}' &$expand=TOCONTENT&$format=json`,
         body: req.body,
@@ -6371,7 +6372,7 @@ exports.getSentCartRecesive = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6381,8 +6382,8 @@ exports.getSentCartRecesive = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6411,7 +6412,7 @@ exports.addReceiveCart = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6421,8 +6422,8 @@ exports.addReceiveCart = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6452,7 +6453,7 @@ exports.getElepsedTime = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6462,8 +6463,8 @@ exports.getElepsedTime = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6494,7 +6495,7 @@ exports.postOfNurseEndsorment = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                 logger.log('error',error.message)
+                logger.log('error', error.message)
                 res.json(error);
                 return console.dir(error);
             } else {
@@ -6509,9 +6510,9 @@ exports.postOfNurseEndsorment = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                if (response.statusCode != 200) {
+                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -6539,7 +6540,7 @@ exports.getNurseEndsorment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6549,8 +6550,8 @@ exports.getNurseEndsorment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6577,7 +6578,7 @@ exports.getNurseEndsormentDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6587,8 +6588,8 @@ exports.getNurseEndsormentDetail = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6618,7 +6619,7 @@ exports.updateNurseEndDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6628,8 +6629,8 @@ exports.updateNurseEndDetail = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6657,7 +6658,7 @@ exports.deleteNurseEndDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
@@ -6667,8 +6668,8 @@ exports.deleteNurseEndDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+            if (response.statusCode != 200) {
+                logger.log('error', `${response.statusCode + ' ' + body}`)
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6747,40 +6748,40 @@ exports.Dialysisget = (req, res) => {
 
 
 exports.getSurgicalPassportDoc = (req, res) => {
-        let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
-        let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-        var j = request.jar();
-        var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-        request({
-            method: 'GET',
-            uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`,
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'GET',
+        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`,
 
-            body: req.body,
-            json: true,
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-                'sap-client': config.client,
-                'Cookie': mySAPSSO2Cookie,
-    
-                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
-            }
-        }, function (error, response, body) {
-            if (error) {
-                res.json(error);
-                return console.dir(error);
-            }
-            else {
-                res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
-                res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-                res.header('Access-Control-Expose-Headers', 'Content-Length');
-                res.header('Access-Control-Allow-Credentials', 'true');
-                res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-                return res.status(response.statusCode).json(body);
-            }
-        })
-    }
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
 
 
 
