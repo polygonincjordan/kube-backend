@@ -360,7 +360,7 @@ exports.nursingLabListSet = (req, res) => {
     if (req.body.fromDate) {
         dateFromfilter = isMultipleFilter ? ` and ` : '';
         isMultipleFilter = true;
-        dateFromfilter += ` (Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate})`;
+        dateFromfilter += `(Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate}')`;
     }
 
     let allFIlter = '';
@@ -413,7 +413,7 @@ exports.MedicationAdministrationSet = (req, res) => {
     console.log(uri);
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=(Deptcode eq ${req.query.Deptcode} and( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`,
+        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')&$format=json`,
         body: req.body,
         json: true,
         headers: {
