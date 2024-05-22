@@ -360,7 +360,7 @@ exports.nursingLabListSet = (req, res) => {
     if (req.body.fromDate) {
         dateFromfilter = isMultipleFilter ? ` and ` : '';
         isMultipleFilter = true;
-        dateFromfilter += ` (Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate})`;
+        dateFromfilter += `(Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate}')`;
     }
 
     let allFIlter = '';
@@ -413,7 +413,7 @@ exports.MedicationAdministrationSet = (req, res) => {
         console.log(uri);
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=(Deptcode eq ${req.query.Deptcode} and( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`,
+        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')&$format=json`,
         body: req.body,
         json: true,
         headers: {
@@ -6944,7 +6944,7 @@ exports.updateSurgicalPassPortDetail = (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/NurseEndorsSet(Dockey='${req.body.Dockey}')`,
+        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/NurseEndorsSet(Dockey='${req.body.d.Dockey}')`,
         body: req.body,
         json: true,
         headers: {
@@ -7040,3 +7040,124 @@ exports.getDailysisSet = (req, res) => {
         }
     })
 }
+
+exports.postOfPrdiatricWarningScale = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    let url = baseURL + config.apiZNSCALESSRV + `/PEWSSet`;
+
+    var j = request.jar();
+    var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    request(
+        {
+            method: "POST",
+            uri: url,
+            body: req.body,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
+
+
+exports.getPediatricEarlyWarningScore = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    request({
+        method: 'GET',
+        uri: baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.query.Dockey}')?$format=json`,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.copyPediatricWarningScore = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    console.log(baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.body.d.Dockey}')`);
+    request({
+        method: 'PUT',
+        uri: baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.body.d.Dockey}')`,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+// URL-http://achdevemr01.ach.jo:0/sap/opu/odata/sap/ZN_SCALES_SRV/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json
+// http://achdevemr01.ach.jo:0/sap/opu/odata/sap/ZN_SCALES_SRV/PEWSSet(Dockey='SCA000000000000001000000074000000')
