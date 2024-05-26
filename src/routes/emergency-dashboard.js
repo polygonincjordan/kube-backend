@@ -6978,7 +6978,7 @@ exports.LatestDocSet = (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`,
+        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`,
         body: req.body,
         json: true,
         headers: {
