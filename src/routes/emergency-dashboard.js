@@ -7157,7 +7157,7 @@ exports.getDailysisSet = (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet?$filter=Dockey eq '${req.body.Dockey}'&$expand=TOMONITOR&$format=json`
     request({
         method: 'GET',
-        uri:`${urlEndpoint}`,
+        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TOMONITOR&$format=json`,
         body: req.body,
         json: true,
         headers: {
