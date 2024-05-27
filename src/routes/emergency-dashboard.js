@@ -7013,7 +7013,7 @@ exports.getDailysisSet = (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet?$filter=Dockey eq '${req.body.Dockey}'&$expand=TOMONITOR&$format=json`,
+        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TOMONITOR&$format=json`,
         body: req.body,
         json: true,
         headers: {
