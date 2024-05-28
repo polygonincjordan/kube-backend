@@ -663,6 +663,9 @@ router.get("/Dialysisget", (req, res, next) => {
 router.post("/DailysisSet", (req, res, next) => {
     emergencyController.DailysisSet(req, res);
 })
+router.delete("/DailysisSet", (req,res,next)=>{
+    emergencyController.deleteDailysisSet(req,res);
+})
 router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
     emergencyController.deleteSurgicalPassDoc(req, res);
 });
