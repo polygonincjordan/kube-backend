@@ -44,6 +44,9 @@ router.post("/getPatientInfoByCase/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
+              }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -89,8 +92,8 @@ router.get("/getStorageLocations/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -137,7 +140,7 @@ router.post("/getMaterialDetailsSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
             }
             if (response.statusCode == 401) {
 

@@ -18,9 +18,9 @@ router.get("/UserConfigSet", (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-
+    const urlEndpoint = `${baseURL}/UserConfigSet('')?$format=json`
     const options = {
-        url: `${baseURL}/UserConfigSet('')?$format=json`,
+        url: urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -44,8 +44,8 @@ router.get("/UserConfigSet", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -145,8 +145,8 @@ router.get("/PatientVisitDataSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -205,8 +205,8 @@ router.get("/PatientVisitfalnrSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -254,8 +254,8 @@ console.log(urlEndpoint);
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -303,8 +303,8 @@ router.get("/getSoapPatientVisitData/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -353,8 +353,8 @@ router.get("/getAttachmentData/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -404,8 +404,8 @@ router.get("/getHistoryOfPatientData/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);

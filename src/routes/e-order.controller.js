@@ -17,11 +17,12 @@ exports.CASESET = (req, res) => {
     //console.log(mysapSSO2Value);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationPatCase + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationPatCase + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -53,8 +54,8 @@ exports.CASESET = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             if (response.statusCode == 401) {
                 return res.status(response.statusCode).json(body);
             }
@@ -70,11 +71,12 @@ exports.PrescriptionSet = (req, res) => {
     //console.log(mysapSSO2Value);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPresc + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationEPresc + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -106,8 +108,8 @@ exports.PrescriptionSet = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             if (response.statusCode == 401) {
                 return res.status(response.statusCode).json(body);
             }
@@ -125,11 +127,12 @@ exports.LocalizationSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -167,8 +170,8 @@ exports.LocalizationSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -195,11 +198,12 @@ exports.OrderSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled'
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled',
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -236,8 +240,8 @@ exports.OrderSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -264,11 +268,12 @@ exports.OrderConfigSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -334,11 +339,12 @@ exports.SearchSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled'
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled',
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -375,8 +381,8 @@ exports.SearchSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
 
                     return res.status(response.statusCode).json(body);
@@ -404,11 +410,12 @@ exports.FeesOrderSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -445,8 +452,8 @@ exports.FeesOrderSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -473,11 +480,12 @@ exports.FeesFavouriteSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -514,8 +522,8 @@ exports.FeesFavouriteSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -542,11 +550,12 @@ exports.SearchMSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
     var url = config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled';
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -583,8 +592,8 @@ exports.SearchMSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -611,11 +620,11 @@ exports.FeeServiceSearchSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
-    let url = config.apiEndpointIntegrationOrder + decodeURI(req.url);
+    let urlEndpoint = config.apiEndpointIntegrationOrder + decodeURI(req.url);
     const options = {
-        url: url,
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -652,8 +661,8 @@ exports.FeeServiceSearchSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -680,11 +689,12 @@ exports.ClinServiceSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled'
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url) + '?spnego=disabled',
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -721,8 +731,8 @@ exports.ClinServiceSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -749,11 +759,12 @@ exports.FrequencySet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPresc + decodeURI(req.url) + '?spnego=disabled'
     const options = {
-        url: config.apiEndpointIntegrationEPresc + decodeURI(req.url) + '?spnego=disabled',
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -790,8 +801,8 @@ exports.FrequencySet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -818,11 +829,12 @@ exports.DurationUnitSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPresc + decodeURI(req.url) + '?spnego=disabled'
     const options = {
-        url: config.apiEndpointIntegrationEPresc + decodeURI(req.url) + '?spnego=disabled',
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -859,8 +871,8 @@ exports.DurationUnitSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -887,11 +899,12 @@ exports.DrugPropSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPresc + decodeURI(req.url) + '?spnego=disabled'
     const options = {
-        url: config.apiEndpointIntegrationEPresc + decodeURI(req.url) + '?spnego=disabled',
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -928,8 +941,8 @@ exports.DrugPropSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -958,13 +971,14 @@ exports.OrderSetPost = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + "/OrderSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationOrder + "/OrderSet",
         body: req.body,
         json: true,
+        url:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -995,8 +1009,8 @@ exports.OrderSetPost = (req, res) => {
             // res.header('Access-Control-Expose-Headers', 'Content-Length');
             // res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1008,13 +1022,14 @@ exports.PrescriptionSetpost = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + "/PrescriptionSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationOrder + "/PrescriptionSet",
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1045,8 +1060,8 @@ exports.PrescriptionSetpost = (req, res) => {
             // res.header('Access-Control-Expose-Headers', 'Content-Length');
             // res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1057,12 +1072,13 @@ exports.ClinFavouriteSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
+    const urlEndpoint= config.apiEndpointIntegrationOrder + "/ClinFavouriteSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationOrder + "/ClinFavouriteSet",
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1083,8 +1099,8 @@ exports.ClinFavouriteSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1096,13 +1112,14 @@ exports.FeesOrderSetPost = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + "/FeesOrderSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationOrder + "/FeesOrderSet",
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1133,8 +1150,8 @@ exports.FeesOrderSetPost = (req, res) => {
             // res.header('Access-Control-Expose-Headers', 'Content-Length');
             // res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1145,12 +1162,13 @@ exports.FeesFavouriteSet = (req, res) => {
    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
    var j = request.jar();
-   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
+   const urlEndpoint= config.apiEndpointIntegrationOrder + "/FeesFavouriteSet"
    request({
        method: 'POST',
-       uri: config.apiEndpointIntegrationOrder + "/FeesFavouriteSet",
        body: req.body,
        json: true,
+       uri:urlEndpoint,
        headers: {
            'Content-Type': 'application/json',
            'Accept': 'application/json',
@@ -1171,8 +1189,8 @@ exports.FeesFavouriteSet = (req, res) => {
            res.header('Access-Control-Expose-Headers', 'Content-Length');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
            if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+            }
            return res.status(response.statusCode).json(body);
        }
    })
@@ -1182,11 +1200,12 @@ exports.FeesFavouriteSetDelete = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1197,11 +1216,10 @@ exports.FeesFavouriteSetDelete = (req, res) => {
         },
         //jar : j
     };
-
     request({
         method: 'DELETE',
-        uri: config.apiEndpointIntegrationOrder + decodeURI(req.url),
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1222,8 +1240,8 @@ exports.FeesFavouriteSetDelete = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1234,12 +1252,13 @@ exports.UserFavSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
+    const urlEndpoint= config.apiEndpointIntegrationEPresc + "/UserFavSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationEPresc + "/UserFavSet",
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1260,8 +1279,8 @@ exports.UserFavSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1272,11 +1291,12 @@ exports.ClinFavouriteSetDelete = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1287,11 +1307,10 @@ exports.ClinFavouriteSetDelete = (req, res) => {
         },
         //jar : j
     };
-
     request({
         method: 'DELETE',
-        uri: config.apiEndpointIntegrationOrder + decodeURI(req.url),
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1312,8 +1331,8 @@ exports.ClinFavouriteSetDelete = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1324,13 +1343,14 @@ exports.UserTemplateSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     request({
         method: 'DELETE',
-        uri: config.apiEndpointIntegrationOrder + decodeURI(req.url),
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1359,8 +1379,8 @@ exports.UserTemplateSet = (req, res) => {
             // res.header('Access-Control-Expose-Headers', 'Content-Length');
             // res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1371,12 +1391,13 @@ exports.UserTemplateUpdate = (req, res) => {
    let mySAPSSO2Cookie = 'MYSAPSSO2='    + decodeURI(mysapSSO2Value);
 
    var j = request.jar();
-   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
+   const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
    request({
        method: 'PUT',
-       uri: config.apiEndpointIntegrationOrder + decodeURI(req.url),
        body: req.body,
        json: true,
+       uri:urlEndpoint,
        headers: {
            'Content-Type': 'application/json',
            'Accept': 'application/json',
@@ -1411,11 +1432,12 @@ exports.UserFavSetDelete = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1426,11 +1448,10 @@ exports.UserFavSetDelete = (req, res) => {
         },
         jar : j
     };
-
     request({
         method: 'DELETE',
-        uri: config.apiEndpointIntegrationOrder + decodeURI(req.url),
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1451,8 +1472,8 @@ exports.UserFavSetDelete = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1462,11 +1483,12 @@ exports.PATCASEDETSET = (req, res) => {
     let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);//req.header('MYSAPSSO2');
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationPatCase + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationPatCase + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1492,8 +1514,8 @@ exports.PATCASEDETSET = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             if (response.statusCode == 401) {
                 return res.status(response.statusCode).json(body);
             }
@@ -1509,12 +1531,13 @@ exports.OrderConfigSetPost = (req, res) => {
    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
    var j = request.jar();
-   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
+   const urlEndpoint= config.apiEndpointIntegrationOrder + "/OrderConfigSet"
    request({
        method: 'POST',
-       uri: config.apiEndpointIntegrationOrder + "/OrderConfigSet",
        body: req.body,
        json: true,
+       uri:urlEndpoint,
        headers: {
            'Content-Type': 'application/json',
            'Accept': 'application/json',
@@ -1535,16 +1558,17 @@ exports.OrderConfigSetPost = (req, res) => {
            res.header('Access-Control-Expose-Headers', 'Content-Length');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
            if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+            }
            return res.status(response.statusCode).json(body);
        }
    })
 }
 
 exports.loginUser = (req, res) => {
+    const urlEndpoint= config.apiEndpointIntegrationPatCase + "/$metadata"
     const options = {
-        url: config.apiEndpointIntegrationPatCase + "/$metadata",
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             //'Accept':'application/json',
@@ -1581,8 +1605,8 @@ exports.loginUser = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1593,11 +1617,12 @@ exports.OrderPrintSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1634,7 +1659,7 @@ exports.OrderPrintSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
@@ -1662,11 +1687,12 @@ exports.EmarSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1703,8 +1729,8 @@ exports.EmarSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -1731,11 +1757,12 @@ exports.EmarSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1767,8 +1794,8 @@ exports.EmarSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -1785,11 +1812,12 @@ exports.EmarEventSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1821,8 +1849,8 @@ exports.EmarEventSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -1839,11 +1867,12 @@ exports.EorderSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1875,8 +1904,8 @@ exports.EorderSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -1894,13 +1923,14 @@ exports.EorderSetPost = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
 
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
 
+    const urlEndpoint= config.apiEndpointIntegrationEPrescriptionOrder + "/EorderSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationEPrescriptionOrder + "/EorderSet",
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -1923,8 +1953,8 @@ exports.EorderSetPost = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -1934,11 +1964,12 @@ exports.PatientMedicationsSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);                                                                               
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
+    const urlEndpoint= config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointIntegrationEPrescriptionOrder + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -1970,8 +2001,8 @@ exports.PatientMedicationsSet = (req, res) => {
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
                 if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
                 if (response.statusCode == 401) {
                     return res.status(response.statusCode).json(body);
                 }
@@ -1987,12 +2018,12 @@ exports.PatientMedicationsSet = (req, res) => {
 exports.EstdordSetPost = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-
+    const urlEndpoint= config.apiEndpointIntegrationAdministration + "/EstdordSet"
     request({
         method: 'POST',
-        uri: config.apiEndpointIntegrationAdministration + "/EstdordSet",
         body: req.body,
         json: true,
+        uri:urlEndpoint,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -2015,8 +2046,8 @@ exports.EstdordSetPost = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-            }
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })

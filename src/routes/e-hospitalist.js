@@ -111,9 +111,10 @@ router.get("/getIpListSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
+    
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
@@ -297,10 +298,9 @@ router.get("/getHospitalSet/", (req, res) => {
       );
 
       if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-    
-      if (response.statusCode == 401) {
+    if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
       } else {
         return res.status(response.statusCode).json(JSON.parse(body));
@@ -382,8 +382,8 @@ router.get("/getPhysicianList/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -436,8 +436,8 @@ router.get("/getIplistCountSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -489,8 +489,8 @@ router.get("/getDeptOUSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -540,8 +540,8 @@ router.post("/getNotPhysicionOrder/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -730,8 +730,8 @@ router.post("/getCountInPatientList", async (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -857,8 +857,8 @@ router.post("/createLabServicesSet", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -932,8 +932,8 @@ router.get("/getHospitalCountSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -1041,8 +1041,8 @@ router.get("/getPatientSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
 
-        if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+      if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -1077,8 +1077,8 @@ router.post("/createObpptSet", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1111,8 +1111,8 @@ router.post("/updateObpptSet", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1147,8 +1147,8 @@ router.delete("/deleteObpptSet/:docKey", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1231,8 +1231,8 @@ router.post("/createObantSet", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1265,8 +1265,8 @@ router.post("/updateObantSet", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1301,8 +1301,8 @@ router.delete("/deleteObantSet/:docKey", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1441,6 +1441,9 @@ console.log(urlEndpoint);
           res.header('Access-Control-Expose-Headers', 'Content-Length');
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+          if(response.statusCode != 200){
+            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+          }
           if (response.statusCode == 401) {
 
               return res.status(response.statusCode).json(body);
@@ -1477,8 +1480,8 @@ router.post("/createObsGyn", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1508,8 +1511,8 @@ router.post("/getObsGynData", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1538,8 +1541,8 @@ router.post("/updateObsGynDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1571,8 +1574,8 @@ router.post("/deleteObsGynDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1602,8 +1605,8 @@ router.post("/releaseObsGynDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1633,8 +1636,8 @@ router.post("/getObsGynReleasedPdf", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1667,8 +1670,8 @@ router.post("/createNeoNatalDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1698,8 +1701,8 @@ router.post("/getNeoNatalData", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1728,8 +1731,8 @@ router.post("/updateNeoNatalDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1761,8 +1764,8 @@ router.post("/deleteNeoNatalDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1792,8 +1795,8 @@ router.post("/releaseNeoNatalDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1823,8 +1826,8 @@ router.post("/getNeoNatalReleasedPdf", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1857,8 +1860,8 @@ router.post("/createNeoNatalMRDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1888,8 +1891,8 @@ router.post("/getNeoNatalMRData", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1918,8 +1921,8 @@ router.post("/updateNeoNatalMRDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1951,8 +1954,8 @@ router.post("/deleteNeoNatalMRDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1982,8 +1985,8 @@ router.post("/releaseNeoNatalMRDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2013,8 +2016,8 @@ router.post("/getNeoNatalMRReleasedPdf", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2047,8 +2050,8 @@ router.post("/getPhysicianAssessDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2080,8 +2083,8 @@ router.post("/createPhysicianAssessDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2113,8 +2116,8 @@ router.post("/getPhysicianAssessDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2146,8 +2149,8 @@ router.post("/createPhysicianAssessDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2179,8 +2182,8 @@ router.post("/updatePhysicianAssessDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2212,8 +2215,8 @@ router.post("/releasePhysicianAssessDoc", async (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -2246,8 +2249,8 @@ router.post("/deletePhysicianAssessDoc", async (req, res) => {
       else {
           //console.log(body);
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-          }
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -2277,8 +2280,8 @@ router.post("/getPhysicianAssessDocPDF", async (req, res) => {
       else {
           //console.log(body);
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-          }
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -2323,8 +2326,8 @@ router.get("/getTransferAssessDoc/", (req, res) => {
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-          }
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+      }
           if (response.statusCode == 401) {
 
               return res.status(response.statusCode).json(body);
@@ -2373,12 +2376,11 @@ router.get("/getTransferAssessDoc/", (req, res) => {
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
+             logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
           }
           
           if (response.statusCode == 401) {
-
-              return res.status(response.statusCode).json(body);
+            return res.status(response.statusCode).json(body);
           }
           else {
               return res.status(response.statusCode).json(JSON.parse(body));
@@ -2414,8 +2416,8 @@ router.post("/createTransferAssessDoc", async (req, res) => {
       else {
           //console.log(body);
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-          }
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -2447,8 +2449,8 @@ router.post("/updateTransferDoc", async (req, res) => {
       else {
           //console.log(body);
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
-          }
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+      }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -2483,7 +2485,7 @@ router.post("/deleteTransferDoc", async (req, res) => {
       else {
           //console.log(body);
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
+            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
           }
           return res.status(response.statusCode).json(body);
       }

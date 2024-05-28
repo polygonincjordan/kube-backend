@@ -50,8 +50,8 @@ router.get("/getInPatientAllDocumentSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
 
@@ -100,8 +100,8 @@ router.get("/getInPatientAllDocumentFalnrSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -149,8 +149,8 @@ router.get("/getInPatientDocumentSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -200,8 +200,8 @@ router.get("/getPatientCaseSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -240,8 +240,8 @@ router.post("/saveInPatientDataSet/", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -276,8 +276,8 @@ router.delete("/deleteInPatientData/:docKey", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -321,8 +321,8 @@ router.get("/getDiagnosisData/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -371,8 +371,8 @@ router.get("/getSurgeryTeamData/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -421,8 +421,8 @@ router.get("/getDischargeSummarySet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -462,8 +462,8 @@ router.post("/saveReleaseDischargeSummarySet/", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -499,8 +499,8 @@ router.post("/releaseDischargeSummarySet/", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -543,8 +543,8 @@ router.get("/savedDocumentGetData/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -583,8 +583,8 @@ router.delete("/deleteDischargeSummarySet/", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -628,8 +628,8 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
-        }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -682,8 +682,8 @@ router.get("/getDiagnosisSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
 

@@ -39,9 +39,9 @@ router.post("/savePatientVisitDataSet", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+           if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientVisit.js`);
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -73,9 +73,9 @@ router.put("/updatePatientVisitDataSet", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+           if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientVisit.js`);
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -109,9 +109,9 @@ router.delete("/deletePatientVisitDataSet/:docKey", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+           if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientVisit.js`);
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -143,9 +143,9 @@ console.log('toReleaseSoapPatientVisitData',urlEndpoint);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+           if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientVisit.js`);
+      }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -213,9 +213,9 @@ router.delete("/deleteVisitnotePatientVisitDataSet/:docKey/:etag", async (req, r
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+           if(response.statusCode != 200){
+            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientVisit.js`);
+        }
             return res.status(response.statusCode).json(body);
         }
     })
