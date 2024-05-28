@@ -13,9 +13,10 @@ exports.getOrderSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderSetHeaderSet?$expand=ToMedOrd,ToPhyOrd,ToLab,ToRad,ToServices,ToSurgy,ToAdm&$filter=( Einri eq '${req.body.einri}' and Falnr eq '${req.body.falnr}' )`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRORDSETSRV + `/OrderSetHeaderSet?$expand=ToMedOrd,ToPhyOrd,ToLab,ToRad,ToServices,ToSurgy,ToAdm&$filter=( Einri eq '${req.body.einri}' and Falnr eq '${req.body.falnr}' )`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -39,8 +40,8 @@ exports.getOrderSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -52,9 +53,10 @@ exports.getOrderSetBySubtitles = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderSetHeaderSet?$filter=( Id eq '${req.body.Id}' and Stid eq '${req.body.Stid}' )&$expand=ToDiag,ToAccess,ToMedOrd/ToMedComplex,ToPhyOrd,ToLab,ToRad,ToServices,ToNdia,ToAdm,ToSurgy`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRORDSETSRV + `/OrderSetHeaderSet?$filter=( Id eq '${req.body.Id}' and Stid eq '${req.body.Stid}' )&$expand=ToDiag,ToAccess,ToMedOrd/ToMedComplex,ToPhyOrd,ToLab,ToRad,ToServices,ToNdia,ToAdm,ToSurgy`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -78,8 +80,8 @@ exports.getOrderSetBySubtitles = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -91,9 +93,10 @@ exports.createOrderSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderSetOrderSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABEMRORDSETSRV + "/OrderSetOrderSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -117,8 +120,8 @@ exports.createOrderSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -130,9 +133,10 @@ exports.getFavSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderSetFavrSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRORDSETSRV + "/OrderSetFavrSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -156,8 +160,8 @@ exports.getFavSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -169,9 +173,10 @@ exports.getOrderSetByFavId = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderSetHeaderSet?$filter=( Id eq '${req.body.Id}' )&$expand=ToFavr,ToMedOrd,ToPhyOrd,ToLab,ToRad,ToServices`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRORDSETSRV + `/OrderSetHeaderSet?$filter=( Id eq '${req.body.Id}' )&$expand=ToFavr,ToMedOrd,ToPhyOrd,ToLab,ToRad,ToServices`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -195,8 +200,8 @@ exports.getOrderSetByFavId = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -208,9 +213,10 @@ exports.emergencyListSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/EmergencyListSet?$filter=(Einri eq '1000' and ( Erdat eq datetime'${req.body.fromDate}' or Erdat eq datetime'${req.body.toDate}') and History eq ${req.body.History})`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/EmergencyListSet?$filter=(Einri eq '1000' and ( Erdat eq datetime'${req.body.fromDate}' or Erdat eq datetime'${req.body.toDate}') and History eq ${req.body.History})`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -234,8 +240,8 @@ exports.emergencyListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -248,10 +254,10 @@ exports.emergencyListCheckInSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/EmergencyListSet?$filter=(History eq ${req.body.History})`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/EmergencyListSet?$filter=(History eq ${req.body.History})`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/EmergencyListSet?$filter=(History eq ${req.body.History})`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -275,8 +281,8 @@ exports.emergencyListCheckInSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -289,9 +295,10 @@ exports.assignToMe = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/NurseAssignSet?`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/NurseAssignSet?`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -315,8 +322,8 @@ exports.assignToMe = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -328,6 +335,7 @@ exports.nursingLabListSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabExtractionSet` 
 
 
     let isMultipleFilter = false;
@@ -372,8 +380,7 @@ exports.nursingLabListSet = (req, res) => {
 
     request({
         method: 'GET',
-        //    uri: baseURL + config.apiZABEMRNURSESRV + `/LabExtractionSet` ,
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -396,8 +403,8 @@ exports.nursingLabListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -409,11 +416,10 @@ exports.MedicationAdministrationSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    uri = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and ( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`,
-        console.log(uri);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and ( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -437,8 +443,8 @@ exports.MedicationAdministrationSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -450,9 +456,10 @@ exports.actionlistSet = (req, res) => {
     console.log(baseURL + config.apiZNNURSINGACTIONEMARSRV + "/AdministerSet")
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGACTIONEMARSRV}/AdministerSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNNURSINGACTIONEMARSRV + "/AdministerSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -476,8 +483,8 @@ exports.actionlistSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -490,11 +497,10 @@ exports.nursingLabListPrintSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.apiZABEMRNURSESRV + `/LabelPrintUrlSet?$format=json`
-    console.log(url);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabelPrintUrlSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/LabelPrintUrlSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -518,8 +524,8 @@ exports.nursingLabListPrintSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -532,10 +538,10 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.apiZABEMRNURSESRV + `/SampleCollected?Vkgid='${req.query.vkgid}'`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/SampleCollected?Vkgid='${req.query.vkgid}'`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/SampleCollected?Vkgid='${req.query.vkgid}'`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -559,8 +565,8 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -574,9 +580,10 @@ exports.getCountField = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     var ipCount = `/LabExtractionSet/$count`;
+    const urlEndpoint = config.apiEndpointEMRInPatient + config.apiZABEMRNURSESRV + ipCount
     request({
         method: 'GET',
-        uri: config.apiEndpointEMRInPatient + config.apiZABEMRNURSESRV + ipCount,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -604,8 +611,8 @@ exports.getCountField = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -617,9 +624,10 @@ exports.triagePriorityList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/TriagePriotyCrtUpdSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/TriagePriotyCrtUpdSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -643,8 +651,8 @@ exports.triagePriorityList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -656,9 +664,10 @@ exports.saveTriage = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/TriagePriotyCrtUpdSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/TriagePriotyCrtUpdSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -682,8 +691,8 @@ exports.saveTriage = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -695,9 +704,10 @@ exports.patientsListSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}"/PatientsListSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + "/PatientsListSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -721,8 +731,8 @@ exports.patientsListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -734,9 +744,10 @@ exports.actionPhysicianSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/ActionPhysicianSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + "/ActionPhysicianSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -760,8 +771,8 @@ exports.actionPhysicianSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -773,9 +784,10 @@ exports.getRiskList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatRiskFctrListSet?$filter=Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}'`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatRiskFctrListSet?$filter=Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}'`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -799,8 +811,8 @@ exports.getRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -812,9 +824,10 @@ exports.getRiskValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/RiskFctMastrListSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/RiskFctMastrListSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -838,8 +851,8 @@ exports.getRiskValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -851,10 +864,11 @@ exports.saveRiskList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatRiskHdrSet`
     console.log(req.body);
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatRiskHdrSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -878,8 +892,8 @@ exports.saveRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -891,9 +905,10 @@ exports.getCancelReasons = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyCancelReasonSet?`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyCancelReasonSet?`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -917,8 +932,8 @@ exports.getCancelReasons = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -930,9 +945,10 @@ exports.getAllergenValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergenMstrSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergenMstrSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -956,8 +972,8 @@ exports.getAllergenValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -969,9 +985,10 @@ exports.getAllergenGroupValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergnGroupMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergnGroupMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -995,8 +1012,8 @@ exports.getAllergenGroupValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1008,9 +1025,10 @@ exports.getAllergyCertaintyValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyCertaintyMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyCertaintyMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1034,8 +1052,8 @@ exports.getAllergyCertaintyValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1047,9 +1065,10 @@ exports.getAllergyEvaluationValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyEvaluMstrSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyEvaluMstrSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1073,8 +1092,8 @@ exports.getAllergyEvaluationValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1086,9 +1105,10 @@ exports.getAllergyReactionValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyReactionMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyReactionMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1112,8 +1132,8 @@ exports.getAllergyReactionValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1125,9 +1145,10 @@ exports.getSeverityValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyReatSevrtMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyReatSevrtMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1151,8 +1172,8 @@ exports.getSeverityValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1164,9 +1185,10 @@ exports.getAllergyTypeValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyTypeMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyTypeMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1190,8 +1212,8 @@ exports.getAllergyTypeValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1203,9 +1225,10 @@ exports.getAllergyHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatAllergyHdrSet?$expand=PatAllergyHdrToItmNav&$filter=Patnr eq '${req.body.patnr}' &$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatAllergyHdrSet?$expand=PatAllergyHdrToItmNav&$filter=Patnr eq '${req.body.patnr}' &$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1229,8 +1252,8 @@ exports.getAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1242,9 +1265,10 @@ exports.SaveAllergyHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatAllergyHdrSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatAllergyHdrSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1268,8 +1292,8 @@ exports.SaveAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1281,9 +1305,10 @@ exports.getPatientLabHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatLabOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatLabOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1307,8 +1332,8 @@ exports.getPatientLabHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1320,9 +1345,10 @@ exports.getPatientRadHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatRadOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatRadOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1346,8 +1372,8 @@ exports.getPatientRadHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1360,9 +1386,10 @@ exports.getErRadPdf = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNISHMEDDOCATTACHMENTSRV}/DOCATTSET('${req.body.key}')/$value`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNISHMEDDOCATTACHMENTSRV + `/DOCATTSET('${req.body.key}')/$value`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1386,8 +1413,8 @@ exports.getErRadPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1399,9 +1426,10 @@ exports.getMedCompletedHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1425,8 +1453,8 @@ exports.getMedCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1438,9 +1466,10 @@ exports.getMedNotCompletedHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatMisMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatMisMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1464,8 +1493,8 @@ exports.getMedNotCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1477,9 +1506,10 @@ exports.getVitalList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}' and Einri eq '${req.body.einri}' and Lfdnr eq '${req.body.lfdnr}')&$expand=TOITEM&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}' and Einri eq '${req.body.einri}' and Lfdnr eq '${req.body.lfdnr}')&$expand=TOITEM&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1503,8 +1533,8 @@ exports.getVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1516,9 +1546,10 @@ exports.deleteVitalList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1542,8 +1573,8 @@ exports.deleteVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1555,9 +1586,10 @@ exports.updateVitalSigns = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1581,8 +1613,8 @@ exports.updateVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1594,9 +1626,10 @@ exports.createVitalSigns = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1620,8 +1653,8 @@ exports.createVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1633,9 +1666,10 @@ exports.deleteReasonsList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/CancellationReasonSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/CancellationReasonSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1659,8 +1693,8 @@ exports.deleteReasonsList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1672,9 +1706,10 @@ exports.getAllVitalList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignListSet?$filter=Einri eq '${req.body.einri}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignListSet?$filter=Einri eq '${req.body.einri}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1698,8 +1733,8 @@ exports.getAllVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1712,9 +1747,10 @@ exports.getLatestAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1738,8 +1774,8 @@ exports.getLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1751,9 +1787,10 @@ exports.getPhyAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1777,8 +1814,8 @@ exports.getPhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1790,9 +1827,10 @@ exports.createPhyDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1816,8 +1854,8 @@ exports.createPhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1829,9 +1867,10 @@ exports.updatePhyDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1855,8 +1894,8 @@ exports.updatePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1868,9 +1907,10 @@ exports.releasePhyDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1894,8 +1934,8 @@ exports.releasePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1907,9 +1947,10 @@ exports.getReleasedPdf = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/PDFFileSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/PDFFileSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1933,8 +1974,8 @@ exports.getReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1946,9 +1987,10 @@ exports.deletePhyAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -1972,8 +2014,8 @@ exports.deletePhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1986,9 +2028,10 @@ exports.PatientSearchSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatientsSet?$expand=ToVisitsHistory&$filter=(Patnr eq '${req.body.Patnr}' and Vname eq '${req.body.Vname}' and Nname eq '${req.body.Nname}' and Telnr eq '${req.body.Telnr}' )`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatientsSet?$expand=ToVisitsHistory&$filter=(Patnr eq '${req.body.Patnr}' and Vname eq '${req.body.Vname}' and Nname eq '${req.body.Nname}' and Telnr eq '${req.body.Telnr}' )`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2012,8 +2055,8 @@ exports.PatientSearchSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2026,9 +2069,10 @@ exports.getMedLatestAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2052,8 +2096,8 @@ exports.getMedLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2065,9 +2109,10 @@ exports.getMedReportData = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet?$filter=( Dockey  eq '${req.body.Dockey}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet?$filter=( Dockey  eq '${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2091,8 +2136,8 @@ exports.getMedReportData = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2104,9 +2149,10 @@ exports.createMedDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2130,8 +2176,8 @@ exports.createMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2143,9 +2189,10 @@ exports.deleteMedReport = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2169,8 +2216,8 @@ exports.deleteMedReport = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2182,9 +2229,10 @@ exports.updateMedDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2208,8 +2256,8 @@ exports.updateMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2221,9 +2269,10 @@ exports.releaseMedDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2247,8 +2296,8 @@ exports.releaseMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2260,9 +2309,10 @@ exports.getMedReleasedPdf = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/PDFFileSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/PDFFileSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2286,8 +2336,8 @@ exports.getMedReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2300,10 +2350,11 @@ exports.getAnalysisDetails = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZEMERGENCYANALYSISSRV}/EmergencyPatientSet?$filter=Date1 eq datetime'${req.body.fromDate}' and Date2 eq datetime'${req.body.toDate}'&$expand=TOROADMAP,TOHOURLYPAT,TOZONESTAT&$format=json`
 
     request({
         method: 'GET',
-        uri: baseURL + config.apiZEMERGENCYANALYSISSRV + `/EmergencyPatientSet?$filter=Date1 eq datetime'${req.body.fromDate}' and Date2 eq datetime'${req.body.toDate}'&$expand=TOROADMAP,TOHOURLYPAT,TOZONESTAT&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2327,8 +2378,8 @@ exports.getAnalysisDetails = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2341,9 +2392,10 @@ exports.getErBedList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNROOMASSIGNSRV}/RoomSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNROOMASSIGNSRV + `/RoomSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2367,8 +2419,8 @@ exports.getErBedList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2380,9 +2432,10 @@ exports.SaveBedForPatient = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNROOMASSIGNSRV}/AssignRoomSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNROOMASSIGNSRV + `/AssignRoomSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2406,8 +2459,8 @@ exports.SaveBedForPatient = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2420,9 +2473,10 @@ exports.changePassword = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABUSERMGMTSRV}/ChangePasswordSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABUSERMGMTSRV + `/ChangePasswordSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2446,8 +2500,8 @@ exports.changePassword = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2461,6 +2515,7 @@ exports.getLevelOrderHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=${dateFromfilter}&$format=json`
     let dateFromfilter = '';
     if (req.query.fromDate) {
         dateFromfilter += `( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')`;
@@ -2468,7 +2523,7 @@ exports.getLevelOrderHistory = (req, res) => {
     let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=${dateFromfilter}and$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=${dateFromfilter}&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2492,8 +2547,8 @@ exports.getLevelOrderHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2504,9 +2559,10 @@ exports.actionlistSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGACTIONEMARSRV}/AdministerSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNNURSINGACTIONEMARSRV + "/AdministerSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2530,8 +2586,8 @@ exports.actionlistSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2544,10 +2600,11 @@ exports.nursingLabListPrintSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabelPrintUrlSet?$format=json`
     let url = baseURL + config.apiZABEMRNURSESRV + `/LabelPrintUrlSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/LabelPrintUrlSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2571,8 +2628,8 @@ exports.nursingLabListPrintSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2585,11 +2642,10 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.apiZABEMRNURSESRV + `/SampleCollected?Vkgid='${req.body.Vkgid}'`
-
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/SampleCollected?Vkgid='${req.body.Vkgid}'`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/SampleCollected?Vkgid='${req.body.Vkgid}'`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2613,8 +2669,8 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2628,10 +2684,10 @@ exports.getCountField = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     var ipCount = `/LabExtractionSet/$count?$filter=(Datum ge datetime'${req.query.fromDate}' and Datum le datetime'${req.query.toDate}')`;
-    let url = config.apiEndpointEMRInPatient + config.apiZABEMRNURSESRV + ipCount
+    const urlEndpoint = config.apiEndpointEMRInPatient + config.apiZABEMRNURSESRV + ipCount
     request({
         method: 'GET',
-        uri: config.apiEndpointEMRInPatient + config.apiZABEMRNURSESRV + ipCount,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2659,8 +2715,8 @@ exports.getCountField = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -2673,9 +2729,10 @@ exports.MedicationAdministrationCount = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     var ipCount = `/NotAdminMEEventsSet/$count`;
+    const urlEndpoint = baseURL + config.apiZABEMGYWRKLISTSRV + ipCount
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + ipCount,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2703,8 +2760,8 @@ exports.MedicationAdministrationCount = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -2719,9 +2776,10 @@ exports.NoConsumablesSetCount = (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     var ipCount = `/NoConsumablesSet/$count?$filter=(Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')
     `;
+    const urlEndpoint = baseURL + config.apiZABEMGYWRKLISTSRV + ipCount
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + ipCount,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2749,8 +2807,8 @@ exports.NoConsumablesSetCount = (req, res) => {
                 count: body,
                 module: req.body.module
             }
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(newBody);
         }
@@ -2762,9 +2820,10 @@ exports.triagePriorityList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/TriagePriotyCrtUpdSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/TriagePriotyCrtUpdSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2788,8 +2847,8 @@ exports.triagePriorityList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2801,9 +2860,10 @@ exports.saveTriage = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/TriagePriotyCrtUpdSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/TriagePriotyCrtUpdSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2827,8 +2887,8 @@ exports.saveTriage = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2840,9 +2900,10 @@ exports.patientsListSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatientsListSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + "/PatientsListSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2866,8 +2927,8 @@ exports.patientsListSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2879,9 +2940,10 @@ exports.actionPhysicianSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/ActionPhysicianSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + "/ActionPhysicianSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2905,8 +2967,8 @@ exports.actionPhysicianSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2918,9 +2980,10 @@ exports.getRiskList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatRiskFctrListSet?$filter=Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}'`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatRiskFctrListSet?$filter=Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}'`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2944,8 +3007,8 @@ exports.getRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2957,9 +3020,10 @@ exports.getRiskValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/RiskFctMastrListSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/RiskFctMastrListSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -2983,8 +3047,8 @@ exports.getRiskValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2996,9 +3060,10 @@ exports.saveRiskList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatRiskHdrSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatRiskHdrSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3022,8 +3087,8 @@ exports.saveRiskList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3035,9 +3100,10 @@ exports.getCancelReasons = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyCancelReasonSet?`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyCancelReasonSet?`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3061,8 +3127,8 @@ exports.getCancelReasons = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3074,9 +3140,10 @@ exports.getAllergenValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergenMstrSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergenMstrSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3100,8 +3167,8 @@ exports.getAllergenValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3113,9 +3180,10 @@ exports.getAllergenGroupValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergnGroupMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergnGroupMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3139,8 +3207,8 @@ exports.getAllergenGroupValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3152,9 +3220,10 @@ exports.getAllergyCertaintyValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyCertaintyMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyCertaintyMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3178,8 +3247,8 @@ exports.getAllergyCertaintyValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3191,9 +3260,10 @@ exports.getAllergyEvaluationValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyEvaluMstrSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyEvaluMstrSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3217,8 +3287,8 @@ exports.getAllergyEvaluationValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3230,9 +3300,10 @@ exports.getAllergyReactionValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyReactionMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyReactionMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3256,8 +3327,8 @@ exports.getAllergyReactionValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3269,9 +3340,10 @@ exports.getSeverityValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyReatSevrtMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyReatSevrtMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3295,8 +3367,8 @@ exports.getSeverityValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3308,9 +3380,10 @@ exports.getAllergyTypeValues = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/AllergyTypeMstSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/AllergyTypeMstSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3334,8 +3407,8 @@ exports.getAllergyTypeValues = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3347,9 +3420,10 @@ exports.getAllergyHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatAllergyHdrSet?$expand=PatAllergyHdrToItmNav&$filter=Patnr eq '${req.body.patnr}' &$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatAllergyHdrSet?$expand=PatAllergyHdrToItmNav&$filter=Patnr eq '${req.body.patnr}' &$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3373,8 +3447,8 @@ exports.getAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3386,9 +3460,10 @@ exports.SaveAllergyHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatAllergyHdrSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatAllergyHdrSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3412,8 +3487,8 @@ exports.SaveAllergyHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3425,9 +3500,10 @@ exports.getPatientLabHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatLabOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatLabOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3451,8 +3527,8 @@ exports.getPatientLabHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3464,9 +3540,10 @@ exports.getPatientRadHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatRadOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatRadOrdListSet?$filter=(Einri eq '${req.body.einri}' and Patnr eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3490,8 +3567,8 @@ exports.getPatientRadHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3503,9 +3580,10 @@ exports.getErRadPdf = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNISHMEDDOCATTACHMENTSRV}/DOCATTSET('${req.body.key}')/$value`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNISHMEDDOCATTACHMENTSRV + `/DOCATTSET('${req.body.key}')/$value`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3529,8 +3607,8 @@ exports.getErRadPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3542,9 +3620,10 @@ exports.getMedCompletedHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3568,8 +3647,8 @@ exports.getMedCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3581,9 +3660,10 @@ exports.getMedNotCompletedHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/PatMisMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMGYWRKLISTSRV + `/PatMisMedOrdListSet?$filter=(Einri eq '${req.body.einri}' and Mrn eq '${req.body.patnr}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3607,8 +3687,8 @@ exports.getMedNotCompletedHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3620,9 +3700,10 @@ exports.getVitalList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}' and Einri eq '${req.body.einri}' and Lfdnr eq '${req.body.lfdnr}')&$expand=TOITEM&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet?$filter=(Patnr eq '${req.body.patnr}' and Falnr eq '${req.body.falnr}' and Einri eq '${req.body.einri}' and Lfdnr eq '${req.body.lfdnr}')&$expand=TOITEM&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3646,8 +3727,8 @@ exports.getVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3659,9 +3740,10 @@ exports.deleteVitalList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3685,8 +3767,8 @@ exports.deleteVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3698,9 +3780,10 @@ exports.updateVitalSigns = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3724,8 +3807,8 @@ exports.updateVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3737,10 +3820,11 @@ exports.createVitalSigns = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
     let url = baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3764,8 +3848,8 @@ exports.createVitalSigns = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3777,9 +3861,10 @@ exports.deleteReasonsList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/CancellationReasonSet?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/CancellationReasonSet?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3803,8 +3888,8 @@ exports.deleteReasonsList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3816,9 +3901,10 @@ exports.getAllVitalList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignListSet?$filter=Einri eq '${req.body.einri}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignListSet?$filter=Einri eq '${req.body.einri}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3842,8 +3928,8 @@ exports.getAllVitalList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3856,9 +3942,10 @@ exports.getLatestAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3882,8 +3969,8 @@ exports.getLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3895,9 +3982,10 @@ exports.getPhyAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3921,8 +4009,8 @@ exports.getPhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3934,9 +4022,10 @@ exports.createPhyDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3960,8 +4049,8 @@ exports.createPhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3973,9 +4062,10 @@ exports.updatePhyDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -3999,8 +4089,8 @@ exports.updatePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4012,9 +4102,10 @@ exports.releasePhyDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4038,8 +4129,8 @@ exports.releasePhyDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4051,9 +4142,10 @@ exports.getReleasedPdf = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/PDFFileSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/PDFFileSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4077,8 +4169,8 @@ exports.getReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4090,9 +4182,10 @@ exports.deletePhyAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNERPHYSDOCSRV + `/ErPhysDocSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4116,8 +4209,8 @@ exports.deletePhyAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4130,9 +4223,10 @@ exports.PatientSearchSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatientsSet?$expand=ToVisitsHistory&$filter=(Patnr eq '${req.body.Patnr}' and Vname eq '${req.body.Vname}' and Nname eq '${req.body.Nname}' and Telnr eq '${req.body.Telnr}' )`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatientsSet?$expand=ToVisitsHistory&$filter=(Patnr eq '${req.body.Patnr}' and Vname eq '${req.body.Vname}' and Nname eq '${req.body.Nname}' and Telnr eq '${req.body.Telnr}' )`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4156,8 +4250,8 @@ exports.PatientSearchSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4170,9 +4264,10 @@ exports.getMedLatestAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4196,8 +4291,8 @@ exports.getMedLatestAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4209,9 +4304,10 @@ exports.getMedReportData = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet?$filter=( Dockey  eq '${req.body.Dockey}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet?$filter=( Dockey  eq '${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4235,8 +4331,8 @@ exports.getMedReportData = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4248,9 +4344,10 @@ exports.createMedDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4274,8 +4371,8 @@ exports.createMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4287,9 +4384,10 @@ exports.deleteMedReport = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4313,8 +4411,8 @@ exports.deleteMedReport = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4326,9 +4424,10 @@ exports.updateMedDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4352,8 +4451,8 @@ exports.updateMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4365,9 +4464,10 @@ exports.releaseMedDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/MedReportSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/MedReportSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4391,8 +4491,8 @@ exports.releaseMedDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4404,9 +4504,10 @@ exports.getMedReleasedPdf = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMEDREPORTSRV}/PDFFileSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNMEDREPORTSRV + `/PDFFileSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4430,8 +4531,8 @@ exports.getMedReleasedPdf = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4444,10 +4545,11 @@ exports.getAnalysisDetails = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZEMERGENCYANALYSISSRV}/EmergencyPatientSet?$filter=Date1 eq datetime'${req.body.fromDate}' and Date2 eq datetime'${req.body.toDate}'&$expand=TOROADMAP,TOHOURLYPAT,TOZONESTAT&$format=json`
 
     request({
         method: 'GET',
-        uri: baseURL + config.apiZEMERGENCYANALYSISSRV + `/EmergencyPatientSet?$filter=Date1 eq datetime'${req.body.fromDate}' and Date2 eq datetime'${req.body.toDate}'&$expand=TOROADMAP,TOHOURLYPAT,TOZONESTAT&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4471,8 +4573,8 @@ exports.getAnalysisDetails = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4485,9 +4587,10 @@ exports.getErBedList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNROOMASSIGNSRV}/RoomSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNROOMASSIGNSRV + `/RoomSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4511,8 +4614,8 @@ exports.getErBedList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4524,9 +4627,10 @@ exports.SaveBedForPatient = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNROOMASSIGNSRV}/AssignRoomSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNROOMASSIGNSRV + `/AssignRoomSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4550,8 +4654,8 @@ exports.SaveBedForPatient = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4564,9 +4668,10 @@ exports.changePassword = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABUSERMGMTSRV}/ChangePasswordSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABUSERMGMTSRV + `/ChangePasswordSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4590,8 +4695,8 @@ exports.changePassword = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4605,11 +4710,11 @@ exports.getLevelOrderHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.ZNISHMEDORDER_HIST_SRV + `/OrderHistorySet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}'&$format=json`
-    console.log(url);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderHistorySet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}'&$format=json`
+    
     request({
         method: 'GET',
-        uri: baseURL + config.ZNISHMEDORDER_HIST_SRV + `/OrderHistorySet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4633,8 +4738,8 @@ exports.getLevelOrderHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4647,12 +4752,13 @@ exports.getMaterialSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRMDSRV}/MaterialSet?$filter=(startswith(Matnr, '${searchstring}'))`
     const { searchstring } = req.query;
     let url = baseURL + config.apiZABEMRMDSRV + `/MaterialSet?$filter=(startswith(Matnr, '${searchstring}'))`;
     console.log('Test', url);
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4676,8 +4782,8 @@ exports.getMaterialSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4690,12 +4796,13 @@ exports.getMaterialStockSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/MaterialStockSet?$filter=(Matnr eq '${JSON.parse(searchstring).enteredValue}' and Lgort eq '${JSON.parse(searchstring).location}')`
     const { searchstring } = req.query;
     let url = baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/MaterialStockSet?$filter=(Matnr eq '${JSON.parse(searchstring).enteredValue}' and Lgort eq '${JSON.parse(searchstring).location}')`;
     console.log(url);
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4719,8 +4826,8 @@ exports.getMaterialStockSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4732,10 +4839,11 @@ exports.saveConsumableDataSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatMatCosmpNmm7HdSet`
     let url = baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatMatCosmpNmm7HdSet`;
     request({
         method: 'POST',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -4759,8 +4867,8 @@ exports.saveConsumableDataSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4772,12 +4880,12 @@ exports.getConsumablesHistory = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZNPATMATCONSUMSRV + `/PatMatConsumSet?$filter=Falnr eq '${searchstring}' and Sloc eq 'ER01'&$format=json`;
+    const urlEndpoint = baseURL + config.apiZNPATMATCONSUMSRV + `/PatMatConsumSet?$filter=Falnr eq '${searchstring}' and Sloc eq 'ER01'&$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -4800,8 +4908,8 @@ exports.getConsumablesHistory = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4812,12 +4920,12 @@ exports.getNoConsumablesSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet?$format=json`;
+    const urlEndpoint  = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet?$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -4840,8 +4948,8 @@ exports.getNoConsumablesSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -4854,10 +4962,11 @@ exports.nurEmrFaceScaleSetPost = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/FaceScaleSet`
     request(
         {
             method: "POST",
-            uri: baseURL + config.apiZNSCALESSRV + "/FaceScaleSet",
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -4885,8 +4994,8 @@ exports.nurEmrFaceScaleSetPost = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -4900,11 +5009,12 @@ exports.nurEmrGlasgowScaleSetPost = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/GlasgowScaleSet`
 
     request(
         {
             method: "POST",
-            uri: baseURL + config.apiZNSCALESSRV + "/GlasgowScaleSet",
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -4932,8 +5042,8 @@ exports.nurEmrGlasgowScaleSetPost = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -4947,11 +5057,12 @@ exports.nurEmrNumericScaleSetPost = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/NRSScaleSet`
 
     request(
         {
             method: "POST",
-            uri: baseURL + config.apiZNSCALESSRV + "/NRSScaleSet",
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -4979,8 +5090,8 @@ exports.nurEmrNumericScaleSetPost = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -4993,13 +5104,13 @@ exports.getFacePainScaleDetail = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const { dockey } = req.query;
-    let url = baseURL + config.apiZNSCALESSRV + `/FaceScaleSet(Dockey='${dockey}')?$format=json`;
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/FaceScaleSet(Dockey='${dockey}')?$format=json`;
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5028,8 +5139,8 @@ exports.getFacePainScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5042,13 +5153,13 @@ exports.getGlowgosScaleDetail = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const { dockey } = req.query;
-    let url = baseURL + config.apiZNSCALESSRV + `/GlasgowScaleSet(Dockey='${dockey}')?$format=json`;
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/GlasgowScaleSet(Dockey='${dockey}')?$format=json`;
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5077,8 +5188,8 @@ exports.getGlowgosScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5091,13 +5202,14 @@ exports.getNumericScaleDetail = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const { dockey } = req.query;
-    let url = baseURL + config.apiZNSCALESSRV + `/NRSScaleSet(Dockey='${dockey}')?$format=json`;
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/NRSScaleSet(Dockey='${dockey}')?$format=json`;
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+   
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5126,8 +5238,8 @@ exports.getNumericScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5139,12 +5251,12 @@ exports.getNumericScaleDetail = (req, res) => {
 exports.getFeeServiceSearchSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNISHMEDEORDERSRV + `/FeeServiceSearchSet?$filter=(Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Searchstring eq '${req.body.Searchstring}' and Nursing eq true )`;
+    const urlEndpoint = baseURL + config.apiZNISHMEDEORDERSRV + `/FeeServiceSearchSet?$filter=(Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Searchstring eq '${req.body.Searchstring}' and Nursing eq true )`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -5167,8 +5279,8 @@ exports.getFeeServiceSearchSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5181,11 +5293,12 @@ exports.saveNurEmrTriage = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERNURSINGSRV}/ErNursingSet`
 
     request(
         {
             method: "POST",
-            uri: baseURL + config.apiZNERNURSINGSRV + "/ErNursingSet",
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -5213,8 +5326,8 @@ exports.saveNurEmrTriage = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5228,9 +5341,10 @@ exports.getRoomDetails = (req, res) => {
     const { treatmentou } = req.query
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRMDSRV}/RoomListSet?$filter=( Treatmentou eq '${treatmentou}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRMDSRV + `/RoomListSet?$filter=( Treatmentou eq '${treatmentou}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5254,8 +5368,8 @@ exports.getRoomDetails = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5267,9 +5381,10 @@ exports.getEmployeeId = (req, res) => {
     const { empid } = req.query
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRMDSRV}/EmployeeListSet?$filter=(Empid eq '${empid}' )`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRMDSRV + `/EmployeeListSet?$filter=(Empid eq '${empid}' )`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5293,8 +5408,8 @@ exports.getEmployeeId = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5307,9 +5422,10 @@ exports.saveAssignedRoom = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/RoomSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/RoomSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5333,8 +5449,8 @@ exports.saveAssignedRoom = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5346,9 +5462,10 @@ exports.getAssignedRoom = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/RoomListSet?$filter=(Fdate eq datetime'${req.query.Fdate}' and Tdate eq datetime'${req.query.Tdate}')`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/RoomListSet?$filter=(Fdate eq datetime'${req.query.Fdate}' and Tdate eq datetime'${req.query.Tdate}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5372,8 +5489,8 @@ exports.getAssignedRoom = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5386,10 +5503,10 @@ exports.getServiceHistorySet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    let url = baseURL + config.apiZABEMRNURSESRV + `/ServiceHistorySet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )&$format=json`;
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/ServiceHistorySet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )&$format=json`
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5411,8 +5528,8 @@ exports.getServiceHistorySet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5423,13 +5540,12 @@ exports.getServiceHistorySet = (req, res) => {
 exports.getLatestAssesmentResult = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSCALESSRV + `/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`
-    console.log(url);
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/LatestDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}')`
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5453,8 +5569,8 @@ exports.getLatestAssesmentResult = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5464,12 +5580,13 @@ exports.getLatestAssesmentResult = (req, res) => {
 exports.putGlasgowScaleSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSCALESSRV + `/GlasgowScaleSet(Dockey='${req.body.d.Dockey}')`;
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/GlasgowScaleSet(Dockey='${req.body.d.Dockey}')`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     request({
         method: 'PUT',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5493,8 +5610,8 @@ exports.putGlasgowScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5504,12 +5621,13 @@ exports.putGlasgowScaleSet = (req, res) => {
 exports.putFaceScaleSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSCALESSRV + `/FaceScaleSet(Dockey='${req.body.d.Dockey}')`;
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/FaceScaleSet(Dockey='${req.body.d.Dockey}')`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     request({
         method: 'PUT',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5533,8 +5651,8 @@ exports.putFaceScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5544,12 +5662,13 @@ exports.putFaceScaleSet = (req, res) => {
 exports.putNRSScaleSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSCALESSRV + `/NRSScaleSet(Dockey='${req.body.d.Dockey}')`;
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/NRSScaleSet(Dockey='${req.body.d.Dockey}')`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     request({
         method: 'PUT',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -5573,8 +5692,8 @@ exports.putNRSScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5587,10 +5706,11 @@ exports.postBradenScaleSet = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    const urlEndpoint = baseURL + config.apiZNSCALESSRV + "/BradenScaleSet"
     request(
         {
             method: "POST",
-            uri: baseURL + config.apiZNSCALESSRV + "/BradenScaleSet",
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -5618,8 +5738,8 @@ exports.postBradenScaleSet = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5632,13 +5752,14 @@ exports.getBradenScaleDetail = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const { dockey } = req.query;
-    let url = baseURL + config.apiZNSCALESSRV + `/BradenScaleSet(Dockey='${dockey}')?$format=json`;
+    let urlEndpoint = baseURL + config.apiZNSCALESSRV + `/BradenScaleSet(Dockey='${dockey}')?$format=json`;
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5667,7 +5788,7 @@ exports.getBradenScaleDetail = (req, res) => {
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
                 if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                    
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5677,11 +5798,13 @@ exports.getBradenScaleDetail = (req, res) => {
 exports.putBradenScaleSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSCALESSRV + `/BradenScaleSet(Dockey='${req.body.d.Dockey}')`;
+    let urlEndpoint = baseURL + config.apiZNSCALESSRV + `/BradenScaleSet(Dockey='${req.body.d.Dockey}')`
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     request({
         method: 'PUT',
+        uri:`${urlEndpoint}`,
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
@@ -5702,8 +5825,8 @@ exports.putBradenScaleSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -5713,14 +5836,14 @@ exports.putBradenScaleSet = (req, res) => {
 exports.getTriageLatestDocumentSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNERNURSINGSRV + `/LatestDocSet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}' and Patnr eq '${req.query.patnr}' and Lfdnr eq '${req.query.lfdnr}'&$format=json`;
+    let urlEndpoint = String.raw `${baseURL}${config.apiZNERNURSINGSRV}/LatestDocSet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}' and Patnr eq '${req.query.patnr}' and Lfdnr eq '${req.query.lfdnr}'&$format=json`;
     console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5747,8 +5870,8 @@ exports.getTriageLatestDocumentSet = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5760,14 +5883,14 @@ exports.getTriageLatestDocumentSet = (req, res) => {
 exports.getTriagePdfUrl = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNERNURSINGSRV + `/PDFFileSet(Dockey='${req.query.Dockey}')?$format=json`;
+    let urlEndpoint = baseURL + config.apiZNERNURSINGSRV + `/PDFFileSet(Dockey='${req.query.Dockey}')?$format=json`;
     console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5794,8 +5917,8 @@ exports.getTriagePdfUrl = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5807,14 +5930,14 @@ exports.getTriagePdfUrl = (req, res) => {
 exports.getTriageDataStatusDraft = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNERNURSINGSRV + `/ErNursingSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOVITALSIGNS,TOALLERGIES,TOPHYEXAM,TOSCALE,TOVACCIN,TOSOCIAL,TOINFECTION&$format=json`;
+    let urlEndpoint = baseURL + config.apiZNERNURSINGSRV + `/ErNursingSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOVITALSIGNS,TOALLERGIES,TOPHYEXAM,TOSCALE,TOVACCIN,TOSOCIAL,TOINFECTION&$format=json`;
     console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5841,8 +5964,8 @@ exports.getTriageDataStatusDraft = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5853,14 +5976,14 @@ exports.getTriageDataStatusDraft = (req, res) => {
 exports.getSocialHabitList = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSOCIALHABITSSRV + `/ImportHabitsSet?$filter=Patnr eq '${req.query.Patnr}'&$format=json`;
+    let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/ImportHabitsSet?$filter=Patnr eq '${req.query.Patnr}'&$format=json`;
     console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "GET",
-            uri: url,
+        uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5887,8 +6010,8 @@ exports.getSocialHabitList = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5900,14 +6023,15 @@ exports.getSocialHabitList = (req, res) => {
 exports.calculateAlcoholConsumption = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSOCIALHABITSSRV + `/CalcAlcoholConsumptionSet`;
+    let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/CalcAlcoholConsumptionSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -5937,8 +6061,8 @@ exports.calculateAlcoholConsumption = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5957,7 +6081,7 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -5987,8 +6111,8 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -6007,7 +6131,7 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6037,8 +6161,8 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -6050,14 +6174,14 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
 exports.postDrugsHabit = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSOCIALHABITSSRV + `/DrugsHabitsSet`;
+    let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/DrugsHabitsSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6087,8 +6211,8 @@ exports.postDrugsHabit = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -6100,14 +6224,15 @@ exports.postDrugsHabit = (req, res) => {
 exports.postOtherHabit = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSOCIALHABITSSRV + `/OtherHabitSet`;
+    let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/OtherHabitSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6137,8 +6262,8 @@ exports.postOtherHabit = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -6151,12 +6276,13 @@ exports.getMissedDocsSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMRNURSESRV + `/MissedDocsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Date ge datetime'${req.query.Datege}' and Date le datetime'${req.query.Datele}'))&$format=json`;
+    let urlEndpoint = baseURL + config.apiZABEMRNURSESRV + `/MissedDocsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Date ge datetime'${req.query.Datege}' and Date le datetime'${req.query.Datele}'))&$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -6179,8 +6305,8 @@ exports.getMissedDocsSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6191,12 +6317,13 @@ exports.getMissedDocsCount = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/MissedDocsSet/$count`;
+    let urlEndpoint = baseURL + config.apiZABEMGYWRKLISTSRV + `/MissedDocsSet/$count`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -6219,8 +6346,8 @@ exports.getMissedDocsCount = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6231,13 +6358,13 @@ exports.getNoConsumablesCount = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet/$count`;
+    let urlEndpoint = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet/$count`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    console.log('Test', url);
+    
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -6260,8 +6387,8 @@ exports.getNoConsumablesCount = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6274,9 +6401,10 @@ exports.getTriagePatientNo = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERELAPSEDTIMESRV}/PatientCntPerTriageSet?$filter=Date1 eq datetime'${req.query.fromDate}' and Date2 eq datetime'${req.query.toDate}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERELAPSEDTIMESRV + `/PatientCntPerTriageSet?$filter=Date1 eq datetime'${req.query.fromDate}' and Date2 eq datetime'${req.query.toDate}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6300,8 +6428,8 @@ exports.getTriagePatientNo = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6314,11 +6442,11 @@ exports.getStoragelocationList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = baseURL + config.apiZABEMRMDSRV + `/UserStoragelocSet?$filter=Bname eq '${JSON.parse(searchstring).Bname}' and Einri eq '${JSON.parse(searchstring).Einri}' and Falnr eq '${JSON.parse(searchstring).Falnr}' &$format=json`;
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMRMDSRV + `/UserStoragelocSet?$filter=Bname eq '${JSON.parse(searchstring).Bname}' and Einri eq '${JSON.parse(searchstring).Einri}' and Falnr eq '${JSON.parse(searchstring).Falnr}' &$format=json`;
     request({
         method: 'GET',
-        uri: url,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6342,8 +6470,8 @@ exports.getStoragelocationList = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6356,9 +6484,10 @@ exports.getSentCartRecesive = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNCARTRECEIVESRV}/CartSet?$filter=Einri eq '1000' and Nursingou eq '${req.query.Nursingou}' and FromDt eq datetime'${req.query.FromDt}' and FromTm eq time'${req.query.FromTm}' and ToDt eq datetime'${req.query.ToDt}' and ToTm eq time'${req.query.ToTm}' &$expand=TOCONTENT&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNCARTRECEIVESRV + `/CartSet?$filter=Einri eq '1000' and Nursingou eq '${req.query.Nursingou}' and FromDt eq datetime'${req.query.FromDt}' and FromTm eq time'${req.query.FromTm}' and ToDt eq datetime'${req.query.ToDt}' and ToTm eq time'${req.query.ToTm}' &$expand=TOCONTENT&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6382,8 +6511,8 @@ exports.getSentCartRecesive = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6396,9 +6525,10 @@ exports.addReceiveCart = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNCARTRECEIVESRV}/CartSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNCARTRECEIVESRV + `/CartSet`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6422,8 +6552,8 @@ exports.addReceiveCart = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6437,9 +6567,10 @@ exports.getElepsedTime = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERELAPSEDTIMESRV}/ElapsedTimeSet?$filter=Date1 eq datetime'${req.query.fromDate}' and Date2 eq datetime'${req.query.toDate}'&$expand=TODETAILS&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNERELAPSEDTIMESRV + `/ElapsedTimeSet?$filter=Date1 eq datetime'${req.query.fromDate}' and Date2 eq datetime'${req.query.toDate}'&$expand=TODETAILS&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6463,8 +6594,8 @@ exports.getElepsedTime = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6480,7 +6611,7 @@ exports.postOfNurseEndsorment = (req, res) => {
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6510,8 +6641,8 @@ exports.postOfNurseEndsorment = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    logger.log('error', `${response.statusCode + ' ' + body}`)
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -6524,9 +6655,10 @@ exports.getNurseEndsorment = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSEENDORSSRV}/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNNURSEENDORSSRV + `/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6550,8 +6682,8 @@ exports.getNurseEndsorment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6562,9 +6694,10 @@ exports.getNurseEndsormentDetail = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSEENDORSSRV}/NurseEndorsSet?$filter=Dockey eq '${req.query.Dockey}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNNURSEENDORSSRV + `/NurseEndorsSet?$filter=Dockey eq '${req.query.Dockey}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6588,8 +6721,8 @@ exports.getNurseEndsormentDetail = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6603,9 +6736,10 @@ exports.updateNurseEndDetail = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSEENDORSSRV}/NurseEndorsSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNNURSEENDORSSRV + `/NurseEndorsSet(Dockey='${req.body.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6629,8 +6763,8 @@ exports.updateNurseEndDetail = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6643,9 +6777,10 @@ exports.deleteNurseEndDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSEENDORSSRV}/NurseEndorsSet(Dockey='${req.query.Dockey}')`
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNNURSEENDORSSRV + `/NurseEndorsSet(Dockey='${req.query.Dockey}')`,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -6668,8 +6803,8 @@ exports.deleteNurseEndDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if (response.statusCode != 200) {
-                logger.log('error', `${response.statusCode + ' ' + body}`)
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -6680,9 +6815,10 @@ exports.dialysisTAget = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/DialysisTASet?$filter=( Bwidt ge datetime'${req.query.Bwidtge}' and Bwidt le datetime'${req.query.Bwidtle}')&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/DialysisTASet?$filter=( Bwidt ge datetime'${req.query.Bwidtge}' and Bwidt le datetime'${req.query.Bwidtle}')&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6715,9 +6851,10 @@ exports.Dialysisget = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/DialysisSet?$filter=(( Bwidt ge datetime'${req.query.Bwidtge}' and Bwidt le datetime'${req.query.Bwidtle}'))&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZABEMRNURSESRV + `/DialysisSet?$filter=(( Bwidt ge datetime'${req.query.Bwidtge}' and Bwidt le datetime'${req.query.Bwidtle}'))&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6752,9 +6889,10 @@ exports.getSurgicalPassportDoc = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSURGICALPASSPORTSRV}/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`,
+        uri:`${urlEndpoint}`,
 
         body: req.body,
         json: true,
@@ -6792,9 +6930,10 @@ exports.DailysisSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet`
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + "/DailysisSet",
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6825,14 +6964,14 @@ exports.DailysisSet = (req, res) => {
 exports.postOfSurgicalPassp = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSURGICALPASSPORTSRV + `/SurgicalPassportSet`;
+    let urlEndpoint = baseURL + config.apiZNSURGICALPASSPORTSRV + `/SurgicalPassportSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6871,9 +7010,10 @@ exports.getSurgicalPassPortDetail = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSURGICALPASSPORTSRV}/SurgicalPassportSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOVITALSIGNS,TODIAGNOSES&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/SurgicalPassportSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOVITALSIGNS,TODIAGNOSES&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6907,9 +7047,10 @@ exports.deleteSurgicalPassDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSURGICALPASSPORTSRV}/SurgicalPassportSet(Dockey='${req.query.Dockey}')`
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/SurgicalPassportSet(Dockey='${req.query.Dockey}')`,
+        uri:`${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -6942,9 +7083,10 @@ exports.updateSurgicalPassPortDetail = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSURGICALPASSPORTSRV}/NurseEndorsSet(Dockey='${req.body.d.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNSURGICALPASSPORTSRV + `/NurseEndorsSet(Dockey='${req.body.d.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -6976,9 +7118,10 @@ exports.LatestDocSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -7011,9 +7154,10 @@ exports.getDailysisSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet?$filter=Dockey eq '${req.body.Dockey}'&$expand=TOMONITOR&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet?$filter=Dockey eq '${req.body.Dockey}'&$expand=TOMONITOR&$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -7044,14 +7188,13 @@ exports.getDailysisSet = (req, res) => {
 exports.postOfPrdiatricWarningScale = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSCALESSRV + `/PEWSSet`;
-
+    let urlEndpoint = baseURL + config.apiZNSCALESSRV + `/PEWSSet`;
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
         {
             method: "POST",
-            uri: url,
+        uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -7092,9 +7235,10 @@ exports.getPediatricEarlyWarningScore = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/PEWSSet(Dockey='${req.query.Dockey}')?$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.query.Dockey}')?$format=json`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -7125,13 +7269,14 @@ exports.getPediatricEarlyWarningScore = (req, res) => {
 exports.copyPediatricWarningScore = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    
     console.log(baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.body.d.Dockey}')`);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/PEWSSet(Dockey='${req.body.d.Dockey}')`
     request({
         method: 'PUT',
-        uri: baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.body.d.Dockey}')`,
+        uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {

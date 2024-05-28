@@ -92,7 +92,7 @@ router.get("/getByFilters", (req, res) => {
     }
     else {
       if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
       }
       if (response.statusCode == 401) {
 
@@ -185,7 +185,7 @@ router.get("/getByDates/", (req, res) => {
       res.header('Access-Control-Allow-Credentials', 'true');
       res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
       if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
       }
       if (response.statusCode == 401) {
 

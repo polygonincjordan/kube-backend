@@ -59,7 +59,7 @@ router.get("/getPhyOrderSet/", (req, res) => {
           "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
         );
       if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
         if (response.statusCode == 401) {
           return res.status(response.statusCode).json(body);
@@ -151,7 +151,7 @@ router.post("/saveTemplateSet", async (req, res) => {
         else {
             //console.log(body);
               if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
             return res.status(response.statusCode).json(body);
         }
@@ -188,7 +188,7 @@ router.delete("/deleteTemplateSet/:templateKey", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -250,7 +250,7 @@ router.get("/getProgressNote/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -304,7 +304,7 @@ router.get("/getCategorySet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -358,7 +358,7 @@ router.get("/getCancelReasonSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -410,7 +410,7 @@ router.get("/getTextModulesSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -452,7 +452,7 @@ router.delete("/deleteProgressNote/", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -509,7 +509,7 @@ router.get("/getDiagnosisSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -550,7 +550,7 @@ router.post("/saveDiagnosisSet", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -600,7 +600,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -656,7 +656,7 @@ router.get("/getDiagnosisImport/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -719,7 +719,7 @@ router.get("/getFavrDiagnosisSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -759,7 +759,7 @@ router.post("/updateDiagnosisFavrOUSet", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -820,7 +820,7 @@ router.get("/getProfileDocsSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -861,7 +861,7 @@ router.post("/saveEduAssesSet", async (req, res) => {
     else {
       //console.log(body);
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       return res.status(response.statusCode).json(body);
     }
@@ -910,7 +910,7 @@ router.get("/getEduAssesSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -963,7 +963,7 @@ router.post("/getEduAssesLatestDocSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -1004,7 +1004,7 @@ router.delete("/deleteEduAssesSet/:dockey", async (req, res) => {
     else {
       //console.log(body);
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       return res.status(response.statusCode).json(body);
     }
@@ -1051,7 +1051,7 @@ router.get("/getPDFFileSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -1101,7 +1101,7 @@ router.get("/getPDFFileSoapSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
         if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
       if (response.statusCode == 401) {
@@ -1152,7 +1152,7 @@ router.get("/getPatientProfilePDFFileSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -1192,7 +1192,7 @@ router.post("/saveProgressNotesTemplate", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1225,7 +1225,7 @@ router.post("/saveVisitNoteDocument", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1272,7 +1272,7 @@ router.get("/getVisitNoteDocument/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -1311,7 +1311,7 @@ router.post("/releaseVisitNoteDocument", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
@@ -1347,7 +1347,7 @@ router.delete("/deleteVisitNotDocument/:dockey", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
           return res.status(response.statusCode).json(body);
       }
