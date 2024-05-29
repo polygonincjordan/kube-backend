@@ -6931,6 +6931,7 @@ exports.DailysisSet = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet`
+    console.log(urlEndpoint);
     request({
         method: 'POST',
         uri:`${urlEndpoint}`,
