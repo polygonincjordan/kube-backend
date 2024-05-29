@@ -7272,8 +7272,7 @@ exports.getDialysisPDF = (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet`,
-        body: req.body,
+        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/PDFFileSet('${req.query.Dockey}')`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
