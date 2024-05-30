@@ -59,7 +59,7 @@ router.get("/getOrderSetHeaderSet/", (req, res) => {
           "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
         );
         if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
         if (response.statusCode == 401) {
           return res.status(response.statusCode).json(body);
@@ -111,7 +111,7 @@ router.get("/getDeptSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -162,7 +162,7 @@ router.get("/getEmployeeResponsibleSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -213,7 +213,7 @@ router.get("/getAgeRangeSet/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -266,7 +266,7 @@ router.get("/getOrderSetByOrderId/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -305,8 +305,8 @@ router.post("/saveOrderSetHeaderSet/", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
+            }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -356,7 +356,7 @@ router.get("/getOrdersetSubtitle/", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -395,8 +395,8 @@ router.post("/saveOrdersetSubtitle/", async (req, res) => {
       else {
           //console.log(body);
             if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
+            }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -430,9 +430,9 @@ router.get("/sendForStatusChange/", (req, res) => {
       }
       else {
           //console.log(body);
-            if(response.statusCode != 200){
-        logger.log('error',`${response.statusCode + ' ' + body}`)
-      }
+          if(response.statusCode != 200){
+            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
+          }
           return res.status(response.statusCode).json(body);
       }
   })
@@ -481,7 +481,7 @@ router.get("/getOrderServicesSet", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -535,7 +535,7 @@ router.get("/getOrderServicesSetWithDistinct", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -589,7 +589,7 @@ router.get("/getOrderTreatmentOUSet", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -642,7 +642,7 @@ router.get("/getOrderTreatmentDOUSet", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -696,7 +696,7 @@ router.get("/getOrderDeptOUSet", (req, res) => {
         "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
       );
       if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
       if (response.statusCode == 401) {
         return res.status(response.statusCode).json(body);
@@ -737,7 +737,7 @@ router.delete("/deleteOrderSetHeaderSet/:ordersetkey", async (req, res) => {
       else {
           //console.log(body);
         if(response.statusCode != 200){
-          logger.log('error',`${response.statusCode + ' ' + body}`)
+         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
           return res.status(response.statusCode).json(body);
       }

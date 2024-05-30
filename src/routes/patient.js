@@ -27,10 +27,10 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
   var j = request.jar();
   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
   j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-
   const { encounterId } = req.params;
+  const urlEndpoint = `${baseURL}/EncounterSet('${encounterId}')?$expand=episodeOfCare($expand=*),participant/individual,subject,location&sap-client=${config.client}`
   const options = {
-      url:`${baseURL}/EncounterSet('${encounterId}')?$expand=episodeOfCare($expand=*),participant/individual,subject,location&sap-client=${config.client}`,
+      url:urlEndpoint,
       headers: {
           'User-Agent': 'request',
           'spnego': 'disabled',
@@ -56,7 +56,7 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
           if(response.statusCode != 200){
-            logger.log('error',`${response.statusCode + ' ' + body}`)
+            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patient.js`);
           }
           if (response.statusCode == 401) {
 
@@ -107,7 +107,7 @@ router.get("/getDataConsultations/:encounterId", (req, res) => {
               res.header('Access-Control-Allow-Credentials', 'true');
               res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
               if(response.statusCode != 200){
-               logger.log('error',`${response.statusCode + ' ' + body}`)
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patient.js`);
               }
               if (response.statusCode == 401) {
 

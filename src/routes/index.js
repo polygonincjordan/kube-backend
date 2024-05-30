@@ -677,6 +677,19 @@ router.get("/LatestDocSet", (req, res, next) => {
 });
 router.get("/DailysisSet", (req, res, next) => {
     emergencyController.getDailysisSet(req, res);
+})
+router.post("/postOfPrdiatricWarningScale", (req, res, next) => {
+    emergencyController.postOfPrdiatricWarningScale(req, res);
+});
+router.get("/getPediatricEarlyWarningScore", (req, res, next) => {
+    emergencyController.getPediatricEarlyWarningScore(req, res);
+})
+
+router.put("/updateSurgicalPassPortDetail", (req, res, next) => {
+    emergencyController.updateSurgicalPassPortDetail(req, res);
+});
+router.put("/copyPediatricWarningScore", (req, res, next) => {
+    emergencyController.copyPediatricWarningScore(req, res);
 });
 
 // patient document pain assessment create route in nur dashboard

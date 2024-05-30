@@ -12,8 +12,9 @@ exports.EMRWidgetConfigSet = (req,res) =>{
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint);
 
+    const urlEndpoint = config.apiEndpointEMR + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointEMR + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -38,7 +39,7 @@ exports.EMRWidgetConfigSet = (req,res) =>{
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
             if (response.statusCode == 401) {
@@ -58,8 +59,9 @@ exports.WidgetInfoSet = (req,res) =>{
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
+    const urlEndpoint = config.apiEndpointEMR + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointEMR + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -84,7 +86,7 @@ exports.WidgetInfoSet = (req,res) =>{
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
             if (response.statusCode == 401) {
@@ -105,8 +107,9 @@ exports.WidgetFltFldPropSet = (req,res) =>{
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint);
 
+    const urlEndpoint = config.apiEndpointEMR + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointEMR + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -132,7 +135,7 @@ exports.WidgetFltFldPropSet = (req,res) =>{
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
             if (response.statusCode == 401) {
@@ -153,8 +156,9 @@ exports.WidgetFieldVHelpSet = (req,res) =>{
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint);
 
+    const urlEndpoint = config.apiEndpointEMR + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointEMR + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -180,7 +184,7 @@ exports.WidgetFieldVHelpSet = (req,res) =>{
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
             if (response.statusCode == 401) {
@@ -202,8 +206,9 @@ exports.EMRPATFALAPPSet = (req,res) =>{
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint );
     console.log(config.apiEndpointEMR + decodeURI(req.url));    
+    const urlEndpoint = config.apiEndpointEMR + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointEMR + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -229,7 +234,7 @@ exports.EMRPATFALAPPSet = (req,res) =>{
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
             if (response.statusCode == 401) {
@@ -249,9 +254,10 @@ exports.WidgetDataSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint= config.apiEndpointEMR + "/WidgetDataSet"
     request({
+        uri:urlEndpoint,
         method: 'POST',
-        uri: config.apiEndpointEMR + "/WidgetDataSet",
         body: req.body,
         json: true,
         headers: {
@@ -276,7 +282,7 @@ exports.WidgetDataSet = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -289,9 +295,10 @@ exports.WidgetActionRespSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint= config.apiEndpointEMR + "/WidgetActionRespSet"
     request({
+        uri:urlEndpoint,
         method: 'POST',
-        uri: config.apiEndpointEMR + "/WidgetActionRespSet",
         body: req.body,
         json: true,
         headers: {
@@ -317,6 +324,9 @@ exports.WidgetActionRespSet = (req, res) => {
             res.header('sap-message',response.headers['sap-message']);
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
             //console.log(body);
+            if(response.statusCode != 200){
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -328,9 +338,10 @@ exports.EMRWidgetConfigSetPost = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint= config.apiEndpointEMR + "/EMRWidgetConfigSet"
     request({
+        uri:urlEndpoint,
         method: 'POST',
-        uri: config.apiEndpointEMR + "/EMRWidgetConfigSet",
         body: req.body,
         json: true,
         headers: {
@@ -353,6 +364,9 @@ exports.EMRWidgetConfigSetPost = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
+            if(response.statusCode != 200){
+               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -366,8 +380,9 @@ exports.EMRWidgetConfigSetDelete = (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
+    const urlEndpoint = config.apiEndpointEMR + decodeURI(req.url)
     const options = {
-        url: config.apiEndpointEMR + decodeURI(req.url),
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -380,8 +395,8 @@ exports.EMRWidgetConfigSetDelete = (req, res) => {
     };
 
     request({
+        uri:urlEndpoint,
         method: 'DELETE',
-        uri: config.apiEndpointEMR + decodeURI(req.url),
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -403,6 +418,9 @@ exports.EMRWidgetConfigSetDelete = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
+            if(response.statusCode != 200){
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -412,8 +430,9 @@ exports.loginUser = (req, res) => {
     //console.log("***********************");
     //console.log(req.headers.authorization);
        
+    const urlEndpoint = config.apiEndpointEMR + "/EMRUserInfoSet?spnego=disabled"
     const options = {
-        url: config.apiEndpointEMR + "/EMRUserInfoSet?spnego=disabled",
+        url:urlEndpoint,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -458,7 +477,7 @@ exports.loginUser = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            
             
@@ -520,9 +539,10 @@ exports.InPatientList = (req, res) => {
     var ipSetFilter = `/PhyorderNotExecutedSet?$filter=((Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
    }
    console.log(ipSetFilter);
+   const urlEndpoint= config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + ipSetFilter
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + ipSetFilter,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -547,7 +567,7 @@ exports.InPatientList = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            var ipBody = {
             module:req.body.module,
@@ -564,9 +584,10 @@ exports.getWardList = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + '/WardListSet'
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + '/WardListSet',
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -591,7 +612,7 @@ exports.getWardList = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -605,9 +626,10 @@ exports.getHighDependencyOfPatientList = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_CASE_HDFLAG_SRV'+ `/HighDependencySet?$filter=( (Einri eq '${req.body.Einri}') and (Falnr eq '${req.body.Falnr}') )`
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +'ZAB_CASE_HDFLAG_SRV'+ `/HighDependencySet?$filter=( (Einri eq '${req.body.Einri}') and (Falnr eq '${req.body.Falnr}') )`,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -632,7 +654,7 @@ exports.getHighDependencyOfPatientList = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -646,9 +668,10 @@ exports.HighDependencyOfPatientList = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_CASE_HDFLAG_SRV'+ "/HighDependencySet"
    request({
-       method: 'POST',
-       uri: config.apiEndpointEMRInPatient +'ZAB_CASE_HDFLAG_SRV'+ "/HighDependencySet",
+    uri:urlEndpoint,   
+    method: 'POST',
        body: req.body,
        json: true,
        headers: {
@@ -673,7 +696,7 @@ exports.HighDependencyOfPatientList = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -687,10 +710,10 @@ exports.getConfigTools = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_COMP_CONFIG_SRV'+ `/CompConfigSet?$expand=ConfigHeaderItem&$filter=( (Compid eq '${req.body.Compid}') )`
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +'ZAB_COMP_CONFIG_SRV'+ `/CompConfigSet?$expand=ConfigHeaderItem&$filter=( (Compid eq '${req.body.Compid
-       }') )`,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -715,7 +738,7 @@ exports.getConfigTools = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -729,9 +752,10 @@ exports.postConfigTools = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_COMP_CONFIG_SRV'+ "/CompConfigSet"
    request({
-       method: 'POST',
-       uri: config.apiEndpointEMRInPatient +'ZAB_COMP_CONFIG_SRV'+ "/CompConfigSet",
+    uri:urlEndpoint,   
+    method: 'POST',
        body: req.body,
        json: true,
        headers: {
@@ -756,7 +780,7 @@ exports.postConfigTools = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -791,9 +815,10 @@ exports.getCountForModules = (req, res) => {
    if (req.body.module === 'Not_Executed_Physician_Order') {
     var ipCount = `/PhyorderNotExecutedSet/$count`;
    }
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_IP_LIST_SRV'+ ipCount
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_IP_LIST_SRV'+ ipCount,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -818,7 +843,7 @@ exports.getCountForModules = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            var newBody = {
             count:body,
@@ -839,9 +864,10 @@ exports.getCountForPhOrderModules = (req, res) => {
    var ipCount = `/PhyorderNotExecutedSet/$count?$filter=(Deptou eq 'EMEMDAMC' and (Bwidt ge datetime'${req.body.fromDate}' and Bwidt le datetime'${req.body.toDate}'))`;
    let url = config.apiEndpointEMRInPatient +config.apiZABEMRNURSESRVPH + ipCount
    console.log(url,"===");
+   const urlEndpoint= config.apiEndpointEMRInPatient +config.apiZABEMRNURSESRVPH + ipCount
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +config.apiZABEMRNURSESRVPH + ipCount,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -866,7 +892,7 @@ exports.getCountForPhOrderModules = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            var newBody = {
             count:body,
@@ -884,9 +910,10 @@ exports.physicianOrderSet = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderSet('${req.body.PorderId}')`
    request({
-       method: 'PUT',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderSet('${req.body.PorderId}')`,
+    uri:urlEndpoint,   
+    method: 'PUT',
        body: req.body,
        json: true,
        headers: {
@@ -911,7 +938,7 @@ exports.physicianOrderSet = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -924,9 +951,10 @@ exports.CancelReasonSet = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/CancelReasonSet`
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/CancelReasonSet`,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -951,7 +979,7 @@ exports.CancelReasonSet = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -964,9 +992,10 @@ exports.createPhysicianOrder = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderSet`
    request({
-       method: 'POST',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderSet`,
+    uri:urlEndpoint,   
+    method: 'POST',
        body: req.body,
        json: true,
        headers: {
@@ -991,7 +1020,7 @@ exports.createPhysicianOrder = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -1004,9 +1033,10 @@ exports.createMultiplePhysicianOrder = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderMultipleSet`
    request({
-       method: 'POST',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderMultipleSet`,
+    uri:urlEndpoint,   
+    method: 'POST',
        body: req.body,
        json: true,
        headers: {
@@ -1031,7 +1061,7 @@ exports.createMultiplePhysicianOrder = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -1044,9 +1074,10 @@ exports.occupationalGroupList = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_MD_SRV'+ `/OccupationalGroupSet`
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_MD_SRV'+ `/OccupationalGroupSet`,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -1071,7 +1102,7 @@ exports.occupationalGroupList = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -1084,9 +1115,10 @@ exports.createProgressEntry = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_PDC_NOTES_SRV'+ `/ProgressNoteSet`
    request({
-       method: 'POST',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PDC_NOTES_SRV'+ `/ProgressNoteSet`,
+    uri:urlEndpoint,   
+    method: 'POST',
        body: req.body,
        json: true,
        headers: {
@@ -1111,7 +1143,7 @@ exports.createProgressEntry = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -1124,9 +1156,10 @@ exports.consultationCompletion = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_CONSULT_ORD_SRV'+ `/ConsultationOrderSet('${req.body.Vkgid}')`
    request({
-       method: 'PUT',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_CONSULT_ORD_SRV'+ `/ConsultationOrderSet('${req.body.Vkgid}')`,
+    uri:urlEndpoint,   
+    method: 'PUT',
        body: req.body,
        json: true,
        headers: {
@@ -1151,7 +1184,7 @@ exports.consultationCompletion = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -1163,9 +1196,10 @@ exports.changeStatus = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZN_UPDATE_CASE_STATUS_SRV'+ `/StatusUpdateSet('${req.body.Einri}')`
    request({
-       method: 'PUT',
-       uri: config.apiEndpointEMRInPatient +'ZN_UPDATE_CASE_STATUS_SRV'+ `/StatusUpdateSet('${req.body.Einri}')`,
+    uri:urlEndpoint,   
+    method: 'PUT',
        body: req.body,
        json: true,
        headers: {
@@ -1190,7 +1224,7 @@ exports.changeStatus = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }
@@ -1202,9 +1236,10 @@ exports.physicianOrderText = (req, res) => {
 
    var j = request.jar();
    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+   const urlEndpoint= config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderTextSet`
    request({
-       method: 'GET',
-       uri: config.apiEndpointEMRInPatient +'ZAB_EMR_PHY_ORDER_SRV'+ `/PhyOrderTextSet`,
+    uri:urlEndpoint,   
+    method: 'GET',
        body: req.body,
        json: true,
        headers: {
@@ -1229,7 +1264,7 @@ exports.physicianOrderText = (req, res) => {
            res.header('Access-Control-Allow-Credentials', 'true');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
            return res.status(response.statusCode).json(body);
        }

@@ -54,8 +54,8 @@ router.get("/getAll", (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
-              }
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:catalog.js`);
+            }
             if (response.statusCode == 401) {
 
                 return res.status(response.statusCode).json(body);
@@ -100,7 +100,7 @@ router.put("/update/:catKey/:catItemKey", async (req, res) => {
         else {
             //console.log(body);
             if(response.statusCode != 200){
-                logger.log('error',`${response.statusCode + ' ' + body}`)
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:catalog.js`);
             }
             return res.status(response.statusCode).json(body);
         }
