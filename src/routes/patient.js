@@ -27,8 +27,8 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
   var j = request.jar();
   var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
   j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-  const urlEndpoint = `${baseURL}/EncounterSet('${encounterId}')?$expand=episodeOfCare($expand=*),participant/individual,subject,location&sap-client=${config.client}`
   const { encounterId } = req.params;
+  const urlEndpoint = `${baseURL}/EncounterSet('${encounterId}')?$expand=episodeOfCare($expand=*),participant/individual,subject,location&sap-client=${config.client}`
   const options = {
       url:urlEndpoint,
       headers: {
