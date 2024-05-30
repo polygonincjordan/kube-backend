@@ -678,5 +678,35 @@ router.get("/LatestDocSet", (req, res, next) => {
 router.get("/DailysisSet", (req, res, next) => {
     emergencyController.getDailysisSet(req, res);
 });
+
+// patient document pain assessment create route in nur dashboard
+router.post("/savePainAssessment", (req, res, next) => {
+    emergencyController.savePainAssessment(req, res);
+});
+
+// patient document pain assessment get route in nur dashboard
+router.get("/getPainAssessment", (req, res, next) => {
+    emergencyController.getPainAssessment(req, res);
+});
+
+// patient document pain assessment get route in nur dashboard
+router.post("/getPALatestDoc", (req, res, next) => {
+    emergencyController.getPALatestDoc(req, res);
+});
+
+// Pain Assessment Back Image Get
+router.get("/getPABackGroundImage", (req, res, next) => {
+    emergencyController.getPABackGroundImage(req, res);
+});
+
+// Pain Assessment PDF Get
+router.get("/getPainAssessmentPDF", (req, res, next) => {
+    emergencyController.getPainAssessmentPDF(req, res);
+});
+
+router.delete("/deletePainAssessmentDoc", (req, res, next) => {
+    emergencyController.deletePainAssessmentDoc(req, res);
+});
+
 module.exports = router;
 
