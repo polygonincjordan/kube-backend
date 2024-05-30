@@ -659,9 +659,17 @@ router.get("/dialysisTAget", (req, res, next) => {
 router.get("/Dialysisget", (req, res, next) => {
     emergencyController.Dialysisget(req, res);
 });
-
+router.put("/Dialysisget", (req, res, next) => {
+    emergencyController.releaseDialysisDoc(req, res);
+});
+router.get("/DialysisgetPDF", (req, res, next) => {
+    emergencyController.getDialysisPDF(req, res);
+});
 router.post("/DailysisSet", (req, res, next) => {
     emergencyController.DailysisSet(req, res);
+})
+router.delete("/DailysisSet", (req,res,next)=>{
+    emergencyController.deleteDailysisSet(req,res);
 })
 router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
     emergencyController.deleteSurgicalPassDoc(req, res);
