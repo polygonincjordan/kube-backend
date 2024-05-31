@@ -692,7 +692,15 @@ router.post("/postOfPrdiatricWarningScale", (req, res, next) => {
 router.get("/getPediatricEarlyWarningScore", (req, res, next) => {
     emergencyController.getPediatricEarlyWarningScore(req, res);
 })
-
+router.get("/LatestMFSSet", (req, res, next) => {
+    emergencyController.LatestMorsefall(req, res);
+});
+router.post("/MFSSet", (req, res, next) => {
+    emergencyController.CreateMorsefall(req, res);
+});
+router.get("/MFSSet", (req, res, next) => {
+    emergencyController.getMorsefall(req, res);
+})
 router.put("/updateSurgicalPassPortDetail", (req, res, next) => {
     emergencyController.updateSurgicalPassPortDetail(req, res);
 });
