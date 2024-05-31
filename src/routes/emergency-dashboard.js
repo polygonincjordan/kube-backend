@@ -7300,7 +7300,7 @@ exports.getDialysisPDF = (req, res) => {
     })
 }
 
-exports.LatestDocSetMorsefall = (req, res) => {
+exports.LatestMorsefall = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
