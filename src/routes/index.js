@@ -659,9 +659,17 @@ router.get("/dialysisTAget", (req, res, next) => {
 router.get("/Dialysisget", (req, res, next) => {
     emergencyController.Dialysisget(req, res);
 });
-
+router.put("/Dialysisget", (req, res, next) => {
+    emergencyController.releaseDialysisDoc(req, res);
+});
+router.get("/DialysisgetPDF", (req, res, next) => {
+    emergencyController.getDialysisPDF(req, res);
+});
 router.post("/DailysisSet", (req, res, next) => {
     emergencyController.DailysisSet(req, res);
+})
+router.delete("/DailysisSet", (req,res,next)=>{
+    emergencyController.deleteDailysisSet(req,res);
 })
 router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
     emergencyController.deleteSurgicalPassDoc(req, res);
@@ -684,7 +692,15 @@ router.post("/postOfPrdiatricWarningScale", (req, res, next) => {
 router.get("/getPediatricEarlyWarningScore", (req, res, next) => {
     emergencyController.getPediatricEarlyWarningScore(req, res);
 })
-
+router.get("/LatestMFSSet", (req, res, next) => {
+    emergencyController.LatestMorsefall(req, res);
+});
+router.post("/MFSSet", (req, res, next) => {
+    emergencyController.CreateMorsefall(req, res);
+});
+router.get("/MFSSet", (req, res, next) => {
+    emergencyController.getMorsefall(req, res);
+})
 router.put("/updateSurgicalPassPortDetail", (req, res, next) => {
     emergencyController.updateSurgicalPassPortDetail(req, res);
 });
