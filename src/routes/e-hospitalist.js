@@ -260,10 +260,10 @@ router.get("/getHospitalSet/", (req, res) => {
 
     }
 
-    urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDIALYSISSRV}/DialysisListSet$filter=((Typ eq '${typ_eq}') ${dylisisDateFilter} ${phyfilter})`;
+    urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDIALYSISSRV}/DialysisListSet?$filter=((Typ eq '${typ_eq}') ${dylisisDateFilter} ${phyfilter})`;
   }
   else {
-    urlEndpoint = String.raw`${baseURL}ZAB_EMR_IP_LIST_SRV/HospitalSet$filter=((Typ eq '${typ_eq}') ${reporttypefilter} ${dateFromfilter} ${datefilter} ${floorfilter} ${phyfilter} ${deptoufilter})&$expand=${expandFields}`;
+    urlEndpoint = String.raw`${baseURL}ZAB_EMR_IP_LIST_SRV/HospitalSet?$filter=((Typ eq '${typ_eq}') ${reporttypefilter} ${dateFromfilter} ${datefilter} ${floorfilter} ${phyfilter} ${deptoufilter})&$expand=${expandFields}`;
   }
   //   /ZAB_EMR_IP_LIST_SRV/IPLISTSET?$filter=( Typ eq '02' )
   const options = {
