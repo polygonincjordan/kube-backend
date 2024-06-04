@@ -704,6 +704,12 @@ router.get("/MFSSet", (req, res, next) => {
 router.put("/MFSSet", (req, res, next) => {
     emergencyController.CreateNewMFSSet(req, res);
 })
+router.get("/LatestHemoCatheter", (req,res, next)=>{
+    emergencyController.getLatestHemoCatheterDoc(req,res)
+})
+router.post("/HemoCatheter", (req,res, next)=>{
+    emergencyController.postHemoCatheterSet(req,res)
+})
 router.put("/updateSurgicalPassPortDetail", (req, res, next) => {
     emergencyController.updateSurgicalPassPortDetail(req, res);
 });
