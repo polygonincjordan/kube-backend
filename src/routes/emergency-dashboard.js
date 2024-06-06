@@ -335,7 +335,6 @@ exports.nursingLabListSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabExtractionSet` 
 
 
     let isMultipleFilter = false;
@@ -375,7 +374,9 @@ exports.nursingLabListSet = (req, res) => {
     if (deptcodefilter || roomfilter || Behpersonfilter || Posstatusfilter || dateFromfilter) {
         allFIlter = `?$filter=(${deptcodefilter}${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
     }
-    let url = baseURL + config.apiZABEMRNURSESRV + `/LabExtractionSet${allFIlter}`
+    // let url = baseURL + config.apiZABEMRNURSESRV + `/LabExtractionSet${allFIlter}`;
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabExtractionSet${allFIlter}` 
+
     //    const { Behperson } = req.query;
 
     request({
@@ -2515,12 +2516,12 @@ exports.getLevelOrderHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=${dateFromfilter}&$format=json`
     let dateFromfilter = '';
     if (req.query.fromDate) {
         dateFromfilter += `( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')`;
     }
-    let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=${dateFromfilter}and$format=json`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=${dateFromfilter}&$format=json`
+    // let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=${dateFromfilter}and$format=json`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -4752,10 +4753,8 @@ exports.getMaterialSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRMDSRV}/MaterialSet?$filter=(startswith(Matnr, '${searchstring}'))`
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZABEMRMDSRV + `/MaterialSet?$filter=(startswith(Matnr, '${searchstring}'))`;
-    console.log('Test', url);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRMDSRV}/MaterialSet?$filter=(startswith(Matnr, '${searchstring}'))`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -4796,10 +4795,8 @@ exports.getMaterialStockSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/MaterialStockSet?$filter=(Matnr eq '${JSON.parse(searchstring).enteredValue}' and Lgort eq '${JSON.parse(searchstring).location}')`
     const { searchstring } = req.query;
-    let url = baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/MaterialStockSet?$filter=(Matnr eq '${JSON.parse(searchstring).enteredValue}' and Lgort eq '${JSON.parse(searchstring).location}')`;
-    console.log(url);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/MaterialStockSet?$filter=(Matnr eq '${JSON.parse(searchstring).enteredValue}' and Lgort eq '${JSON.parse(searchstring).location}')`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -4840,7 +4837,6 @@ exports.saveConsumableDataSet = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNEMERGENCYDASHBOARDSRV}/PatMatCosmpNmm7HdSet`
-    let url = baseURL + config.apiZNEMERGENCYDASHBOARDSRV + `/PatMatCosmpNmm7HdSet`;
     request({
         method: 'POST',
         uri:`${urlEndpoint}`,
@@ -4919,10 +4915,10 @@ exports.getConsumablesHistory = (req, res) => {
 exports.getNoConsumablesSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    const { searchstring } = req.query;
-    const urlEndpoint  = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet?$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const { searchstring } = req.query;
+    const urlEndpoint  = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet?$format=json`;
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -5837,7 +5833,6 @@ exports.getTriageLatestDocumentSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     let urlEndpoint = String.raw `${baseURL}${config.apiZNERNURSINGSRV}/LatestDocSet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}' and Patnr eq '${req.query.patnr}' and Lfdnr eq '${req.query.lfdnr}'&$format=json`;
-    console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
@@ -5884,7 +5879,6 @@ exports.getTriagePdfUrl = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     let urlEndpoint = baseURL + config.apiZNERNURSINGSRV + `/PDFFileSet(Dockey='${req.query.Dockey}')?$format=json`;
-    console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
@@ -5931,7 +5925,6 @@ exports.getTriageDataStatusDraft = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     let urlEndpoint = baseURL + config.apiZNERNURSINGSRV + `/ErNursingSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOVITALSIGNS,TOALLERGIES,TOPHYEXAM,TOSCALE,TOVACCIN,TOSOCIAL,TOINFECTION&$format=json`;
-    console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
@@ -5977,7 +5970,6 @@ exports.getSocialHabitList = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/ImportHabitsSet?$filter=Patnr eq '${req.query.Patnr}'&$format=json`;
-    console.log(url);
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(
@@ -6074,7 +6066,7 @@ exports.calculateAlcoholConsumption = (req, res) => {
 exports.postAlcoholHabitDrinkYes = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSOCIALHABITSSRV + `/AlcoholHabitSet`;
+    let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/AlcoholHabitSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
@@ -6124,7 +6116,7 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
 exports.postTabaccoHabitSmokeYes = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNSOCIALHABITSSRV + `/TabaccoHabitSet`;
+    let urlEndpoint = baseURL + config.apiZNSOCIALHABITSSRV + `/TabaccoHabitSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
@@ -6275,7 +6267,6 @@ exports.postOtherHabit = (req, res) => {
 exports.getMissedDocsSet = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    const { searchstring } = req.query;
     let urlEndpoint = baseURL + config.apiZABEMRNURSESRV + `/MissedDocsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Date ge datetime'${req.query.Datege}' and Date le datetime'${req.query.Datele}'))&$format=json`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
@@ -6316,7 +6307,6 @@ exports.getMissedDocsSet = (req, res) => {
 exports.getMissedDocsCount = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    const { searchstring } = req.query;
     let urlEndpoint = baseURL + config.apiZABEMGYWRKLISTSRV + `/MissedDocsSet/$count`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
@@ -6357,7 +6347,6 @@ exports.getMissedDocsCount = (req, res) => {
 exports.getNoConsumablesCount = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    const { searchstring } = req.query;
     let urlEndpoint = baseURL + config.apiZABEMGYWRKLISTSRV + `/NoConsumablesSet/$count`;
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
@@ -6442,8 +6431,8 @@ exports.getStoragelocationList = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = baseURL + config.apiZABEMRMDSRV + `/UserStoragelocSet?$filter=Bname eq '${JSON.parse(searchstring).Bname}' and Einri eq '${JSON.parse(searchstring).Einri}' and Falnr eq '${JSON.parse(searchstring).Falnr}' &$format=json`;
     const { searchstring } = req.query;
+    const urlEndpoint = baseURL + config.apiZABEMRMDSRV + `/UserStoragelocSet?$filter=Bname eq '${JSON.parse(searchstring).Bname}' and Einri eq '${JSON.parse(searchstring).Einri}' and Falnr eq '${JSON.parse(searchstring).Falnr}' &$format=json`;
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -6604,7 +6593,7 @@ exports.getElepsedTime = (req, res) => {
 exports.postOfNurseEndsorment = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    let url = baseURL + config.apiZNNURSEENDORSSRV + `/NurseEndorsSet`;
+    let urlEndpoint = baseURL + config.apiZNNURSEENDORSSRV + `/NurseEndorsSet`;
 
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
@@ -6931,7 +6920,6 @@ exports.DailysisSet = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet`
-    console.log(urlEndpoint);
     request({
         method: 'POST',
         uri:`${urlEndpoint}`,
@@ -7049,10 +7037,11 @@ exports.savePainAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    console.log(baseURL + config.apiZNPAINASSESSRV + "/PainAssesSet");
+    let urlEndpoint = String.raw`${baseURL}` + config.apiZNPAINASSESSRV + "/PainAssesSet";
+
     request({
         method: 'POST',
-        uri: baseURL + config.apiZNPAINASSESSRV + "/PainAssesSet",
+        uri: `${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -7085,7 +7074,6 @@ exports.getPainAssessment = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    console.log(baseURL + config.apiZNPAINASSESSRV + `/PainAssesSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOPAINLOGS,TOFLOWSHEET&$format=json`);
     request({
         method: 'GET',
         uri: baseURL + config.apiZNPAINASSESSRV + `/PainAssesSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOPAINLOGS,TOFLOWSHEET&$format=json`,
@@ -7124,8 +7112,6 @@ exports.getPALatestDoc = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     let url = baseURL + config.apiZNPAINASSESSRV + `/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`;
-    // let url = baseURL + config.apiZNPAINASSESSRV + `/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json`
-    console.log(url, "----");
     request({
         method: 'GET',
         uri : url,
@@ -7163,8 +7149,6 @@ exports.getPABackGroundImage = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     let url = baseURL + config.apiZNPAINASSESSRV + `/BGImgSet(Einri='${req.query.Einri}',Dtid='ZMED_PAIN')?$format=json`;
-    // let url = baseURL + config.apiZNPAINASSESSRV + `/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json`
-    console.log(url, "----");
     request({
         method: 'GET',
         uri : url,
@@ -7202,7 +7186,6 @@ exports.getPainAssessmentPDF = (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     let url = baseURL + config.apiZNPAINASSESSRV + `/PDFFileSet(Dockey='${req.query.Dockey}')?$format=json`;
     // let url = baseURL + config.apiZNPAINASSESSRV + `/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json`
-    console.log(url, "----");
     request({
         method: 'GET',
         uri : url,
@@ -7383,7 +7366,7 @@ exports.getDailysisSet = (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet?$filter=Dockey eq '${req.body.Dockey}'&$expand=TOMONITOR&$format=json`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TOMONITOR&$format=json`,
+        uri: `${urlEndpoint}`,
         body: req.body,
         json: true,
         headers: {
@@ -7498,7 +7481,7 @@ exports.getDialysisPDF = (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet`
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNDAILYSISASSESSRV + `/PDFFileSet('${req.query.Dockey}')`,
+        uri: `${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -7763,7 +7746,6 @@ exports.copyPediatricWarningScore = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     
-    console.log(baseURL + config.apiZNSCALESSRV + `/PEWSSet(Dockey='${req.body.d.Dockey}')`);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/PEWSSet(Dockey='${req.body.d.Dockey}')`
     request({
         method: 'PUT',
@@ -7794,6 +7776,3 @@ exports.copyPediatricWarningScore = (req, res) => {
         }
     })
 }
-
-// URL-http://achdevemr01.ach.jo:0/sap/opu/odata/sap/ZN_SCALES_SRV/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json
-// http://achdevemr01.ach.jo:0/sap/opu/odata/sap/ZN_SCALES_SRV/PEWSSet(Dockey='SCA000000000000001000000074000000')
