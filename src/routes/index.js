@@ -701,6 +701,9 @@ router.post("/MFSSet", (req, res, next) => {
 router.get("/MFSSet", (req, res, next) => {
     emergencyController.getMorsefall(req, res);
 })
+router.put("/MFSSet", (req, res, next) => {
+    emergencyController.CreateNewMFSSet(req, res);
+})
 router.put("/updateSurgicalPassPortDetail", (req, res, next) => {
     emergencyController.updateSurgicalPassPortDetail(req, res);
 });
