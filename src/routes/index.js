@@ -713,6 +713,9 @@ router.post("/HemoCatheter", (req,res, next)=>{
 router.post("/HemoCatheterSet", (req,res, next)=>{
     emergencyController.ReleaseHemoCatheterSet(req,res)
 })
+router.get("/HemoCatheter", (req,res,next)=>{
+    emergencyController.getHemoCatheterDocData(req,res)
+})
 router.put("/updateSurgicalPassPortDetail", (req, res, next) => {
     emergencyController.updateSurgicalPassPortDetail(req, res);
 });
