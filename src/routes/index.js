@@ -300,6 +300,10 @@ router.post("/emergencyListSet", (req, res, next) => {
 router.post("/emergencyListCheckInSet", (req, res, next) => {
     emergencyController.emergencyListCheckInSet(req, res);
 });
+
+router.post("/dayCaseListCheckInSet", (req, res, next) => {
+    emergencyController.dayCaseListCheckInSet(req, res);
+});
 router.post("/nursingLabListSet", (req, res, next) => {
     emergencyController.nursingLabListSet(req, res);
 });

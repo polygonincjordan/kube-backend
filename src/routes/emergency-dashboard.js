@@ -40,7 +40,7 @@ exports.getOrderSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-             if(response.statusCode != 200){
+            if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
@@ -289,6 +289,48 @@ exports.emergencyListCheckInSet = (req, res) => {
     })
 }
 
+exports.dayCaseListCheckInSet = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDAYCARESRV}/MainListSet?$filter=(Einri eq '1000' and Bwidt eq datetime'2024-06-07T00:00:00')`
+    console.log(urlEndpoint);
+    request({
+        method: 'GET',
+        uri:`${urlEndpoint}`,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
 exports.assignToMe = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
@@ -374,7 +416,6 @@ exports.nursingLabListSet = (req, res) => {
     if (deptcodefilter || roomfilter || Behpersonfilter || Posstatusfilter || dateFromfilter) {
         allFIlter = `?$filter=(${deptcodefilter}${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
     }
-    // let url = baseURL + config.apiZABEMRNURSESRV + `/LabExtractionSet${allFIlter}`;
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabExtractionSet${allFIlter}` 
 
     //    const { Behperson } = req.query;
@@ -2521,7 +2562,6 @@ exports.getLevelOrderHistory = (req, res) => {
         dateFromfilter += `( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}')`;
     }
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=${dateFromfilter}&$format=json`
-    // let url = baseURL + config.apiZABEMGYWRKLISTSRV + `/NotAdminMEEventsSet?$filter=${dateFromfilter}and$format=json`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -2602,7 +2642,6 @@ exports.nursingLabListPrintSet = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabelPrintUrlSet?$format=json`
-    let url = baseURL + config.apiZABEMRNURSESRV + `/LabelPrintUrlSet?$format=json`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -3822,7 +3861,6 @@ exports.createVitalSigns = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNVITALSIGNSSRV}/VitalSignSet`
-    let url = baseURL + config.apiZNVITALSIGNSSRV + `/VitalSignSet`
     request({
         method: 'POST',
         uri:`${urlEndpoint}`,
@@ -5748,14 +5786,14 @@ exports.getBradenScaleDetail = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const { dockey } = req.query;
-    let urlEndpoint = baseURL + config.apiZNSCALESSRV + `/BradenScaleSet(Dockey='${dockey}')?$format=json`;
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    let urlEndpoint = baseURL + config.apiZNSCALESSRV + `/BradenScaleSet(Dockey='${dockey}')?$format=json`;
     
     request(
         {
             method: "GET",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -5783,8 +5821,8 @@ exports.getBradenScaleDetail = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
-                if (response.statusCode != 200) {
-                    
+                if(response.statusCode != 200){
+                    logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
                 }
                 return res.status(response.statusCode).json(body);
             }
@@ -5975,7 +6013,7 @@ exports.getSocialHabitList = (req, res) => {
     request(
         {
             method: "GET",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             json: true,
             headers: {
                 "Content-Type": "application/json",
@@ -6023,7 +6061,7 @@ exports.calculateAlcoholConsumption = (req, res) => {
     request(
         {
             method: "POST",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6073,7 +6111,7 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
     request(
         {
             method: "POST",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6123,7 +6161,7 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
     request(
         {
             method: "POST",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6173,7 +6211,7 @@ exports.postDrugsHabit = (req, res) => {
     request(
         {
             method: "POST",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6224,7 +6262,7 @@ exports.postOtherHabit = (req, res) => {
     request(
         {
             method: "POST",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6600,7 +6638,7 @@ exports.postOfNurseEndsorment = (req, res) => {
     request(
         {
             method: "POST",
-        uri:`${urlEndpoint}`,
+            uri:`${urlEndpoint}`,
             body: req.body,
             json: true,
             headers: {
@@ -6830,6 +6868,9 @@ exports.dialysisTAget = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -6866,6 +6907,9 @@ exports.Dialysisget = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -6905,6 +6949,9 @@ exports.getSurgicalPassportDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -6945,6 +6992,9 @@ exports.DailysisSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -6989,6 +7039,9 @@ exports.postOfSurgicalPassp = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -7025,6 +7078,9 @@ exports.getSurgicalPassPortDetail = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7064,6 +7120,9 @@ exports.savePainAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7100,6 +7159,9 @@ exports.getPainAssessment = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7137,6 +7199,9 @@ exports.getPALatestDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7174,6 +7239,9 @@ exports.getPABackGroundImage = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7211,6 +7279,9 @@ exports.getPainAssessmentPDF = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7246,6 +7317,9 @@ exports.deletePainAssessmentDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7281,6 +7355,9 @@ exports.deleteSurgicalPassDoc = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7318,6 +7395,9 @@ exports.updateSurgicalPassPortDetail = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7353,6 +7433,9 @@ exports.LatestDocSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7389,6 +7472,9 @@ exports.getDailysisSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7400,9 +7486,6 @@ exports.deleteDailysisSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-
-    console.log(baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet(Dockey='${req.query.Dockey}')`);
-
     request({
         method: 'DELETE',
         uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet(Dockey='${req.query.Dockey}')`,
@@ -7427,6 +7510,9 @@ exports.deleteDailysisSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7503,6 +7589,9 @@ exports.getDialysisPDF = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7539,6 +7628,9 @@ exports.LatestMorsefall = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7616,6 +7708,9 @@ exports.getMorsefall = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7653,6 +7748,9 @@ exports.CreateNewMFSSet = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7689,6 +7787,9 @@ exports.getLatestHemoCatheterDoc = (req,res)=>{
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7807,6 +7908,9 @@ exports.getHemoCatheterDocData = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7850,6 +7954,9 @@ exports.postOfPrdiatricWarningScale = (req, res) => {
                     "Access-Control-Allow-Headers",
                     "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
                 );
+                if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                }
                 return res.status(response.statusCode).json(body);
             }
         }
@@ -7862,7 +7969,7 @@ exports.getPediatricEarlyWarningScore = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/PEWSSet(Dockey='${req.query.Dockey}')?$format=json`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/PEWSSet(Dockey='${req.query.Dockey}')?$format=json`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -7888,6 +7995,9 @@ exports.getPediatricEarlyWarningScore = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                }
             return res.status(response.statusCode).json(body);
         }
     })
@@ -7925,6 +8035,9 @@ exports.copyPediatricWarningScore = (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
             return res.status(response.statusCode).json(body);
         }
     })
