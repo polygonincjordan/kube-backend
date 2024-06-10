@@ -4711,7 +4711,7 @@ exports.getLevelOrderHistory = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRORDSETSRV}/OrderHistorySet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}'&$format=json`
+    const urlEndpoint = String.raw`${baseURL}${config.ZNISHMEDORDER_HIST_SRV}/OrderHistorySet?$filter=Einri eq '${req.query.einri}' and Falnr eq '${req.query.falnr}'&$format=json`
     
     request({
         method: 'GET',
