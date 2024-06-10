@@ -666,7 +666,7 @@ router.get("/Dialysisget", (req, res, next) => {
 router.put("/Dialysisget", (req, res, next) => {
     emergencyController.releaseDialysisDoc(req, res);
 });
-router.get("/DialysisgetPDF", (req, res, next) => {
+router.post("/DialysisgetPDF", (req, res, next) => {
     emergencyController.getDialysisPDF(req, res);
 });
 router.post("/DailysisSet", (req, res, next) => {

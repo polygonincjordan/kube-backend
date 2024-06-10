@@ -7446,7 +7446,7 @@ exports.getDailysisSet = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet?$filter=Dockey eq '${req.body.Dockey}'&$expand=TOMONITOR&$format=json`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TOMONITOR&$format=json`
     request({
         method: 'GET',
         uri: `${urlEndpoint}`,
@@ -7564,10 +7564,12 @@ exports.getDialysisPDF = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/DailysisSet`
+
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNDAILYSISASSESSRV}/PDFFileSet(Dockey='${req.body.Dockey}')`
     request({
         method: 'GET',
         uri: `${urlEndpoint}`,
+        body: req.body,
         json: true,
         headers: {
             'Content-Type': 'application/json',
