@@ -295,7 +295,7 @@ exports.dayCaseListCheckInSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDAYCARESRV}/MainListSet?$filter=(Einri eq '1000' and Bwidt eq datetime'2024-06-07T00:00:00')`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDAYCARESRV}/MainListSet?$filter=( Bwidt eq datetime'${req.body.fromDate}')&$format=json`
     console.log(urlEndpoint);
     request({
         method: 'GET',
@@ -324,7 +324,7 @@ exports.dayCaseListCheckInSet = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
              if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body.error}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
