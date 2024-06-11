@@ -764,12 +764,12 @@ router.get("/getfistulaGraftSet", (req, res, next) => {
     emergencyController.getfistulaGraftSet(req, res);
 });
 
-router.get("/latestDocSet", (req, res, next) => {
-    emergencyController.latestDocSet(req, res);
+router.get("/LatestFistulaGraftSet", (req, res, next) => {
+    emergencyController.LatestFistulaGraftSet(req, res);
 });
 
-router.get("/PDFFileSet", (req, res, next) => {
-    emergencyController.PDFFileSet(req, res);
+router.get("/getFistulaGraftDocPDF", (req, res, next) => {
+    emergencyController.getFistulaGraftDocPDF(req, res);
 });
 
 router.delete("/deleteFistulaGraftSet", (req, res, next) => {
