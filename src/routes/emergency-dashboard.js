@@ -7486,6 +7486,7 @@ exports.deleteDailysisSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet(Dockey='${req.query.Dockey}')`;
     request({
         method: 'DELETE',
         uri: baseURL + config.apiZNDAILYSISASSESSRV + `/DailysisSet(Dockey='${req.query.Dockey}')`,
