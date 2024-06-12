@@ -87,6 +87,7 @@ module.exports = {
     "apiZNNURSEENDORSSRV":"ZN_NURSE_ENDORS_SRV",
     "apiZNSURGICALPASSPORTSRV":"ZN_SURGICAL_PASSPORT_SRV",
     "apiZNPAINASSESSRV":"ZN_PAIN_ASSES_SRV",
+    "apiFISTULAGRAFTSRV":"ZN_FISTULA_GRAFT_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
     "environment": "qa",

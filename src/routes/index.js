@@ -756,5 +756,25 @@ router.delete("/deletePainAssessmentDoc", (req, res, next) => {
     emergencyController.deletePainAssessmentDoc(req, res);
 });
 
+router.post("/fistulaGraftSet", (req, res, next) => {
+    emergencyController.fistulaGraftSet(req, res);
+});
+
+router.get("/getfistulaGraftSet", (req, res, next) => {
+    emergencyController.getfistulaGraftSet(req, res);
+});
+
+router.get("/LatestFistulaGraftSet", (req, res, next) => {
+    emergencyController.LatestFistulaGraftSet(req, res);
+});
+
+router.get("/getFistulaGraftDocPDF", (req, res, next) => {
+    emergencyController.getFistulaGraftDocPDF(req, res);
+});
+
+router.delete("/deleteFistulaGraftSet", (req, res, next) => {
+    emergencyController.deleteFistulaGraftSet(req, res);
+});
+
 module.exports = router;
 
