@@ -776,5 +776,9 @@ router.delete("/deleteFistulaGraftSet", (req, res, next) => {
     emergencyController.deleteFistulaGraftSet(req, res);
 });
 
+router.get('/DialysisMedicationAdministrationSet', (req, res, next)=>{
+    emergencyController.DialysisMedicationAdministrationSet(req,res);
+})
+
 module.exports = router;
 
