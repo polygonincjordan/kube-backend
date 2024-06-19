@@ -17,7 +17,7 @@ const ePrescriptionController = require("./e-prescription-data");
 const patientHistoryRouter = require("./patientHistory");
 const orderdashboardRouter = require('./order-dashboard.controller');
 const pointOfSaleRouter = require("./pointOfSale");
-
+const dayCaseController =  require("./day-case-dashboard");
 router.get("/", (req, res) => res.send("Server it is work!!"));
 
 router.use("/patientData", patientDataRouter);
@@ -301,12 +301,12 @@ router.post("/emergencyListCheckInSet", (req, res, next) => {
     emergencyController.emergencyListCheckInSet(req, res);
 });
 
-router.post("/dayCaseListCheckInSet", (req, res, next) => {
-    emergencyController.dayCaseListCheckInSet(req, res);
-});
-router.post("/nursingLabListSet", (req, res, next) => {
-    emergencyController.nursingLabListSet(req, res);
-});
+// router.post("/dayCaseListCheckInSet", (req, res, next) => {
+//     emergencyController.dayCaseListCheckInSet(req, res);
+// });
+// router.post("/nursingLabListSet", (req, res, next) => {
+//     emergencyController.nursingLabListSet(req, res);
+// });
 router.get("/nursingLabListPrintSet", (req, res, next) => {
     emergencyController.nursingLabListPrintSet(req, res);
 });
@@ -779,6 +779,23 @@ router.delete("/deleteFistulaGraftSet", (req, res, next) => {
 router.get('/DialysisMedicationAdministrationSet', (req, res, next)=>{
     emergencyController.DialysisMedicationAdministrationSet(req,res);
 })
-
+router.post("/dayCaseListCheckInSet", (req, res, next) => {
+    dayCaseController.dayCaseListCheckInSet(req, res);
+});
+router.post("/nursingLabListSet", (req, res, next) => {
+    dayCaseController.nursingLabListSet(req, res);
+});
+router.post("/getPlannedDepartures", (req, res, next) => {
+    dayCaseController.getPlannedDepartures(req, res);
+});
+router.post("/getActualDepartures", (req, res, next) => {
+    dayCaseController.getActualDepartures(req, res);
+});
+router.post("/getFinancialClearance", (req, res, next) => {
+    dayCaseController.getFinancialClearance(req, res);
+});
+router.get("/getPatientAdministration", (req, res, next) => {
+    dayCaseController.getPatientAdministration(req, res);
+});
 module.exports = router;
 
