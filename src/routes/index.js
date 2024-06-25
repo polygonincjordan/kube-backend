@@ -797,5 +797,9 @@ router.post("/getFinancialClearance", (req, res, next) => {
 router.get("/getPatientAdministration", (req, res, next) => {
     dayCaseController.getPatientAdministration(req, res);
 });
+
+router.get("/getSurgicalPassportPdf", (req, res, next) => {
+    emergencyController.getSurgicalPassportPdf(req, res);
+});
 module.exports = router;
 
