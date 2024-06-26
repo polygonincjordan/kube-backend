@@ -801,5 +801,8 @@ router.get("/getPatientAdministration", (req, res, next) => {
 router.get("/getSurgicalPassportPdf", (req, res, next) => {
     emergencyController.getSurgicalPassportPdf(req, res);
 });
+router.get("/DialysisNoConsumablesSet", (req, res, next) => {
+    emergencyController.getDialysisNoConsumablesSet(req, res);
+});
 module.exports = router;
 
