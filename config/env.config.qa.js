@@ -87,6 +87,7 @@ module.exports = {
     "apiZNSURGICALPASSPORTSRV":"ZN_SURGICAL_PASSPORT_SRV",
     "apiZNPAINASSESSRV":"ZN_PAIN_ASSES_SRV",
     "apiFISTULAGRAFTSRV":"ZN_FISTULA_GRAFT_SRV",
+    "apiZNPATIENTSEARCHSRV": "ZN_PATIENT_SEARCH_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
     "environment": "qa",
