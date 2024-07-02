@@ -807,5 +807,21 @@ router.get("/DialysisNoConsumablesSet", (req, res, next) => {
 router.get("/DialysisPatientSearchSet", (req, res, next) => {
     emergencyController.DialysisPatientSearchSet(req, res);
 });
+
+// Nursing Care Plan Document
+router.post("/createNursingCarePlan", (req, res, next) => {
+    dayCaseController.createNursingCarePlan(req, res);
+});
+router.post("/deleteNursingCarePlan", (req, res, next) => {
+    dayCaseController.deleteNursingCarePlan(req, res);
+});
+
+router.post("/nursingCarePlanLatestDoc", (req, res, next) => {
+    dayCaseController.nursingCarePlanLatestDoc(req, res);
+});
+router.get("/getNursingCarePlanDocData", (req, res, next) => {
+    dayCaseController.getNursingCarePlanDocData(req, res);
+});
+
 module.exports = router;
 
