@@ -57,6 +57,7 @@ module.exports = {
     "apiZNDAILYSISASSESSRV":"ZN_DAILYSIS_ASSES_SRV",
     "apiZNMORSEFALLSCALESRV":"ZN_MORSE_FALL_SCALE_SRV",
     "apiZNHEMOCATHETERSRV": "ZN_HEMO_CATHETER_SRV",
+    "apiZNNURSINGCARESRV": "ZN_NURSING_CARE_SRV",
     "apiEndpointEMR": "http://amcqaemr01.ach.jo:8000/sap/opu/odata/sap/ZNEEMR_SRV",
     "apiEndpointEMRInPatient": "http://amcqaemr01.ach.jo:8000/sap/opu/odata/sap/",
     "apiEndpointWidget": "http://amcqaemr01.ach.jo:8000/sap/opu/odata/sap/ZWIDGET_SRV",
