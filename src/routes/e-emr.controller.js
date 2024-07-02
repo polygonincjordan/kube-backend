@@ -538,8 +538,8 @@ exports.InPatientList = (req, res) => {
    if (req.body.module === 'Not_Executed_Physician_Order') {
     var ipSetFilter = `/PhyorderNotExecutedSet?$filter=((Floor eq '${req.body.Floor}') and (Patientstatus eq '${req.body.Patientstatus}'))`;
    }
-   console.log(ipSetFilter);
    const urlEndpoint= config.apiEndpointEMRInPatient + 'ZAB_EMR_IP_LIST_SRV' + ipSetFilter
+   console.log(urlEndpoint);
    request({
     uri:urlEndpoint,   
     method: 'GET',
