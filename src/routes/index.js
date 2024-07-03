@@ -822,6 +822,15 @@ router.post("/nursingCarePlanLatestDoc", (req, res, next) => {
 router.get("/getNursingCarePlanDocData", (req, res, next) => {
     dayCaseController.getNursingCarePlanDocData(req, res);
 });
+router.post("/saveReservationSet", (req, res, next) => {
+    emergencyController.saveReservationSet(req, res);
+});
+router.get("/getStoragelocationReservationList", (req, res, next) => {
+    emergencyController.getStoragelocationReservationList(req, res);
+});
+router.get("/getCostCenterReservationList", (req, res, next) => {
+    emergencyController.getCostCenterReservationList(req, res);
+});
 
 module.exports = router;
 
