@@ -829,8 +829,14 @@ router.post("/saveReservationSet", (req, res, next) => {
 router.get("/getStoragelocationReservationList", (req, res, next) => {
     emergencyController.getStoragelocationReservationList(req, res);
 });
+router.get("/getHistoryReservationList", (req, res, next) => {
+    emergencyController.getHistoryReservationList(req, res);
+});
 router.get("/getCostCenterReservationList", (req, res, next) => {
     emergencyController.getCostCenterReservationList(req, res);
+});
+router.get("/getUnitReservationList", (req, res, next) => {
+    emergencyController.getUnitReservationList(req, res);
 });
 
 // Nursing Discharge Assessment Document
