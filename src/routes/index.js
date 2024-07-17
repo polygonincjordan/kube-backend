@@ -659,6 +659,9 @@ router.delete("/deleteNurEmrTriage", (req, res, next) => {
 router.get("/dialysisTAget", (req, res, next) => {
     emergencyController.dialysisTAget(req, res);
 });
+router.get("/dialysisTAgetHis", (req, res, next) => {
+    emergencyController.dialysisTAgetHis(req, res);
+});
 
 router.get("/Dialysisget", (req, res, next) => {
     emergencyController.Dialysisget(req, res);
