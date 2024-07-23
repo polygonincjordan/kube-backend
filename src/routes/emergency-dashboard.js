@@ -8608,8 +8608,8 @@ exports.getHistoryReservationList = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint  = baseURL + config.apiZNRESERVATION + `/ReservationHistorySet?$filter=Sloc eq '${req.query.Sloc}' and Matnr eq '${req.query.Matnr}' and MoveType eq '${req.query.MoveType}' and CostCtr eq '${req.query.CostCtr}' and Erdat eq datetime'2024-07-15T00:00:00' and Erdat1 eq datetime'2024-07-15T00:00:00' &$format=json`;
-    console.log(urlEndpoint);
+    const urlEndpoint  = baseURL + config.apiZNRESERVATION + `/ReservationHistorySet?$format=json`;
+
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
