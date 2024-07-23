@@ -1,7 +1,6 @@
 const request = require('request');
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
-
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
 exports.dayCaseListCheckInSet = (req, res) => {
@@ -178,8 +177,7 @@ exports.getPatientAdministration = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDAYCARESRV}/PatientAdministrationSet?$filter=(( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`
-    console.log(urlEndpoint);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/NotAdminMEEventsSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`;
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -254,13 +252,13 @@ exports.nursingLabListSet = (req, res) => {
         isMultipleFilter = true;
         dateFromfilter += `(Datum ge datetime'${req.body.fromDate}' and Datum le datetime'${req.body.toDate}')`;
     }
-
+    let Deptcode = ''
     let allFIlter = '';
     if (deptcodefilter || roomfilter || Behpersonfilter || Posstatusfilter || dateFromfilter) {
-        allFIlter = `?$filter=(${deptcodefilter}${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
+        allFIlter = `?$filter=(${Deptcode}${deptcodefilter}${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
     }
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabExtractionSet${allFIlter}` 
-
+   
     //    const { Behperson } = req.query;
 
     request({
@@ -668,3 +666,94 @@ exports.createNursingCarePlan = (req, res) => {
       }
     );
   };
+
+ exports.getDayCaseNotPhysicionOrder = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+    const urlEndpoint = String.raw`${baseURL}ZAB_EMR_NURSE_SRV/PhyorderNotExecutedSet?$filter=(Deptcode eq '${req.body.Deptcode}' and (Date ge datetime'${req.body.fromDate}' and Date le datetime'${req.body.toDate}'))&$format=json`;
+    request(
+      {
+        method: "get",
+        uri: `${urlEndpoint}`,
+        body: req.body,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "sap-client": config.client,
+          Cookie: mySAPSSO2Cookie,
+        },
+      },
+      function (error, response, body) {
+        if (error) {
+          logger.log("error", error.message);
+          res.json(error);
+          return console.dir(error);
+        } else {
+          res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+          res.header(
+            "Access-Control-Allow-Methods",
+            "GET,HEAD,PUT,PATCH,POST,DELETE"
+          );
+          res.header("Access-Control-Expose-Headers", "Content-Length");
+          res.header("Access-Control-Allow-Credentials", "true");
+          res.header(
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+          );
+          if (response.statusCode != 200) {
+            logger.log(
+              "error",
+              `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+            );
+          }
+          return res.status(response.statusCode).json(body);
+        }
+      }
+    );
+  };
+
+
+  exports.getDayCaseNoConsumablesSet = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint  = baseURL + config.apiZABEMRNURSESRV + `/NoConsumablesSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Date ge datetime'${req.query.Datege}' and Date le datetime'${req.query.Datele}'))&$format=json`;
+    console.log(urlEndpoint,"NoConsumablesSet");
+    request({
+        method: 'GET',
+        uri:`${urlEndpoint}`,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+             if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:day-case-dashboard.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
