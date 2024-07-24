@@ -868,5 +868,22 @@ router.get("/getDayCaseNoConsumablesSet", (req, res, next) => {
 
 
 
+// Nursing Admission Document API's
+router.post("/createNursingAdmission", (req, res, next) => {
+    dayCaseController.createNursingAdmission(req, res);
+});
+
+router.post("/getNursingAdmissionLatestDoc", (req, res, next) => {
+    dayCaseController.getNursingAdmissionLatestDoc(req, res);
+});
+
+router.post("/deleteNursingAdmissionDoc", (req, res, next) => {
+    dayCaseController.deleteNursingAdmissionDoc(req, res);
+});
+
+router.get("/getNursingAdmissionDocData", (req, res, next) => {
+    dayCaseController.getNursingAdmissionDocData(req, res);
+});
+
 module.exports = router;
 

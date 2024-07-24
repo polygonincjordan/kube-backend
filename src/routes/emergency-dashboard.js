@@ -5044,7 +5044,7 @@ exports.nurEmrGlasgowScaleSetPost = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNSCALESSRV}/GlasgowScaleSet`
-
+    console.log(urlEndpoint, "<=========");
     request(
         {
             method: "POST",
@@ -5188,6 +5188,8 @@ exports.getGlowgosScaleDetail = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const { dockey } = req.query;
     const urlEndpoint = baseURL + config.apiZNSCALESSRV + `/GlasgowScaleSet(Dockey='${dockey}')?$format=json`;
+    console.log(urlEndpoint, "<=========");
+
     var j = request.jar();
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     request(

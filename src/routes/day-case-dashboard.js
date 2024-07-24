@@ -724,7 +724,6 @@ exports.createNursingCarePlan = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint  = baseURL + config.apiZABEMRNURSESRV + `/NoConsumablesSet?$filter=(Deptcode eq '${req.query.Deptcode}' and (Date ge datetime'${req.query.Datege}' and Date le datetime'${req.query.Datele}'))&$format=json`;
-    console.log(urlEndpoint,"NoConsumablesSet");
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -757,3 +756,188 @@ exports.createNursingCarePlan = (req, res) => {
         }
     })
 }
+
+  // Nursing Admission Document All API's
+  exports.createNursingAdmission = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGADMASSSRV}/NursingAdmSet`;
+    request(
+      {
+        method: "POST",
+        uri: `${urlEndpoint}`,
+        body: req.body,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "sap-client": config.client,
+          Cookie: mySAPSSO2Cookie,
+        },
+      },
+      function (error, response, body) {
+        if (error) {
+          logger.log("error", error.message);
+          res.json(error);
+          return console.dir(error);
+        } else {
+          res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+          res.header(
+            "Access-Control-Allow-Methods",
+            "GET,HEAD,PUT,PATCH,POST,DELETE"
+          );
+          res.header("Access-Control-Expose-Headers", "Content-Length");
+          res.header("Access-Control-Allow-Credentials", "true");
+          res.header(
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+          );
+          if (response.statusCode != 200) {
+            logger.log(
+              "error",
+              `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+            );
+          }
+          return res.status(response.statusCode).json(body);
+        }
+      }
+    );
+  };
+
+  exports.getNursingAdmissionLatestDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = `${baseURL}${config.apiZNNURSINGADMASSSRV}/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`;
+    request(
+      {
+        method: "GET",
+        uri: `${urlEndpoint}`,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "sap-client": config.client,
+          Cookie: mySAPSSO2Cookie,
+        },
+      },
+      function (error, response, body) {
+        if (error) {
+          res.json(error);
+          return console.dir(error);
+        } else {
+          res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+          res.header(
+            "Access-Control-Allow-Methods",
+            "GET,HEAD,PUT,PATCH,POST,DELETE"
+          );
+          res.header("Access-Control-Expose-Headers", "Content-Length");
+          res.header("Access-Control-Allow-Credentials", "true");
+          res.header(
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+          );
+          if (response.statusCode != 200) {
+            logger.log(
+              "error",
+              `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+            );
+          }
+          return res.status(response.statusCode).json(body);
+        }
+      }
+    );
+  };
+
+  exports.deleteNursingAdmissionDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGADMASSSRV}/NursingAdmSet(Dockey='${req.body.Dockey}')`;
+    request(
+      {
+        method: "DELETE",
+        uri: `${urlEndpoint}`,
+        body: req.body,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "sap-client": config.client,
+          Cookie: mySAPSSO2Cookie,
+        },
+      },
+      function (error, response, body) {
+        if (error) {
+          logger.log("error", error.message);
+          res.json(error);
+          return console.dir(error);
+        } else {
+          res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+          res.header(
+            "Access-Control-Allow-Methods",
+            "GET,HEAD,PUT,PATCH,POST,DELETE"
+          );
+          res.header("Access-Control-Expose-Headers", "Content-Length");
+          res.header("Access-Control-Allow-Credentials", "true");
+          res.header(
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+          );
+          if (response.statusCode != 200) {
+            logger.log(
+              "error",
+              `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+            );
+          }
+          return res.status(response.statusCode).json(body);
+        }
+      }
+    );
+  };
+
+  exports.getNursingAdmissionDocData = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = `${baseURL}${config.apiZNNURSINGADMASSSRV}/NursingAdmSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOSCALE,TOALLERGIES,TOSOCIAL,TOINFECTION,TOMEDICATION&$format=json`;
+    request(
+      {
+        method: "GET",
+        uri: `${urlEndpoint}`,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "sap-client": config.client,
+          Cookie: mySAPSSO2Cookie,
+        },
+      },
+      function (error, response, body) {
+        if (error) {
+          res.json(error);
+          return console.dir(error);
+        } else {
+          res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+          res.header(
+            "Access-Control-Allow-Methods",
+            "GET,HEAD,PUT,PATCH,POST,DELETE"
+          );
+          res.header("Access-Control-Expose-Headers", "Content-Length");
+          res.header("Access-Control-Allow-Credentials", "true");
+          res.header(
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+          );
+          if (response.statusCode != 200) {
+            logger.log(
+              "error",
+              `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+            );
+          }
+          return res.status(response.statusCode).json(body);
+        }
+      }
+    );
+  };
