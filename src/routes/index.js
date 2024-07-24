@@ -859,6 +859,14 @@ router.post("/nursingDischargeLatestDoc", (req, res, next) => {
 router.get("/getNursingDischargeDocData", (req, res, next) => {
     dayCaseController.getNursingDischargeDocData(req, res);
 });
+router.post("/getDayCaseNotPhysicionOrder", (req, res, next) => {
+    dayCaseController.getDayCaseNotPhysicionOrder(req, res);
+});
+router.get("/getDayCaseNoConsumablesSet", (req, res, next) => {
+    dayCaseController.getDayCaseNoConsumablesSet(req, res);
+});
+
+
 
 // Nursing Admission Document API's
 router.post("/createNursingAdmission", (req, res, next) => {
