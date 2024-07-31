@@ -93,7 +93,7 @@ exports.getActualDepartures = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDAYCARESRV}/ActualDeparturesSet?$filter=(Bwidt ge datetime'${req.body.fromDate}' and Bwidt le datetime'${req.body.toDate}')&$format=json`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRDAYCARESRV}/ActualDeparturesSet?$filter=(Bwidt eq datetime'${req.body.fromDate}')&$format=json`
     console.log(urlEndpoint);
     request({
         method: 'GET',
@@ -674,6 +674,7 @@ exports.createNursingCarePlan = (req, res) => {
     var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
     const urlEndpoint = String.raw`${baseURL}ZAB_EMR_NURSE_SRV/PhyorderNotExecutedSet?$filter=(Deptcode eq '${req.body.Deptcode}' and (Date ge datetime'${req.body.fromDate}' and Date le datetime'${req.body.toDate}'))&$format=json`;
+    console.log(urlEndpoint);
     request(
       {
         method: "get",
