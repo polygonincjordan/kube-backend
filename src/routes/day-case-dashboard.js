@@ -854,12 +854,14 @@ exports.createNursingCarePlan = (req, res) => {
   exports.deleteNursingAdmissionDoc = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGADMASSSRV}/NursingAdmSet(Dockey='${req.body.Dockey}')`;
+  
+    var j = request.jar();
+    var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNSURGICALPASSPORTSRV}/SurgicalPassportSet(Dockey='${req.query.Dockey}')`;
     request(
       {
         method: "DELETE",
         uri: `${urlEndpoint}`,
-        body: req.body,
         json: true,
         headers: {
           "Content-Type": "application/json",
@@ -867,11 +869,12 @@ exports.createNursingCarePlan = (req, res) => {
           "X-Requested-With": "XMLHttpRequest",
           "sap-client": config.client,
           Cookie: mySAPSSO2Cookie,
+  
+          //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
         },
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
           res.json(error);
           return console.dir(error);
         } else {

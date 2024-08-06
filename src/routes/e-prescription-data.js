@@ -3205,7 +3205,7 @@ router.get("/ExceptCheckedOut/", (req, res) => {
         clinicFilter = `(${clinicArray.map(clinic => `Clinic eq '${clinic}'`).join(' or ')})`;
     }
     // Prepare the AttendPhy filter condition
-    const attendPhyArray = AttendPhy.split(',').map(item => item.trim()).filter(item => item !== '');
+    const attendPhyArray = AttendPhy.split(',').map(item => item.trim()).filter(item => item !== '' && item !== undefined);
     let attendPhyFilter;
     if (attendPhyArray.length === 1) {
         attendPhyFilter = `(AttendPhy eq '${attendPhyArray[0]}')`;
@@ -3281,9 +3281,18 @@ router.get("/CheckedOut/", (req, res) => {
     } else {
         attendPhyFilter = `(${attendPhyArray.map(attendPhy => `AttendPhy eq '${attendPhy}'`).join(' or ')})`;
     }
+    
+    let urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=(Einri eq '${einri}' and (Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}')`;
+    if (clinicArray &&  clinicArray[0] != 'undefined') {
+        urlEndpoint += ` and (${clinicFilter})`;
+    }
+    console.log(attendPhyFilter)
+    if (attendPhyArray && attendPhyArray[0] != 'undefined') {
+      urlEndpoint += ` and (${attendPhyFilter})`;
+    }
 
     // Construct the URL endpoint with the updated filter conditions
-    const urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=(Einri eq '${einri}' and (Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}') and (${clinicFilter}) and (${attendPhyFilter}))&$format=json`;
+    urlEndpoint += `)&$format=json`
     console.log('CheckedOutSet : urlEndpoint', urlEndpoint)
 
 
