@@ -877,7 +877,7 @@ router.post("/getNursingAdmissionLatestDoc", (req, res, next) => {
     dayCaseController.getNursingAdmissionLatestDoc(req, res);
 });
 
-router.post("/deleteNursingAdmissionDoc", (req, res, next) => {
+router.delete("/deleteNursingAdmissionDoc", (req, res, next) => {
     dayCaseController.deleteNursingAdmissionDoc(req, res);
 });
 
