@@ -818,7 +818,7 @@ router.get("/DialysisPatientSearchSet", (req, res, next) => {
 router.post("/createNursingCarePlan", (req, res, next) => {
     dayCaseController.createNursingCarePlan(req, res);
 });
-router.post("/deleteNursingCarePlan", (req, res, next) => {
+router.delete("/deleteNursingCarePlan", (req, res, next) => {
     dayCaseController.deleteNursingCarePlan(req, res);
 });
 
@@ -849,7 +849,7 @@ router.get("/getUnitReservationList", (req, res, next) => {
 router.post("/createNursingDischargeDoc", (req, res, next) => {
     dayCaseController.createNursingDischargeDoc(req, res);
 });
-router.post("/deleteNursingDischargeDoc", (req, res, next) => {
+router.delete("/deleteNursingDischargeDoc", (req, res, next) => {
     dayCaseController.deleteNursingDischargeDoc(req, res);
 });
 

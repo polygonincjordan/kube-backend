@@ -344,7 +344,7 @@ exports.createNursingCarePlan = (req, res) => {
   exports.deleteNursingCarePlan = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGCARESRV}/NurseCarePlanSet(Dockey='${req.body.Dockey}')`;
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSINGCARESRV}/NurseCarePlanSet(Dockey='${req.query.Dockey}')`;
     request(
       {
         method: "DELETE",
@@ -576,7 +576,7 @@ exports.createNursingCarePlan = (req, res) => {
   exports.deleteNursingDischargeDoc = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSEDISCHSUMSRV}/NurseDischSumSet(Dockey='${req.body.Dockey}')`;
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNURSEDISCHSUMSRV}/NurseDischSumSet(Dockey='${req.query.Dockey}')`;
     request(
       {
         method: "DELETE",
