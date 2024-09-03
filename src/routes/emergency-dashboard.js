@@ -458,7 +458,7 @@ exports.MedicationAdministrationSet = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=(( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZABEMGYWRKLISTSRV}/NotAdminMEEventsSet?$filter=(( Bwidt ge datetime'${req.query.fromDate}' and Bwidt le datetime'${req.query.toDate}'))&$format=json`;
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -8610,8 +8610,7 @@ exports.getHistoryReservationList = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint  = baseURL + config.apiZNRESERVATION + `/ReservationHistorySet?$format=json`;
-
+    const urlEndpoint  = baseURL + config.apiZNRESERVATION + `/ReservationHistorySet?$filter=Erdat eq datetime'${req.query.Erdat}' and Erdat1 eq datetime'${req.query.Erdat1}' &$format=json`;
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
