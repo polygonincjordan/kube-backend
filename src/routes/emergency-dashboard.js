@@ -417,7 +417,7 @@ exports.nursingLabListSet = (req, res) => {
         allFIlter = `?$filter=(${deptcodefilter}${roomfilter}${Behpersonfilter}${Posstatusfilter}${dateFromfilter})`;
     }
     const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRNURSESRV}/LabExtractionSet${allFIlter}` 
-
+    
     //    const { Behperson } = req.query;
 
     request({
@@ -8608,12 +8608,52 @@ exports.getCostCenterReservationList = (req, res) => {
 exports.getHistoryReservationList = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
-    var j = request.jar();
-    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint  = baseURL + config.apiZNRESERVATION + `/ReservationHistorySet?$filter=Erdat eq datetime'${req.query.Erdat}' and Erdat1 eq datetime'${req.query.Erdat1}' &$format=json`;
+    let isMultipleFilter = false;
+
+    // Initialize filters
+    let SlocFilter = '';
+    let MatnrFilter = '';
+    let MoveTypeFilter = '';
+    let CostCtrFilter = '';
+    let dateFilter = '';
+
+    // Apply filters based on request body
+    if (req.query.Sloc) {
+        isMultipleFilter = true;
+        SlocFilter = `Sloc eq '${req.query.Sloc}'`;
+    }
+    if (req.query.Matnr) {
+        MatnrFilter = isMultipleFilter ? ` and ` : '';
+        isMultipleFilter = true;
+        MatnrFilter += `Matnr eq '${req.query.Matnr}'`;
+    }
+    if (req.query.MoveType) {
+        MoveTypeFilter = isMultipleFilter ? ` and ` : '';
+        isMultipleFilter = true;
+        MoveTypeFilter += `MoveType eq '${req.query.MoveType}'`;
+    }
+    if (req.query.CostCtr) {
+        CostCtrFilter = isMultipleFilter ? ` and ` : '';
+        isMultipleFilter = true;
+        CostCtrFilter += `CostCtr eq '${req.query.CostCtr}'`;
+    }
+    if (req.query.Erdat) {
+        dateFilter = isMultipleFilter ? ` and ` : '';
+        isMultipleFilter = true;
+        dateFilter += `Erdat eq datetime'${req.query.Erdat}' and Erdat1 eq datetime'${req.query.Erdat1}'`;
+    }
+
+    // Combine all filters into one query string
+    let allFilter = '';
+    if (SlocFilter || MatnrFilter || MoveTypeFilter || CostCtrFilter || dateFilter) {
+        allFilter = `?$filter=(${SlocFilter}${MatnrFilter}${MoveTypeFilter}${CostCtrFilter}${dateFilter})&$format=json`;
+    }
+
+    // Construct the final URL
+    const urlEndpoint = `${baseURL}${config.apiZNRESERVATION}/ReservationHistorySet${allFilter}`;
     request({
         method: 'GET',
-        uri:`${urlEndpoint}`,
+        uri: urlEndpoint,
         json: true,
         headers: {
             'Content-Type': 'application/json',
@@ -8621,28 +8661,27 @@ exports.getHistoryReservationList = (req, res) => {
             'X-Requested-With': 'XMLHttpRequest',
             'sap-client': config.client,
             'Cookie': mySAPSSO2Cookie,
-
-            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            console.error('Error:', error.message);
+            return res.status(500).json({ error: error.message });
         }
-        else {
-            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
-            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-            res.header('Access-Control-Expose-Headers', 'Content-Length');
-            res.header('Access-Control-Allow-Credentials', 'true');
-            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-             if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
-            }
+
+        res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+        res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+        res.header('Access-Control-Expose-Headers', 'Content-Length');
+        res.header('Access-Control-Allow-Credentials', 'true');
+        res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+        
+        if (response.statusCode !== 200) {
+            console.error(`Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}`);
             return res.status(response.statusCode).json(body);
         }
-    })
-}
+
+        return res.status(200).json(body);
+    });
+};
 
 
 exports.getUnitReservationList = (req, res) => {
