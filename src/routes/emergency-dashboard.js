@@ -8689,8 +8689,7 @@ exports.getUnitReservationList = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const {metericalCode} = req.query 
-    const urlEndpoint  = baseURL + config.apiZABEMRMDSRV + `/MaterialSet('11000090')`;
+    const urlEndpoint  = baseURL + config.apiZABEMRMDSRV + `/MaterialUOMSet?$filter=(Matnr eq '${req.query.Matnr}')`;
     console.log(urlEndpoint);
     request({
         method: 'GET',
