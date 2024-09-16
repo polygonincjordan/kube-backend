@@ -73,6 +73,10 @@ router.get("/loginUser", (req, res, next) => {
     emrController.loginUser(req, res);
 });
 
+router.get("/emrLoginUser", (req, res, next) => {
+    emergencyController.emrLoginUser(req, res);
+});
+
 router.get("/getLevelOrderHistory", (req, res, next) => {
     emergencyController.getLevelOrderHistory(req, res);
 });
