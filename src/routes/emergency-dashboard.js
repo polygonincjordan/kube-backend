@@ -8724,6 +8724,78 @@ exports.getUnitReservationList = (req, res) => {
     })
 }
 
+
+exports.emrLoginUser = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+       
+    const urlEndpoint = baseURL + config.apiZNNURSEENDORSSRV + 
+    `/UserValidationSet(Uname='${req.query.Uname}',Password='${req.query.Password}')?$format=json`;
+  console.log(urlEndpoint);
+    
+    const options = {
+        url:urlEndpoint,
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Authorization': req.headers.authorization,
+            'sap-client': config.client,
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type':'application/json'
+        }
+    };
+    //console.log(options.url);
+    console.log(options);
+    request.get(options, (error, response, body) => {
+        if (error) {
+             logger.log('error',error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+             ////console.log(body);
+            //console.log(response.headers);
+            var responseCookies = response.headers['set-cookie'];
+            //console.log(responseCookies + "/" + responseCookies.length);
+            for (var i = 0; i < responseCookies.length; i++) {
+                //console.log("******" + responseCookies[i]);
+                var oneCookie = responseCookies[i];
+                //oneCookie = oneCookie.split(';');
+                if (oneCookie.indexOf("MYSAPSSO2") != -1) {
+                    if(config.isLocalHost)
+                    {
+                        oneCookie=oneCookie.replace(".ach.jo",'localhost');
+                    }
+
+                    res.header('Set-Cookie', oneCookie);
+                }
+
+            }
+
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
+            }
+           
+            
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    })
+}
+
 exports.deleteNurEmrTriage = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
