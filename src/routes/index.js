@@ -789,6 +789,14 @@ router.delete("/deleteFistulaGraftSet", (req, res, next) => {
 router.get('/DialysisMedicationAdministrationSet', (req, res, next)=>{
     emergencyController.DialysisMedicationAdministrationSet(req,res);
 })
+
+router.get("/printPatientLabel", (req, res, next) => {
+    emergencyController.printPatientLabel(req, res);
+});
+
+router.post("/changeStatus", (req, res, next) => {
+    emergencyController.changeStatus(req, res);
+});
 router.post("/dayCaseListCheckInSet", (req, res, next) => {
     dayCaseController.dayCaseListCheckInSet(req, res);
 });
