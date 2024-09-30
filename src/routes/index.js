@@ -800,6 +800,9 @@ router.post("/changeStatus", (req, res, next) => {
 router.post("/dayCaseListCheckInSet", (req, res, next) => {
     dayCaseController.dayCaseListCheckInSet(req, res);
 });
+router.post("/changeAdmissionStatus", (req, res, next) => {
+    dayCaseController.changeAdmissionStatus(req, res);
+});
 router.post("/nursingLabListSet", (req, res, next) => {
     dayCaseController.nursingLabListSet(req, res);
 });
