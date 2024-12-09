@@ -98,7 +98,6 @@ module.exports = {
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
-    "apiEndurl":"http://SAPQAERP.makassedhospital.org",
     "environment": "qa",
     "client": "210",
     "isLocalHost": true
