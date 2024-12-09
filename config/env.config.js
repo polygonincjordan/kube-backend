@@ -93,8 +93,12 @@ module.exports = {
     "apiZNPATIENTSEARCHSRV": "ZN_PATIENT_SEARCH_SRV",
     "apiZNRESERVATION":"ZN_RESERVATION_SRV",
     "apiZNNURSINGADMASSSRV":"ZN_NURSING_ADM_ASS_SRV",
+    "apiZNDIETSRV":"ZN_DIET_SRV",
+    "apiZNINOUTSRV":"ZN_INOUT_SRV",
+
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
+    "apiEndurl":"http://SAPQAERP.makassedhospital.org",
     "environment": "qa",
     "client": "210",
     "isLocalHost": true

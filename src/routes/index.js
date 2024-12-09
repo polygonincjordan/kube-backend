@@ -81,6 +81,72 @@ router.get("/getLevelOrderHistory", (req, res, next) => {
     emergencyController.getLevelOrderHistory(req, res);
 });
 
+router.get("/fetchSnackList", (req, res, next) => {
+    emergencyController.fetchSnackList(req, res);
+});
+router.get("/fetchNursingIndicatorsList", (req, res, next) => {
+    emergencyController.fetchNursingIndicatorsList(req, res);
+});
+router.get("/fetchFoodPrefList", (req, res, next) => {
+    emergencyController.fetchFoodPrefList(req, res);
+});
+router.get("/fetchDietMasterList", (req, res, next) => {
+    emergencyController.fetchDietMasterList(req, res);
+});
+
+router.get("/fetchCompanionMealOrdering", (req, res, next) => {
+    emergencyController.fetchCompanionMealOrdering(req, res);
+});
+router.get("/fetchDietMealOrderDetails", (req, res, next) => {
+    emergencyController.fetchDietMealOrderDetails(req, res);
+});
+
+router.get('/fetchAssessmentList', (req, res, next) => {
+    emergencyController.fetchAssessmentList(req, res);
+})
+
+router.get('/fetchDislikeList', (req, res, next) => {
+    emergencyController.fetchDislikeList(req, res);
+})
+
+router.post("/confirmAndCancelDietOrder", (req, res, next) => {
+    emergencyController.confirmAndCancelDietOrder(req, res);
+});
+
+router.post("/saveDeitMealOrder", (req, res, next) => {
+    emergencyController.saveDeitMealOrder(req, res);
+});
+
+// I & O Chart
+
+router.get("/ioChartMainListSet", (req, res, next) => {
+    emergencyController.ioChartMainListSet(req, res);
+});
+router.get("/ioChartCategoryTypeCodeSet", (req, res, next) => {
+    emergencyController.ioChartCategoryTypeCodeSet(req, res);
+});
+router.get("/ioChartCategorySet", (req, res, next) => {
+    emergencyController.ioChartCategorySet(req, res);
+});
+router.get("/startEndChartInfo", (req, res, next) => {
+    emergencyController.startEndChartInfo(req, res);
+});
+router.get("/iochartHistoryList", (req, res, next) => {
+    emergencyController.iochartHistoryList(req, res);
+});
+router.get("/ioChartViewHistorySap", (req, res, next) => {
+    emergencyController.ioChartViewHistorySap(req, res);
+});
+router.post("/saveIOChartData", (req, res, next) => {
+    emergencyController.saveIOChartData(req, res);
+});
+router.post("/saveStartNewIOChart", (req, res, next) => {
+    emergencyController.saveStartNewIOChart(req, res);
+});
+router.put("/endTheCurrentIOChart", (req, res, next) => {
+    emergencyController.endTheCurrentIOChart(req, res);
+});
+
 router.post("/changeStatus", (req, res, next) => {
     emrController.changeStatus(req, res);
 });
