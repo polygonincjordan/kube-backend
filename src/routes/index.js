@@ -926,6 +926,23 @@ router.get("/getUnitReservationList", (req, res, next) => {
     emergencyController.getUnitReservationList(req, res);
 });
 
+// Nursing Assessment Document
+router.post("/saveNursingAssessment", (req, res, next) => {
+    emergencyController.saveNursingAssessment(req, res);
+});
+
+router.delete("/deleteNursingAssessmentDoc", (req, res, next) => {
+    emergencyController.deleteNursingAssessmentDoc(req, res);
+});
+
+router.post("/nursingAssessmentLatestDoc", (req, res, next) => {
+    emergencyController.nursingAssessmentLatestDoc(req, res);
+});
+
+router.get("/fetchNursingDocumentDocDetails", (req, res, next) => {
+    emergencyController.fetchNursingDocumentDocDetails(req, res);
+});
+
 // Nursing Discharge Assessment Document
 router.post("/createNursingDischargeDoc", (req, res, next) => {
     dayCaseController.createNursingDischargeDoc(req, res);
