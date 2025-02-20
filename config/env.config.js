@@ -95,6 +95,7 @@ module.exports = {
     "apiZNNURSINGADMASSSRV":"ZN_NURSING_ADM_ASS_SRV",
     "apiZNDIETSRV":"ZN_DIET_SRV",
     "apiZNINOUTSRV":"ZN_INOUT_SRV",
+    "apiZNNURSINGASSESSV2SRV":"ZN_NURSING_ASSESS_V2_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
