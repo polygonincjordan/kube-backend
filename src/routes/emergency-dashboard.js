@@ -9825,3 +9825,238 @@ exports.fetchNursingDocumentDocDetails = (req, res) => {
     }
   );
 };
+
+
+// Pre-Cardiac Cath Checklist
+exports.savePreCardiacCathDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNPRECARDIACCATHSRV}/PreCardiacSet`;
+    // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_PRE_CARDIAC_CATH_SRV/PreCardiacSet
+    console.log(urlEndpoint);
+
+    request({
+        method: 'POST',
+        uri: urlEndpoint,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.deletePreCardiacCathDoc = (req, res) => {
+  let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+  let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+  const urlEndpoint = String.raw`${baseURL}${config.apiZNPRECARDIACCATHSRV}/PreCardiacSet(Dockey='${req.query.Dockey}')`;
+  // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_PRE_CARDIAC_CATH_SRV/PreCardiacSet(Dockey='MED000000000000001000000077001000')
+  request(
+    {
+      method: "DELETE",
+      uri: `${urlEndpoint}`,
+      body: req.body,
+      json: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "sap-client": config.client,
+        Cookie: mySAPSSO2Cookie,
+      },
+    },
+    function (error, response, body) {
+      if (error) {
+        logger.log("error", error.message);
+        res.json(error);
+        return console.dir(error);
+      } else {
+        res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+        res.header(
+          "Access-Control-Allow-Methods",
+          "GET,HEAD,PUT,PATCH,POST,DELETE"
+        );
+        res.header("Access-Control-Expose-Headers", "Content-Length");
+        res.header("Access-Control-Allow-Credentials", "true");
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+        );
+        if (response.statusCode != 200) {
+          logger.log(
+            "error",
+            `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+          );
+        }
+        return res.status(response.statusCode).json(body);
+      }
+    }
+  );
+};
+
+exports.preCardiacCathLatestDoc = (req, res) => {
+  let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+  let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+  const urlEndpoint = `${baseURL}${config.apiZNPRECARDIACCATHSRV}/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`;
+  // http://AMCQAEMR01.ach.jo:8000/sap/opu/odata/sap/ZN_NURSING_ASSESS_V2_SRV/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001212' and Lfdnr eq '00001'&$format=json
+  request(
+    {
+      method: "GET",
+      uri: `${urlEndpoint}`,
+      json: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "sap-client": config.client,
+        Cookie: mySAPSSO2Cookie,
+
+        //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+      },
+    },
+    function (error, response, body) {
+      if (error) {
+        res.json(error);
+        return console.dir(error);
+      } else {
+        res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+        res.header(
+          "Access-Control-Allow-Methods",
+          "GET,HEAD,PUT,PATCH,POST,DELETE"
+        );
+        res.header("Access-Control-Expose-Headers", "Content-Length");
+        res.header("Access-Control-Allow-Credentials", "true");
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+        );
+        if (response.statusCode != 200) {
+          logger.log(
+            "error",
+            `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+          );
+        }
+        return res.status(response.statusCode).json(body);
+      }
+    }
+  );
+};
+
+
+exports.fetcPreCardiacCathDocDetails = (req, res) => {
+  let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+  let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+  const urlEndpoint = `${baseURL}${config.apiZNPRECARDIACCATHSRV}/PreCardiacSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOVITALSIGNS,TOALLERGIES,TOLABTEST&$format=json`;
+//   http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_PRE_CARDIAC_CATH_SRV/PreCardiacSet?$filter=Dockey eq 'MED000000000000001000000077000000' &$expand=TOVITALSIGNS,TOALLERGIES,TOLABTEST&$format=json
+  request(
+    {
+      method: "GET",
+      uri: `${urlEndpoint}`,
+      json: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+        "sap-client": config.client,
+        Cookie: mySAPSSO2Cookie,
+
+        //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+      },
+    },
+    function (error, response, body) {
+      if (error) {
+        res.json(error);
+        return console.dir(error);
+      } else {
+        res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+        res.header(
+          "Access-Control-Allow-Methods",
+          "GET,HEAD,PUT,PATCH,POST,DELETE"
+        );
+        res.header("Access-Control-Expose-Headers", "Content-Length");
+        res.header("Access-Control-Allow-Credentials", "true");
+        res.header(
+          "Access-Control-Allow-Headers",
+          "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+        );
+        if (response.statusCode != 200) {
+          logger.log(
+            "error",
+            `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+          );
+        }
+        return res.status(response.statusCode).json(body);
+      }
+    }
+  );
+};
+
+exports.preCardiacCathDocPDF = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNPRECARDIACCATHSRV}/PDFFileSet(Dockey='${req.query.Dockey}')`;
+    // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_PRE_CARDIAC_CATH_SRV/PDFFileSet(Dockey='MED000000000000001000000077001000')?$format=json
+    request(
+      {
+        method: "GET",
+        uri: `${urlEndpoint}`,
+        body: req.body,
+        json: true,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "sap-client": config.client,
+          Cookie: mySAPSSO2Cookie,
+        },
+      },
+      function (error, response, body) {
+        if (error) {
+          logger.log("error", error.message);
+          res.json(error);
+          return console.dir(error);
+        } else {
+          res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+          res.header(
+            "Access-Control-Allow-Methods",
+            "GET,HEAD,PUT,PATCH,POST,DELETE"
+          );
+          res.header("Access-Control-Expose-Headers", "Content-Length");
+          res.header("Access-Control-Allow-Credentials", "true");
+          res.header(
+            "Access-Control-Allow-Headers",
+            "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+          );
+          if (response.statusCode != 200) {
+            logger.log(
+              "error",
+              `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+            );
+          }
+          return res.status(response.statusCode).json(body);
+        }
+      }
+    );
+  };
