@@ -96,7 +96,7 @@ module.exports = {
     "apiZNINOUTSRV":"ZN_INOUT_SRV",
     "apiZNNURSINGASSESSV2SRV":"ZN_NURSING_ASSESS_V2_SRV",
     "apiZNPRECARDIACCATHSRV":"ZN_PRE_CARDIAC_CATH_SRV",
-
+    "apiZNCPRSRV":"ZN_CPR_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
     "environment": "qa",
