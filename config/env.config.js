@@ -98,6 +98,7 @@ module.exports = {
     "apiZNNURSINGASSESSV2SRV":"ZN_NURSING_ASSESS_V2_SRV",
     "apiZNPRECARDIACCATHSRV":"ZN_PRE_CARDIAC_CATH_SRV",
     "apiZNCPRSRV":"ZN_CPR_SRV",
+    "apiZNCORRESPONDENCESRV":"ZN_CORRESPONDENCE_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",

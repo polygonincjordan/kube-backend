@@ -985,6 +985,27 @@ router.get("/cprDocPDF", (req, res, next) => {
     emergencyController.cprDocPDF(req, res);
 });
 
+// Pre-Cardiac Cath Checklist
+router.post("/saveCorrespondenceDocument", (req, res, next) => {
+    emergencyController.saveCorrespondenceDocument(req, res);
+});
+
+router.delete("/deleteCorrespondenceDocument", (req, res, next) => {
+    emergencyController.deleteCorrespondenceDocument(req, res);
+});
+
+router.post("/correspondenceSetDocumentLatestDoc", (req, res, next) => {
+    emergencyController.correspondenceSetDocumentLatestDoc(req, res);
+});
+
+router.get("/fetcCorrespondenceSetDocDetails", (req, res, next) => {
+    emergencyController.fetcCorrespondenceSetDocDetails(req, res);
+});
+
+router.get("/correspondenceDocPDF", (req, res, next) => {
+    emergencyController.correspondenceDocPDF(req, res);
+});
+
 // Nursing Discharge Assessment Document
 router.post("/createNursingDischargeDoc", (req, res, next) => {
     dayCaseController.createNursingDischargeDoc(req, res);
