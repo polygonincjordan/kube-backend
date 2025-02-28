@@ -75,6 +75,7 @@ module.exports = {
   "apiEndpointIntegrationAppointments":"http://achemr01.ach.jo:8000/sap/opu/odata/sap/ZAB_EMR_NAPP_SRV",
   "apiEndpointIntegrationClinicConfig":"http://achemr01.ach.jo:8000/sap/opu/odata/sap/ZN_NURSE_CLIC_CONFIG_SRV",
   "apiEndpointIntegrationExceptCheckedOut":"http://achemr01.ach.jo:8000/sap/opu/odata/sap/ZN_OP_LIST_SRV",
+  "apiEndpointIntegrationPatScalesSet":"http://amcqaemr01.ach.jo:8000/sap/opu/odata/sap/ZN_TRANSFER_ASSES_SRV",
   "apiDischargeSummarySet": "ZAB_EMR_PDS_SRV",
   "apiZNMEDREPORTSRV":"ZN_MED_REPORT_SRV",    
   "apiZABEMRCONSULTORDSRV": "ZAB_EMR_CONSULT_ORD_SRV",
