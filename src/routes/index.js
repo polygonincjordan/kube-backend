@@ -154,6 +154,12 @@ router.post("/changeStatus", (req, res, next) => {
 router.post("/InPatientList", (req, res, next) => {
     emrController.InPatientList(req, res);
 });
+router.post("/createNewBornPhysicalDoc", (req, res, next) => {
+    emergencyController.createNewBornPhysicalDoc(req, res);
+});
+router.get("/getNewBornDocument", (req, res, next) => {
+    emergencyController.getNewBornDocument(req, res);
+});
 router.get("/getWardList", (req, res, next) => {
     emrController.getWardList(req, res);
 });
@@ -756,6 +762,9 @@ router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
 });
 router.post("/getSurgicalPassportDoc", (req, res, next) => {
     emergencyController.getSurgicalPassportDoc(req, res);
+});
+router.post("/getNewBornLesDoc", (req, res, next) => {
+    emergencyController.getNewBornLesDoc(req, res);
 });
 router.post("/postOfSurgicalPassp", (req, res, next) => {
     emergencyController.postOfSurgicalPassp(req, res);
