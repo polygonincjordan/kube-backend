@@ -722,6 +722,9 @@ router.get("/getNurseEndsormentDetail", (req, res, next) => {
 router.get("/getSurgicalPassPortDetail", (req, res, next) => {
     emergencyController.getSurgicalPassPortDetail(req, res);
 });
+router.get("/getNewBornDetail", (req, res, next) => {
+    emergencyController.getNewBornDetail(req, res);
+});
 router.post("/updateNurseEndDetail", (req, res, next) => {
     emergencyController.updateNurseEndDetail(req, res);
 });
@@ -760,6 +763,9 @@ router.delete("/DailysisSet", (req,res,next)=>{
 router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
     emergencyController.deleteSurgicalPassDoc(req, res);
 });
+router.delete("/deleteNewBornPassDoc", (req, res, next) => {
+    emergencyController.deleteNewBornPassDoc(req, res);
+});
 router.post("/getSurgicalPassportDoc", (req, res, next) => {
     emergencyController.getSurgicalPassportDoc(req, res);
 });
@@ -768,6 +774,9 @@ router.post("/getNewBornLesDoc", (req, res, next) => {
 });
 router.post("/postOfSurgicalPassp", (req, res, next) => {
     emergencyController.postOfSurgicalPassp(req, res);
+});
+router.post("/postOfNewBorn", (req, res, next) => {
+    emergencyController.postOfNewBorn(req, res);
 });
 router.get("/LatestDocSet", (req, res, next) => {
     emergencyController.LatestDocSet(req, res);
@@ -896,6 +905,9 @@ router.get("/getPatientAdministration", (req, res, next) => {
 
 router.get("/getSurgicalPassportPdf", (req, res, next) => {
     emergencyController.getSurgicalPassportPdf(req, res);
+});
+router.get("/getNewBornPdf", (req, res, next) => {
+    emergencyController.getNewBornPdf(req, res);
 });
 router.get("/DialysisNoConsumablesSet", (req, res, next) => {
     emergencyController.getDialysisNoConsumablesSet(req, res);
