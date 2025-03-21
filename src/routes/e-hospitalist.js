@@ -473,7 +473,7 @@ router.get("/getDeptOUSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
+      res.json({ message: error });
       logger.log('error',error.message)
       return console.dir(error);
     } else {
@@ -1025,7 +1025,7 @@ router.get("/getPatientSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
+      res.json({ message: error });
       logger.log('error',error.message)
       return console.dir(error);
     } else {

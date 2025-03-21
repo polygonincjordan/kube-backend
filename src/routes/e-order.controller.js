@@ -777,7 +777,7 @@ exports.FrequencySet = (req, res) => {
     };
     //////console.log(options);
     request.get(options, (error, response, body) => {
-        if (response.statusCode == '401') {
+        if (response?.statusCode == '401') {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
