@@ -157,8 +157,14 @@ router.post("/InPatientList", (req, res, next) => {
 router.post("/createNewBornPhysicalDoc", (req, res, next) => {
     emergencyController.createNewBornPhysicalDoc(req, res);
 });
+router.post("/createNicuSet", (req, res, next) => {
+    emergencyController.createNicuSet(req, res);
+});
 router.get("/getNewBornDocument", (req, res, next) => {
     emergencyController.getNewBornDocument(req, res);
+});
+router.get("/getNicuDocument", (req, res, next) => {
+    emergencyController.getNicuDocument(req, res);
 });
 router.get("/getWardList", (req, res, next) => {
     emrController.getWardList(req, res);
@@ -725,6 +731,9 @@ router.get("/getSurgicalPassPortDetail", (req, res, next) => {
 router.get("/getNewBornDetail", (req, res, next) => {
     emergencyController.getNewBornDetail(req, res);
 });
+router.get("/getNicuDetail", (req, res, next) => {
+    emergencyController.getNicuDetail(req, res);
+});
 router.post("/updateNurseEndDetail", (req, res, next) => {
     emergencyController.updateNurseEndDetail(req, res);
 });
@@ -765,6 +774,9 @@ router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
 });
 router.delete("/deleteNewBornPassDoc", (req, res, next) => {
     emergencyController.deleteNewBornPassDoc(req, res);
+});
+router.delete("/deleteNicuDoc", (req, res, next) => {
+    emergencyController.deleteNicuDoc(req, res);
 });
 router.post("/getSurgicalPassportDoc", (req, res, next) => {
     emergencyController.getSurgicalPassportDoc(req, res);
