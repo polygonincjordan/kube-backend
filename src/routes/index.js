@@ -1027,6 +1027,19 @@ router.get("/correspondenceDocPDF", (req, res, next) => {
     emergencyController.correspondenceDocPDF(req, res);
 });
 
+// Modified Aldret Document
+router.post("/saveModifiedAldreteDocument", (req, res, next) => {
+    emergencyController.saveModifiedAldreteDocument(req, res);
+});
+
+router.post("/ModifiedAldretSetDocumentLatestDoc", (req, res, next) => {
+    emergencyController.ModifiedAldretSetDocumentLatestDoc(req, res);
+});
+
+router.get("/fetcModifiedAldreteSetDocDetails", (req, res, next) => {
+    emergencyController.fetcModifiedAldreteSetDocDetails(req, res);
+});
+
 // Nursing Discharge Assessment Document
 router.post("/createNursingDischargeDoc", (req, res, next) => {
     dayCaseController.createNursingDischargeDoc(req, res);

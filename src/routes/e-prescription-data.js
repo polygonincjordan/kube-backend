@@ -36,7 +36,7 @@ router.get("/DurationAdministrationUnitSet", (req, res) => {
     request.get(options, (error, response, body) => {
         if (error) {
              logger.log('error',error.message);
-            res.json({ message: err });
+            res.json({ message: error });
             return console.dir(error);
         }
         else {
