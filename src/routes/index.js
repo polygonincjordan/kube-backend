@@ -157,6 +157,9 @@ router.post("/InPatientList", (req, res, next) => {
 router.post("/createNewBornPhysicalDoc", (req, res, next) => {
     emergencyController.createNewBornPhysicalDoc(req, res);
 });
+router.post("/createBundlesDoc", (req, res, next) => {
+    emergencyController.createBundlesDoc(req, res);
+});
 router.post("/createNicuSet", (req, res, next) => {
     emergencyController.createNicuSet(req, res);
 });
@@ -731,6 +734,9 @@ router.get("/getSurgicalPassPortDetail", (req, res, next) => {
 router.get("/getNewBornDetail", (req, res, next) => {
     emergencyController.getNewBornDetail(req, res);
 });
+router.get("/getBundlesDetail", (req, res, next) => {
+    emergencyController.getBundlesDetail(req, res);
+});
 router.get("/getNicuDetail", (req, res, next) => {
     emergencyController.getNicuDetail(req, res);
 });
@@ -775,6 +781,9 @@ router.delete("/deleteSurgicalPassDoc", (req, res, next) => {
 router.delete("/deleteNewBornPassDoc", (req, res, next) => {
     emergencyController.deleteNewBornPassDoc(req, res);
 });
+router.delete("/deleteBundlesDoc", (req, res, next) => {
+    emergencyController.deleteBundlesDoc(req, res);
+});
 router.delete("/deleteNicuDoc", (req, res, next) => {
     emergencyController.deleteNicuDoc(req, res);
 });
@@ -783,6 +792,9 @@ router.post("/getSurgicalPassportDoc", (req, res, next) => {
 });
 router.post("/getNewBornLesDoc", (req, res, next) => {
     emergencyController.getNewBornLesDoc(req, res);
+});
+router.post("/getBundlesDoc", (req, res, next) => {
+    emergencyController.getBundlesDoc(req, res);
 });
 router.post("/postOfSurgicalPassp", (req, res, next) => {
     emergencyController.postOfSurgicalPassp(req, res);
@@ -920,6 +932,9 @@ router.get("/getSurgicalPassportPdf", (req, res, next) => {
 });
 router.get("/getNewBornPdf", (req, res, next) => {
     emergencyController.getNewBornPdf(req, res);
+});
+router.get("/getBundlesPdf", (req, res, next) => {
+    emergencyController.getBundlesPdf(req, res);
 });
 router.get("/DialysisNoConsumablesSet", (req, res, next) => {
     emergencyController.getDialysisNoConsumablesSet(req, res);
