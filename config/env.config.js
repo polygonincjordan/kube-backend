@@ -103,6 +103,8 @@ module.exports = {
     "apiZNCPRSRV":"ZN_CPR_SRV",
     "apiZNCORRESPONDENCESRV":"ZN_CORRESPONDENCE_SRV",
     "apiZNMODIFIEDALDRETSRV":"ZN_MODIFIED_ALDRET_SRV",
+    "apiZNTIMEOUTCHECKSRV":"ZN_TIME_OUT_CHECK_SRV",
+    "apiZNNEONATALDISCHSRV":"ZN_NEONATAL_DISCH_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
