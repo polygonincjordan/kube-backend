@@ -1067,6 +1067,40 @@ router.get("/fetcModifiedAldreteSetDocDetails", (req, res, next) => {
     emergencyController.fetcModifiedAldreteSetDocDetails(req, res);
 });
 
+// Time Out CheckList Document
+router.post("/saveTimeoutCheckDocument", (req, res, next) => {
+    emergencyController.saveTimeoutCheckDocument(req, res);
+});
+
+router.post("/TimeoutCheckDocumentLatestDoc", (req, res, next) => {
+    emergencyController.TimeoutCheckDocumentLatestDoc(req, res);
+});
+
+router.get("/fetcTimeoutCheckDocDetails", (req, res, next) => {
+    emergencyController.fetcTimeoutCheckDocDetails(req, res);
+});
+
+// Neonatal Discharge Document
+router.post("/saveNeonatalDischargeDocument", (req, res, next) => {
+    emergencyController.saveNeonatalDischargeDocument(req, res);
+});
+
+router.delete("/deleteNeonatalDischargeDocument", (req, res, next) => {
+    emergencyController.deleteNeonatalDischargeDocument(req, res);
+});
+
+router.post("/NeonatalDischargeDocumentLatestDoc", (req, res, next) => {
+    emergencyController.NeonatalDischargeDocumentLatestDoc(req, res);
+});
+
+router.get("/fetcNeonatalDischargeDocDetails", (req, res, next) => {
+    emergencyController.fetcNeonatalDischargeDocDetails(req, res);
+});
+
+router.get("/NeonatalDischargeDocPDF", (req, res, next) => {
+    emergencyController.NeonatalDischargeDocPDF(req, res);
+});
+
 // Nursing Discharge Assessment Document
 router.post("/createNursingDischargeDoc", (req, res, next) => {
     dayCaseController.createNursingDischargeDoc(req, res);
