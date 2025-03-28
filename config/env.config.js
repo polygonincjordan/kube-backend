@@ -105,6 +105,7 @@ module.exports = {
     "apiZNMODIFIEDALDRETSRV":"ZN_MODIFIED_ALDRET_SRV",
     "apiZNTIMEOUTCHECKSRV":"ZN_TIME_OUT_CHECK_SRV",
     "apiZNNEONATALDISCHSRV":"ZN_NEONATAL_DISCH_SRV",
+    "apiZNCVCINSERTIONSRV":"ZN_CVC_INSERTION_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
