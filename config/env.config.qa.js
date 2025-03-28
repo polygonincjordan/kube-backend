@@ -104,6 +104,9 @@ module.exports = {
     "apiZNURINARYCATHETERSRV": "ZN_URINARY_CATHETER_SRV",
     "apiZNNEWBORN": "ZN_NEWBORN_PHY_ASSES_SRV",
     "apiZNTIMEOUTCHECKSRV":"ZN_TIME_OUT_CHECK_SRV",
+    "apiZNNEONATALDISCHSRV":"ZN_NEONATAL_DISCH_SRV",
+    "apiZNCVCINSERTIONSRV":"ZN_CVC_INSERTION_SRV",
+
     "apiZNCVCMAINTENANCE": "ZN_CVC_MAINTENANCE_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",

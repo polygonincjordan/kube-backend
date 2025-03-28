@@ -1116,6 +1116,27 @@ router.get("/NeonatalDischargeDocPDF", (req, res, next) => {
     emergencyController.NeonatalDischargeDocPDF(req, res);
 });
 
+// IC Bundles for CVC Insertion Document
+router.post("/saveCVCInsertionDocument", (req, res, next) => {
+    emergencyController.saveCVCInsertionDocument(req, res);
+});
+
+router.delete("/deleteCVCInsertionDocument", (req, res, next) => {
+    emergencyController.deleteCVCInsertionDocument(req, res);
+});
+
+router.post("/CVCInsertionDocumentLatestDoc", (req, res, next) => {
+    emergencyController.CVCInsertionDocumentLatestDoc(req, res);
+});
+
+router.get("/fetcCVCInsertionDocDetails", (req, res, next) => {
+    emergencyController.fetcCVCInsertionDocDetails(req, res);
+});
+
+router.get("/CVCInsertionDocPDF", (req, res, next) => {
+    emergencyController.CVCInsertionDocPDF(req, res);
+});
+
 // Nursing Discharge Assessment Document
 router.post("/createNursingDischargeDoc", (req, res, next) => {
     dayCaseController.createNursingDischargeDoc(req, res);
