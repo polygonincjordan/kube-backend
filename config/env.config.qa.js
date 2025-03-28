@@ -107,6 +107,7 @@ module.exports = {
     "apiZNNEONATALDISCHSRV":"ZN_NEONATAL_DISCH_SRV",
     "apiZNCVCINSERTIONSRV":"ZN_CVC_INSERTION_SRV",
 
+    "apiZNCVCMAINTENANCE": "ZN_CVC_MAINTENANCE_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
     "environment": "qa",

@@ -160,6 +160,9 @@ router.post("/createNewBornPhysicalDoc", (req, res, next) => {
 router.post("/createBundlesDoc", (req, res, next) => {
     emergencyController.createBundlesDoc(req, res);
 });
+router.post("/createCvcMainDoc", (req, res, next) => {
+    emergencyController.createCvcMainDoc(req, res);
+});
 router.post("/createNicuSet", (req, res, next) => {
     emergencyController.createNicuSet(req, res);
 });
@@ -737,6 +740,9 @@ router.get("/getNewBornDetail", (req, res, next) => {
 router.get("/getBundlesDetail", (req, res, next) => {
     emergencyController.getBundlesDetail(req, res);
 });
+router.get("/getCvcMainDetail", (req, res, next) => {
+    emergencyController.getCvcMainDetail(req, res);
+});
 router.get("/getNicuDetail", (req, res, next) => {
     emergencyController.getNicuDetail(req, res);
 });
@@ -784,6 +790,9 @@ router.delete("/deleteNewBornPassDoc", (req, res, next) => {
 router.delete("/deleteBundlesDoc", (req, res, next) => {
     emergencyController.deleteBundlesDoc(req, res);
 });
+router.delete("/deleteCvcMainDoc", (req, res, next) => {
+    emergencyController.deleteCvcMainDoc(req, res);
+});
 router.delete("/deleteNicuDoc", (req, res, next) => {
     emergencyController.deleteNicuDoc(req, res);
 });
@@ -795,6 +804,9 @@ router.post("/getNewBornLesDoc", (req, res, next) => {
 });
 router.post("/getBundlesDoc", (req, res, next) => {
     emergencyController.getBundlesDoc(req, res);
+});
+router.post("/getCvcMainDoc", (req, res, next) => {
+    emergencyController.getCvcMainDoc(req, res);
 });
 router.post("/postOfSurgicalPassp", (req, res, next) => {
     emergencyController.postOfSurgicalPassp(req, res);
@@ -935,6 +947,9 @@ router.get("/getNewBornPdf", (req, res, next) => {
 });
 router.get("/getBundlesPdf", (req, res, next) => {
     emergencyController.getBundlesPdf(req, res);
+});
+router.get("/getCvcMainPdf", (req, res, next) => {
+    emergencyController.getCvcMainPdf(req, res);
 });
 router.get("/DialysisNoConsumablesSet", (req, res, next) => {
     emergencyController.getDialysisNoConsumablesSet(req, res);
