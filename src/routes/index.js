@@ -166,6 +166,9 @@ router.post("/createCvcMainDoc", (req, res, next) => {
 router.post("/createNurseAssMainDoc", (req, res, next) => {
     emergencyController.createNurseAssMainDoc(req, res);
 });
+router.post("/createCriticalPainDoc", (req, res, next) => {
+    emergencyController.createCriticalPainDoc(req, res);
+});
 router.post("/createNicuSet", (req, res, next) => {
     emergencyController.createNicuSet(req, res);
 });
@@ -749,6 +752,12 @@ router.get("/getCvcMainDetail", (req, res, next) => {
 router.get("/getNurseAssMainDetail", (req, res, next) => {
     emergencyController.getNurseAssMainDetail(req, res);
 });
+router.get("/ToGetFieldValues", (req, res, next) => {
+    emergencyController.ToGetFieldValues(req, res);
+});
+router.get("/getCriticalPainDetail", (req, res, next) => {
+    emergencyController.getCriticalPainDetail(req, res);
+});
 router.get("/getNicuDetail", (req, res, next) => {
     emergencyController.getNicuDetail(req, res);
 });
@@ -802,6 +811,9 @@ router.delete("/deleteCvcMainDoc", (req, res, next) => {
 router.delete("/deleteNurseAssMainDoc", (req, res, next) => {
     emergencyController.deleteNurseAssMainDoc(req, res);
 });
+router.delete("/deleteCriticalPainDoc", (req, res, next) => {
+    emergencyController.deleteCriticalPainDoc(req, res);
+});
 router.delete("/deleteNicuDoc", (req, res, next) => {
     emergencyController.deleteNicuDoc(req, res);
 });
@@ -819,6 +831,9 @@ router.post("/getCvcMainDoc", (req, res, next) => {
 });
 router.post("/getNurseAssMainDoc", (req, res, next) => {
     emergencyController.getNurseAssMainDoc(req, res);
+});
+router.post("/getCriticalPainDoc", (req, res, next) => {
+    emergencyController.getCriticalPainDoc(req, res);
 });
 router.post("/postOfSurgicalPassp", (req, res, next) => {
     emergencyController.postOfSurgicalPassp(req, res);
@@ -965,6 +980,9 @@ router.get("/getCvcMainPdf", (req, res, next) => {
 });
 router.get("/getNurseAssMainPdf", (req, res, next) => {
     emergencyController.getNurseAssMainPdf(req, res);
+});
+router.get("/getCriticalPainPdf", (req, res, next) => {
+    emergencyController.getCriticalPainPdf(req, res);
 });
 router.get("/DialysisNoConsumablesSet", (req, res, next) => {
     emergencyController.getDialysisNoConsumablesSet(req, res);
