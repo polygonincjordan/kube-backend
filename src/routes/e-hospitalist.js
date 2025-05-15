@@ -2339,6 +2339,37 @@ router.post("/getPhysicianAssessDocPDF", async (req, res) => {
       }
   })
 });
+router.post("/getNicuAddNoteDocPDF", async (req, res) => {
+  
+  const urlEndpoint = String.raw`${baseURL}${config.apiZNNICUADMSERV}/PDFFileSet('${req.body.Dockey}')`;
+
+  let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+  let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+  
+  request({
+      method: 'GET',
+      uri: urlEndpoint,
+      json: true,
+      headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'sap-client': config.client,
+          'Cookie': mySAPSSO2Cookie,
+      }
+  }, function (error, response, body) {
+      if (error) {
+          res.json(error);
+          return console.dir(error);
+      }
+      else {
+          //console.log(body);
+          if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+      }
+          return res.status(response.statusCode).json(body);
+      }
+  })
+});
 // 
 //#region Transfer Assessment start
 
