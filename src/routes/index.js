@@ -163,6 +163,9 @@ router.post("/createBundlesDoc", (req, res, next) => {
 router.post("/createCvcMainDoc", (req, res, next) => {
     emergencyController.createCvcMainDoc(req, res);
 });
+router.post("/createIntraOpNurRecSetDoc", (req, res, next) => {
+    emergencyController.createIntraOpNurRecSetDoc(req, res);
+});
 router.post("/createNurseAssMainDoc", (req, res, next) => {
     emergencyController.createNurseAssMainDoc(req, res);
 });
@@ -749,6 +752,9 @@ router.get("/getBundlesDetail", (req, res, next) => {
 router.get("/getCvcMainDetail", (req, res, next) => {
     emergencyController.getCvcMainDetail(req, res);
 });
+router.get("/getIntraOpNurRecSetDetail", (req, res, next) => {
+    emergencyController.getIntraOpNurRecSetDetail(req, res);
+});
 router.get("/getNurseAssMainDetail", (req, res, next) => {
     emergencyController.getNurseAssMainDetail(req, res);
 });
@@ -808,6 +814,9 @@ router.delete("/deleteBundlesDoc", (req, res, next) => {
 router.delete("/deleteCvcMainDoc", (req, res, next) => {
     emergencyController.deleteCvcMainDoc(req, res);
 });
+router.delete("/deleteIntraOpNurRecSetDoc", (req, res, next) => {
+    emergencyController.deleteIntraOpNurRecSetDoc(req, res);
+});
 router.delete("/deleteNurseAssMainDoc", (req, res, next) => {
     emergencyController.deleteNurseAssMainDoc(req, res);
 });
@@ -828,6 +837,9 @@ router.post("/getBundlesDoc", (req, res, next) => {
 });
 router.post("/getCvcMainDoc", (req, res, next) => {
     emergencyController.getCvcMainDoc(req, res);
+});
+router.post("/getIntraOpNurRecSetMainDoc", (req, res, next) => {
+    emergencyController.getIntraOpNurRecSetMainDoc(req, res);
 });
 router.post("/getNurseAssMainDoc", (req, res, next) => {
     emergencyController.getNurseAssMainDoc(req, res);
