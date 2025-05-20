@@ -166,6 +166,9 @@ router.post("/createCvcMainDoc", (req, res, next) => {
 router.post("/createIntraOpNurRecSetDoc", (req, res, next) => {
     emergencyController.createIntraOpNurRecSetDoc(req, res);
 });
+router.post("/createMewsSetDoc", (req, res, next) => {
+    emergencyController.createMewsSetDoc(req, res);
+});
 router.post("/createNurseAssMainDoc", (req, res, next) => {
     emergencyController.createNurseAssMainDoc(req, res);
 });
@@ -755,6 +758,12 @@ router.get("/getCvcMainDetail", (req, res, next) => {
 router.get("/getIntraOpNurRecSetDetail", (req, res, next) => {
     emergencyController.getIntraOpNurRecSetDetail(req, res);
 });
+router.get("/getMewsSetDetail", (req, res, next) => {
+    emergencyController.getMewsSetDetail(req, res);
+});
+router.get("/mdLoginUser", (req, res, next) => {
+    emergencyController.mdLoginUser(req, res);
+});
 router.get("/getNurseAssMainDetail", (req, res, next) => {
     emergencyController.getNurseAssMainDetail(req, res);
 });
@@ -814,6 +823,9 @@ router.delete("/deleteBundlesDoc", (req, res, next) => {
 router.delete("/deleteCvcMainDoc", (req, res, next) => {
     emergencyController.deleteCvcMainDoc(req, res);
 });
+router.delete("/deleteMewsSetDoc", (req, res, next) => {
+    emergencyController.deleteMewsSetDoc(req, res);
+});
 router.delete("/deleteIntraOpNurRecSetDoc", (req, res, next) => {
     emergencyController.deleteIntraOpNurRecSetDoc(req, res);
 });
@@ -840,6 +852,9 @@ router.post("/getCvcMainDoc", (req, res, next) => {
 });
 router.post("/getIntraOpNurRecSetMainDoc", (req, res, next) => {
     emergencyController.getIntraOpNurRecSetMainDoc(req, res);
+});
+router.post("/getMewsSetMainDoc", (req, res, next) => {
+    emergencyController.getMewsSetMainDoc(req, res);
 });
 router.post("/getNurseAssMainDoc", (req, res, next) => {
     emergencyController.getNurseAssMainDoc(req, res);
@@ -992,6 +1007,12 @@ router.get("/getCvcMainPdf", (req, res, next) => {
 });
 router.get("/getNurseAssMainPdf", (req, res, next) => {
     emergencyController.getNurseAssMainPdf(req, res);
+});
+router.get("/getNurseIntraPdf", (req, res, next) => {
+    emergencyController.getNurseIntraPdf(req, res);
+});
+router.get("/getMewsSetMainPdf", (req, res, next) => {
+    emergencyController.getMewsSetMainPdf(req, res);
 });
 router.get("/getCriticalPainPdf", (req, res, next) => {
     emergencyController.getCriticalPainPdf(req, res);
