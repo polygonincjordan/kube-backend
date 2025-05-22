@@ -111,6 +111,9 @@ module.exports = {
     "apiZNCVCINSERTIONSRV":"ZN_CVC_INSERTION_SRV",
     "apiZNNURSERESTRAINTSRV": "ZN_NURSE_RESTRAINT_SRV",
     "apiZNCVCMAINTENANCE": "ZN_CVC_MAINTENANCE_SRV",
+    "apiZNFALLRISKPEDSRV":"ZN_FALL_RISK_PED_SRV",
+    "apiZNPATIENTDELIVERYDETAILSSRV":"ZN_PATIENT_DELIVERY_DETAILS_SRV",
+    
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
     "environment": "qa",

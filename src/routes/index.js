@@ -785,6 +785,29 @@ router.delete("/deleteNurseEndDoc", (req, res, next) => {
 router.delete("/deleteNurEmrTriage", (req, res, next) => {
     emergencyController.deleteNurEmrTriage(req, res);
 });
+
+// Fall Risk Assessment Document
+router.post("/saveFallRiskAssessment", (req, res, next) => {
+    emergencyController.saveFallRiskAssessment(req, res);
+});
+
+router.get("/fallRiskAssessmentLatestDoc", (req, res, next) => {
+    emergencyController.fallRiskAssessmentLatestDoc(req, res);
+});
+
+router.get("/getDocFallRiskAssessmentDetails", (req, res, next) => {
+    emergencyController.getDocFallRiskAssessmentDetails(req, res);
+});
+
+// Patient Documenting Delivery 
+router.post("/savePatientDelivery", (req, res, next) => {
+    emergencyController.savePatientDelivery(req, res);
+});
+
+router.get("/fetchPatientDeliveryDetail", (req, res, next) => {
+    emergencyController.fetchPatientDeliveryDetail(req, res);
+});
+
 // dialysis
 router.get("/dialysisTAget", (req, res, next) => {
     emergencyController.dialysisTAget(req, res);
