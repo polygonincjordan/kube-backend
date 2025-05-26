@@ -318,7 +318,8 @@ router.get("/getArrivalList/", (req, res) => {
 
 
   let urlEndpoint = String.raw`${baseURL}ZN_ARRIVAL_LIST_SRV/ArrivalListSet?$filter=CaseType eq '${req.query.casetype}' and Orgpf eq '${req.query.orgpf}' and KeyDateF eq datetime'${req.query.date}' &$format=json`;
-
+  console.log(urlEndpoint);
+  
   const options = {
     url: `${urlEndpoint}`,
     headers: {
