@@ -8412,7 +8412,7 @@ exports.getMewsSetDetail = (req, res) => {
 
 exports.mdLoginUser = (req, res) => {   
     const options = {
-        url: baseURLMakkased  + config.apiZNERADMSRV  + `/UserValidationSet(Uname='${req.query.Uname}',Password='${req.query.Password}')?$format=json`,
+        url: baseURL  + config.apiZNERADMSRV  + `/UserValidationSet(Uname='${req.query.Uname}',Password='${req.query.Password}')?$format=json`,
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
@@ -13163,6 +13163,144 @@ exports.fetchPatientDeliveryDetail = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_PATIENT_DELIVERY_DETAILS_SRV/PatientDeliverySet?$filter=Faln1 eq '2201'&$expand=TOPATDEL&$format=json
     const urlEndpoint = `${baseURL}${config.apiZNPATIENTDELIVERYDETAILSSRV}/PatientDeliverySet?$filter=Faln1 eq '${req.query.Faln1}'&$expand=TOPATDEL&$format=json`;
+    console.log(urlEndpoint);
+    
+    request(
+        {
+            method: "GET",
+            uri: `${urlEndpoint}`,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                if (response.statusCode != 200) {
+                    logger.log(
+                        "error",
+                        `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+                    );
+                }
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
+
+// STAMP Documuent
+
+exports.saveStampDocument = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNMALNUTPAEDIATRICSSRV}/MalnutPaeditricsSet`;
+    console.log(urlEndpoint);
+    request({
+        method: 'POST',
+        uri: urlEndpoint,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.fetchStampDocument = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = `${baseURL}${config.apiZNMALNUTPAEDIATRICSSRV}/MalnutPaeditricsSet?$filter=Dockey eq '${req.query.dockey}' &$expand=TODIAGNOSIS,TONUTRITIONAL,TOWEIGHTHEIGHT,TOVERALLRISK&$format=json`;
+    console.log(urlEndpoint);
+    
+    request(
+        {
+            method: "GET",
+            uri: `${urlEndpoint}`,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                if (response.statusCode != 200) {
+                    logger.log(
+                        "error",
+                        `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+                    );
+                }
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
+
+exports.fallStampLatestDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = `${baseURL}${config.apiZNMALNUTPAEDIATRICSSRV}/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`;
     console.log(urlEndpoint);
     
     request(

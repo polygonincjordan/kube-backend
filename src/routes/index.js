@@ -799,6 +799,19 @@ router.get("/getDocFallRiskAssessmentDetails", (req, res, next) => {
     emergencyController.getDocFallRiskAssessmentDetails(req, res);
 });
 
+// Stamp Document
+router.post("/saveStampDocument", (req, res, next) => {
+    emergencyController.saveStampDocument(req, res);
+});
+
+router.get("/fetchStampDocument", (req, res, next) => {
+    emergencyController.fetchStampDocument(req, res);
+});
+
+router.get("/fallStampLatestDoc", (req, res, next) => {
+    emergencyController.fallStampLatestDoc(req, res);
+});
+
 // Patient Documenting Delivery 
 router.post("/savePatientDelivery", (req, res, next) => {
     emergencyController.savePatientDelivery(req, res);

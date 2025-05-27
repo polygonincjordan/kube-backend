@@ -113,7 +113,8 @@ module.exports = {
     "apiZNCVCMAINTENANCE": "ZN_CVC_MAINTENANCE_SRV",
     "apiZNFALLRISKPEDSRV":"ZN_FALL_RISK_PED_SRV",
     "apiZNPATIENTDELIVERYDETAILSSRV":"ZN_PATIENT_DELIVERY_DETAILS_SRV",
-    
+    "apiZNERADMSRV": "ZN_ER_ADM_SRV",
+    "apiZNMALNUTPAEDIATRICSSRV": "ZN_MALNUT_PAEDIATRICS_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
     "environment": "qa",
