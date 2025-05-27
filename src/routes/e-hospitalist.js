@@ -363,7 +363,6 @@ router.get("/getArrivalList/", (req, res) => {
   });
 });
 
-// http://AMCQAEMR01.ach.jo:8000/sap/opu/odata/sap/ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=Anfoe eq 'CATTUAMC' &$format=json
 router.get("/getSurgeryWorkList/", (req, res) => {
   let mysapSSO2Value = decodeURIComponent(req.cookies["MYSAPSSO2"]);
   let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
@@ -372,7 +371,7 @@ router.get("/getSurgeryWorkList/", (req, res) => {
   j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
 
-  let urlEndpoint = String.raw`${baseURL}ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=Anfoe eq 'CATTUAMC' &$format=json`;
+  let urlEndpoint = String.raw`${baseURL}ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=Anfoe eq '' &$format=json`;
   console.log(urlEndpoint);
   
   const options = {
