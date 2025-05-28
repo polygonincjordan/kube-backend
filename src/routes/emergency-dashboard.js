@@ -9173,7 +9173,9 @@ exports.deleteNicuDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNNEWBORN}/NicuAdmSet(Dockey='${req.query.Dockey}')`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNNICUADMSERV}/NicuAdmSet(Dockey='${req.query.Dockey}')`
+    console.log(urlEndpoint);
+    
     request({
         method: 'DELETE',
         uri:`${urlEndpoint}`,
