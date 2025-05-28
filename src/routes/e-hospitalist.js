@@ -371,7 +371,7 @@ router.get("/getSurgeryWorkList/", (req, res) => {
   j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
 
-  let urlEndpoint = String.raw`${baseURL}ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=Anfoe eq '' &$format=json`;
+  let urlEndpoint = String.raw`${baseURL}ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=Anfoe eq 'CATTUAMC,6FL-OROU,ENDTUAMC,F9GOTAMC ' &$format=json`;
   console.log(urlEndpoint);
   
   const options = {
