@@ -10482,25 +10482,6 @@ exports.emrLoginUser = (req, res) => {
             return console.dir(error);
         }
         else {
-             ////console.log(body);
-            //console.log(response.headers);
-            var responseCookies = response.headers['set-cookie'];
-            //console.log(responseCookies + "/" + responseCookies.length);
-            for (var i = 0; i < responseCookies.length; i++) {
-                //console.log("******" + responseCookies[i]);
-                var oneCookie = responseCookies[i];
-                //oneCookie = oneCookie.split(';');
-                if (oneCookie.indexOf("MYSAPSSO2") != -1) {
-                    if(config.isLocalHost)
-                    {
-                        oneCookie=oneCookie.replace(".ach.jo",'localhost');
-                    }
-
-                    res.header('Set-Cookie', oneCookie);
-                }
-
-            }
-
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
