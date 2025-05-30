@@ -898,6 +898,12 @@ router.post("/getNurseAssMainDoc", (req, res, next) => {
 router.post("/getCriticalPainDoc", (req, res, next) => {
     emergencyController.getCriticalPainDoc(req, res);
 });
+router.get("/adminAttechmentList", (req, res, next) => {
+    emergencyController.adminAttechmentList(req, res);
+});
+router.get("/openAttechmentData", (req, res, next) => {
+    emergencyController.openAttechmentData(req, res);
+});
 router.post("/postOfSurgicalPassp", (req, res, next) => {
     emergencyController.postOfSurgicalPassp(req, res);
 });
