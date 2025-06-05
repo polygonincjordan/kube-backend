@@ -1285,5 +1285,22 @@ router.get("/getNursingAdmissionDocData", (req, res, next) => {
     dayCaseController.getNursingAdmissionDocData(req, res);
 });
 
+// SBAR Nursing Document API's
+router.post("/saveSBARNursingDoc", (req, res, next) => {
+    emergencyController.saveSBARNursingDoc(req, res);
+});
+
+router.get("/fetchSBARNursingDocument", (req, res, next) => {
+    emergencyController.fetchSBARNursingDocument(req, res);
+});
+
+router.delete("/deleteSBARNursingDocument", (req, res, next) => {
+    emergencyController.deleteSBARNursingDocument(req, res);
+});
+
+router.get("/SBARNursingLatestDoc", (req, res, next) => {
+    emergencyController.SBARNursingLatestDoc(req, res);
+});
+
 module.exports = router;
 
