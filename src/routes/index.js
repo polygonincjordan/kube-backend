@@ -1302,5 +1302,22 @@ router.get("/SBARNursingLatestDoc", (req, res, next) => {
     emergencyController.SBARNursingLatestDoc(req, res);
 });
 
+// Nursing Initial Assessment Gyno Obstetrics PMD Doc
+router.post("/saveNursingInitialGyno", (req, res, next) => {
+    emergencyController.saveNursingInitialGyno(req, res);
+});
+
+router.get("/fetchNursingInitialGynoDocument", (req, res, next) => {
+    emergencyController.fetchNursingInitialGynoDocument(req, res);
+});
+
+router.delete("/deleteNursingInitialGynoDocument", (req, res, next) => {
+    emergencyController.deleteNursingInitialGynoDocument(req, res);
+});
+
+router.get("/NursingInitialGynoSetLatestDoc", (req, res, next) => {
+    emergencyController.NursingInitialGynoSetLatestDoc(req, res);
+});
+
 module.exports = router;
 
