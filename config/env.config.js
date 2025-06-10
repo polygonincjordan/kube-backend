@@ -117,6 +117,7 @@ module.exports = {
     "apiZNMALNUTPAEDIATRICSSRV": "ZN_MALNUT_PAEDIATRICS_SRV",
     "apiZNCASEATTACHMENTSRV": "ZN_CASEATTACHMENT_SRV",
     "apiZNSBARNURSENDORSSRV": "ZN_SBAR_NURS_ENDORS_SRV",
+    "apiZNNURSEOBGYASSSRV": "ZN_NURSE_OBGY_ASS_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
