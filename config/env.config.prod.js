@@ -117,7 +117,7 @@ module.exports = {
   "apiZNMALNUTPAEDIATRICSSRV": "ZN_MALNUT_PAEDIATRICS_SRV",
    "apiZNCASEATTACHMENTSRV": "ZN_CASEATTACHMENT_SRV",
    "apiZNNURSEOBGYASSSRV": "ZN_NURSE_OBGY_ASS_SRV",
-
+  "apiZNSBARNURSENDORSSRV": "ZN_SBAR_NURS_ENDORS_SRV",
   "apiDomain": "ach.jo",
   "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
   "environment": "prod",
