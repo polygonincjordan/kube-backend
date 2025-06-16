@@ -1319,5 +1319,27 @@ router.get("/NursingInitialGynoSetLatestDoc", (req, res, next) => {
     emergencyController.NursingInitialGynoSetLatestDoc(req, res);
 });
 
+
+// Post Anaesthesia Care Record PMD Doc
+router.post("/savePostCareRecord", (req, res, next) => {
+    emergencyController.savePostCareRecord(req, res);
+});
+
+router.get("/fetchPostCareRecord", (req, res, next) => {
+    emergencyController.fetchPostCareRecord(req, res);
+});
+
+router.delete("/deletePostCareRecordDocument", (req, res, next) => {
+    emergencyController.deletePostCareRecordDocument(req, res);
+});
+
+router.get("/PostCareRecordLatestDoc", (req, res, next) => {
+    emergencyController.PostCareRecordLatestDoc(req, res);
+});
+
+router.post("/getPostCareRecordPdf", (req, res, next) => {
+    emergencyController.getPostCareRecordPdf(req, res);
+});
+
 module.exports = router;
 

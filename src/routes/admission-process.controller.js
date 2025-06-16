@@ -459,6 +459,45 @@ router.delete("/deleteProgressNote/", async (req, res) => {
   })
 });
 
+router.post("/replaceProgressNote/", async (req, res) => {
+  const { notekey,patientId,cancelcause } = req.query;
+  const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRPDCNOTESSRV}/ProgressNoteSet(Notekey='${notekey}',PatientId='${patientId}')`;
+
+  let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+  let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+  request({
+      method: 'PUT',
+      uri: urlEndpoint,
+      body:  req.body,
+      json: true,
+      headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'sap-client': config.client,
+          'Cookie': mySAPSSO2Cookie,
+      }
+  }, function (error, response, body) {
+      console.log(response);
+      console.log(JSON.stringify(body));
+      if (error) {
+         logger.log('error',error.message)
+          res.json(error);
+          return console.dir(error);
+      }
+      else {
+          //console.log(body);
+            if(response.statusCode != 200){
+        logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
+      }
+      if(body == undefined) {
+          return res.status(response.statusCode).json('Success');
+      } 
+          return res.status(response.statusCode).json(body);
+      }
+  })
+});
+
 //#endregion
 
 //#region Diagnosis
