@@ -5329,7 +5329,10 @@ exports.getConsumablesHistory = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     const { searchstring } = req.query;
-    const urlEndpoint = baseURL + config.apiZNPATMATCONSUMSRV + `/PatMatConsumSet?$filter=Falnr eq '${searchstring}' and Sloc eq 'ER01'&$format=json`;
+    const { sloc } = req.query;
+    const urlEndpoint = baseURL + config.apiZNPATMATCONSUMSRV + `/PatMatConsumSet?$filter=Falnr eq '${searchstring}' and Sloc eq '${sloc}'&$format=json`;
+    console.log(urlEndpoint);
+    
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     request({
@@ -10466,7 +10469,7 @@ exports.emrLoginUser = (req, res) => {
         headers: {
             'User-Agent': 'request',
             'spnego': 'disabled',
-            'Authorization': req.headers.authorization,
+            'Authorization': req.headers.authorization, 
             'sap-client': config.client,
             'spnego': 'disabled',
             'Accept': 'application/json',
