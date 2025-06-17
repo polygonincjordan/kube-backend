@@ -14010,7 +14010,7 @@ exports.getPostCareRecordPdf = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_POST_ANAESTH_CARE_SRV/PDFFileSet(Dockey='MED000000000000001000000092100000')?$format=json
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNPOSTANAESTHCARESRV}/PDFFileSet(Dockey='${req.body.Dockey}')`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNPOSTANAESTHCARESRV}/PDFFileSet(Dockey='${req.query.dockey}')`
 
     request({
         method: 'GET',

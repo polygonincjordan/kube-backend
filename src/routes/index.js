@@ -1337,7 +1337,7 @@ router.get("/PostCareRecordLatestDoc", (req, res, next) => {
     emergencyController.PostCareRecordLatestDoc(req, res);
 });
 
-router.post("/getPostCareRecordPdf", (req, res, next) => {
+router.get("/getPostCareRecordPdf", (req, res, next) => {
     emergencyController.getPostCareRecordPdf(req, res);
 });
 
