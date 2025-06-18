@@ -14045,3 +14045,143 @@ exports.getPostCareRecordPdf = (req, res) => {
         }
     })
 }
+
+// APGAR Scale
+exports.saveApgarScaleDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_APGAR_SCALE_SRV/ApgarScaleSet
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNAPGARSCALESRV}/ApgarScaleSet`;
+    console.log(urlEndpoint);
+    request({
+        method: 'POST',
+        uri: urlEndpoint,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+exports.fetchApgarScaleDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_APGAR_SCALE_SRV/ApgarScaleSet?$filter=Dockey eq 'SCA000000000000001000000092500000' &$format=json
+    const urlEndpoint = `${baseURL}${config.apiZNAPGARSCALESRV}/ApgarScaleSet?$filter=Dockey eq '${req.query.dockey}}' &$format=json`;
+    console.log(urlEndpoint);
+    
+    request(
+        {
+            method: "GET",
+            uri: `${urlEndpoint}`,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                if (response.statusCode != 200) {
+                    logger.log(
+                        "error",
+                        `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+                    );
+                }
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
+
+exports.ApgarScaleLatestDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_APGAR_SCALE_SRV/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json
+    const urlEndpoint = `${baseURL}${config.apiZNAPGARSCALESRV}/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`;
+    console.log(urlEndpoint);
+    
+    request(
+        {
+            method: "GET",
+            uri: `${urlEndpoint}`,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                if (response.statusCode != 200) {
+                    logger.log(
+                        "error",
+                        `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+                    );
+                }
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
