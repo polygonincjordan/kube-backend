@@ -1329,16 +1329,29 @@ router.get("/fetchPostCareRecord", (req, res, next) => {
     emergencyController.fetchPostCareRecord(req, res);
 });
 
-router.delete("/deletePostCareRecordDocument", (req, res, next) => {
-    emergencyController.deletePostCareRecordDocument(req, res);
-});
-
 router.get("/PostCareRecordLatestDoc", (req, res, next) => {
     emergencyController.PostCareRecordLatestDoc(req, res);
 });
 
+router.delete("/deletePostCareRecordDocument", (req, res, next) => {
+    emergencyController.deletePostCareRecordDocument(req, res);
+});
+
 router.get("/getPostCareRecordPdf", (req, res, next) => {
     emergencyController.getPostCareRecordPdf(req, res);
+});
+
+// APGAR Scale PMD Doc
+router.post("/saveApgarScaleDoc", (req, res, next) => {
+    emergencyController.saveApgarScaleDoc(req, res);
+});
+
+router.get("/fetchApgarScaleDoc", (req, res, next) => {
+    emergencyController.fetchApgarScaleDoc(req, res);
+});
+
+router.get("/ApgarScaleLatestDoc", (req, res, next) => {
+    emergencyController.ApgarScaleLatestDoc(req, res);
 });
 
 module.exports = router;

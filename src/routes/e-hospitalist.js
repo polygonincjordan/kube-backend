@@ -369,9 +369,9 @@ router.get("/getSurgeryWorkList/", (req, res) => {
   var j = request.jar();
   var cookie = request.cookie("MYSAPSSO2" + "=" + mysapSSO2Value);
   j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
-
-
-  let urlEndpoint = String.raw`${baseURL}ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=Anfoe eq '${req.query.Anfoe}'&$format=json`;
+  let arrayData = req.query.Anfoe.split(',');
+  let filterQuery = arrayData.length > 0 ? arrayData.map(val => `Anfoe eq '${val}'`).join(' or ') : `Anfoe eq ''`;
+  let urlEndpoint = String.raw`${baseURL}ZN_SURGERY_WORKLIST_SRV/SurgeryListSet?$filter=( ${filterQuery} )&$format=json`;
   console.log(urlEndpoint);
   
   const options = {
