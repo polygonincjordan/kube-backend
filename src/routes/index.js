@@ -1354,5 +1354,44 @@ router.get("/ApgarScaleLatestDoc", (req, res, next) => {
     emergencyController.ApgarScaleLatestDoc(req, res);
 });
 
+// Obs Fall Risk Doc
+router.post("/saveObsFallRiskScale", (req, res, next) => {
+    emergencyController.saveObsFallRiskScale(req, res);
+});
+
+router.get("/fetchObsFallRiskScale", (req, res, next) => {
+    emergencyController.fetchObsFallRiskScale(req, res);
+});
+
+router.get("/ObsFallRiskScaleLatest", (req, res, next) => {
+    emergencyController.ObsFallRiskScaleLatest(req, res);
+});
+
+router.post("/saveDeliveryRecordDoc", (req, res, next) => {
+    emergencyController.saveDeliveryRecordDoc(req, res);
+});
+
+
+// Post Anaesthesia Care Record PMD Doc
+router.post("/saveDeliveryRecordDoc", (req, res, next) => {
+    emergencyController.saveDeliveryRecordDoc(req, res);
+});
+
+router.get("/fetchDeliveryRecordDoc", (req, res, next) => {
+    emergencyController.fetchDeliveryRecordDoc(req, res);
+});
+
+router.get("/DeliveryRecordLatestDoc", (req, res, next) => {
+    emergencyController.DeliveryRecordLatestDoc(req, res);
+});
+
+router.delete("/deleteDeliveryRecordDoc", (req, res, next) => {
+    emergencyController.deleteDeliveryRecordDoc(req, res);
+});
+
+router.get("/getDeliveryRecordPDF", (req, res, next) => {
+    emergencyController.getDeliveryRecordPDF(req, res);
+});
+
 module.exports = router;
 
