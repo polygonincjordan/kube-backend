@@ -120,6 +120,8 @@ module.exports = {
     "apiZNNURSEOBGYASSSRV": "ZN_NURSE_OBGY_ASS_SRV",
     "apiZNPOSTANAESTHCARESRV": "ZN_POST_ANAESTH_CARE_SRV",
     "apiZNAPGARSCALESRV": "ZN_APGAR_SCALE_SRV",
+    "apiZNDELIVERYRECORDSRV": "ZN_DELIVERY_RECORD_SRV",
+    "apiZNFALLRISKOBSTETRICSRV": "ZN_FALL_RISK_OBSTETRIC_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
