@@ -122,6 +122,7 @@ module.exports = {
   "apiZNAPGARSCALESRV": "ZN_APGAR_SCALE_SRV",
    "apiZNDELIVERYRECORDSRV": "ZN_DELIVERY_RECORD_SRV",
    "apiZNFALLRISKOBSTETRICSRV": "ZN_FALL_RISK_OBSTETRIC_SRV",
+    "apiZNNIPSSRV": "ZN_NIPS_SRV",
   "apiDomain": "ach.jo",
   "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
   "environment": "prod",
