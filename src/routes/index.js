@@ -813,6 +813,22 @@ router.get("/NewBornScaleLatest", (req, res, next) => {
     emergencyController.NewBornScaleLatest(req, res);
 });
 
+// Confusion Assessment Method for ICU PMD Doc
+router.post("/saveConfusionDocument", (req, res, next) => {
+    emergencyController.saveConfusionDocument(req, res);
+});
+
+router.get("/fetchConfusionDocument", (req, res, next) => {
+    emergencyController.fetchConfusionDocument(req, res);
+});
+
+router.get("/ConfusionLatestDocument", (req, res, next) => {
+    emergencyController.ConfusionLatestDocument(req, res);
+});
+router.get("/getVacantBedsList", (req, res, next) => {
+    emergencyController.getVacantBedsList(req, res);
+});
+
 
 // Stamp Document
 router.post("/saveStampDocument", (req, res, next) => {
