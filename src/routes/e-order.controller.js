@@ -414,6 +414,8 @@ exports.FeesOrderSet = (req, res) => {
     j.setCookie(cookie, 'http://achemr01.ach.jo', { domain: 'ach.jo' });
 
     const urlEndpoint= config.apiEndpointIntegrationOrder + decodeURI(req.url)
+    console.log(urlEndpoint);
+    
     const options = {
         url:urlEndpoint,
         headers: {
