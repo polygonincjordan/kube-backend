@@ -868,6 +868,10 @@ router.get("/fetchStampDocument", (req, res, next) => {
     emergencyController.fetchStampDocument(req, res);
 });
 
+router.get("/getPediatricAdmAssesLatestDoc", (req, res, next) => {
+    emergencyController.getPediatricAdmAssesLatestDoc(req, res);
+});
+
 router.get("/fallStampLatestDoc", (req, res, next) => {
     emergencyController.fallStampLatestDoc(req, res);
 });
@@ -1040,6 +1044,10 @@ router.get("/getPainAssessmentPDF", (req, res, next) => {
 
 router.delete("/deletePainAssessmentDoc", (req, res, next) => {
     emergencyController.deletePainAssessmentDoc(req, res);
+});
+
+router.delete("/deletePediatricAdmAssesDoc", (req, res, next) => {
+    emergencyController.deletePediatricAdmAssesDoc(req, res);
 });
 
 router.post("/fistulaGraftSet", (req, res, next) => {
@@ -1276,6 +1284,10 @@ router.post("/NeonatalDischargeDocumentLatestDoc", (req, res, next) => {
     emergencyController.NeonatalDischargeDocumentLatestDoc(req, res);
 });
 
+router.get("/getPediatricAdmAssesDocDetails", (req, res, next) => {
+    emergencyController.getPediatricAdmAssesDocDetails(req, res);
+});
+
 router.get("/fetcNeonatalDischargeDocDetails", (req, res, next) => {
     emergencyController.fetcNeonatalDischargeDocDetails(req, res);
 });
@@ -1399,6 +1411,10 @@ router.delete("/deletePostCareRecordDocument", (req, res, next) => {
 
 router.get("/getPostCareRecordPdf", (req, res, next) => {
     emergencyController.getPostCareRecordPdf(req, res);
+});
+
+router.post("/CreatePediatricAdmAssesDoc", (req, res, next) => {
+    emergencyController.CreatePediatricAdmAssesDoc(req, res);
 });
 
 // APGAR Scale PMD Doc
