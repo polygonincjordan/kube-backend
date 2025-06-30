@@ -125,6 +125,9 @@ module.exports = {
     "apiZNNIPSSRV": "ZN_NIPS_SRV",
     "apiZNCAMICUSRV": "ZN_CAM_ICU_SRV",
     "apiZCVACANTROOMCDS": "ZC_VACANTROOM_CDS",
+    "apiZNRADDASHBOARDSRV": "ZN_RADDASHBOARD_SRV",
+    "apiZNRICHMONDSCALESRV": "ZN_RICHMOND_SCALE_SRV",
+    "apiZNRSSSRV": "ZN_RSS_SRV",
 
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",

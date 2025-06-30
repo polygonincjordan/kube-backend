@@ -686,6 +686,9 @@ router.get("/getAssignedRoom", (req, res, next) => {
 router.post("/getServiceHistorySet", (req, res, next) => {
     emergencyController.getServiceHistorySet(req, res);
 });
+router.get("/getRadiologyWorkList", (req, res, next) => {
+    emergencyController.getRadiologyWorkList(req, res);
+});
 router.post("/getLatestAssesmentResult", (req, res, next) => {
     emergencyController.getLatestAssesmentResult(req, res);
 });
@@ -827,6 +830,32 @@ router.get("/ConfusionLatestDocument", (req, res, next) => {
 });
 router.get("/getVacantBedsList", (req, res, next) => {
     emergencyController.getVacantBedsList(req, res);
+});
+
+// Richmond Scale PMD Doc
+router.post("/saveRichmondScaleDoc", (req, res, next) => {
+    emergencyController.saveRichmondScaleDoc(req, res);
+});
+
+router.get("/fetchRichmondDocument", (req, res, next) => {
+    emergencyController.fetchRichmondDocument(req, res);
+});
+
+router.get("/RichmondLatestDocument", (req, res, next) => {
+    emergencyController.RichmondLatestDocument(req, res);
+});
+
+// Ramsay Sedation Scale PMD Doc
+router.post("/saveRamsayScaleDoc", (req, res, next) => {
+    emergencyController.saveRamsayScaleDoc(req, res);
+});
+
+router.get("/fetchRamsayDocument", (req, res, next) => {
+    emergencyController.fetchRamsayDocument(req, res);
+});
+
+router.get("/RamsayLatestDocument", (req, res, next) => {
+    emergencyController.RamsayLatestDocument(req, res);
 });
 
 
