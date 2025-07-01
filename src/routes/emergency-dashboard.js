@@ -15161,7 +15161,7 @@ exports.fetchRamsayDocument = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_RSS_SRV/RssSet?$filter=Dockey eq 'SCA000000000000001000000098100000'&$format=json
-    const urlEndpoint = `${baseURL}${config.apiZNRSSSRV}/ZN_RSS_SRV?$filter=Dockey eq '${req.query.dockey}'&$format=json`;
+    const urlEndpoint = `${baseURL}${config.apiZNRSSSRV}/RssSet?$filter=Dockey eq '${req.query.dockey}'&$format=json`;
     console.log(urlEndpoint);
     
     request(
