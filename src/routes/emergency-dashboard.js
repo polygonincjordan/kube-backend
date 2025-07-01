@@ -8899,6 +8899,48 @@ exports.deletePainAssessmentDoc = (req, res) => {
         }
     })
 }
+
+//working on here (Pediatrics Admission Assessment) bottom one
+exports.deletePediatricAdmAssesDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    // var j = request.jar();
+    // var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNPAEDIATRICSADMSRV}/PaediatricsAdmSet(Dockey='${req.query.Dockey}')`
+
+    request({
+        method: 'DELETE',
+        uri: `${urlEndpoint}`,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
 exports.deleteSurgicalPassDoc = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
@@ -12632,6 +12674,56 @@ exports.NeonatalDischargeDocumentLatestDoc = (req, res) => {
     );
 };
 
+
+//this API if finalized! (to get perticular 'Pediatrics Admission Assessment ' doc)
+exports.getPediatricAdmAssesDocDetails = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    const urlEndpoint = `${baseURL}${config.apiZNPAEDIATRICSADMSRV}/PaediatricsAdmSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TOALLERGY,TOVITALSIGN,TOPHYEXAM,TOVACCINATION,TOINFECTIONS,TOFUNASS,TOADMMED,TOSCALE&$format=json`;
+
+    request(
+        {
+            method: "GET",
+            uri: `${urlEndpoint}`,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                if (response.statusCode != 200) {
+                    logger.log(
+                        "error",
+                        `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+                    );
+                }
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
+
 exports.fetcNeonatalDischargeDocDetails = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
@@ -14089,7 +14181,44 @@ exports.getPostCareRecordPdf = (req, res) => {
     })
 }
 
-// APGAR Scale
+//this API if finalized! (to Create Pediatrics Admission Assessment doc)
+exports.CreatePediatricAdmAssesDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNPAEDIATRICSADMSRV}/PaediatricsAdmSet`;
+    request({
+        method: 'POST',
+        uri: urlEndpoint,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+
+            //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
 exports.saveApgarScaleDoc = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
@@ -14415,6 +14544,57 @@ exports.fetchDeliveryRecordDoc = (req, res) => {
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_DELIVERY_RECORD_SRV/DeliveryRecordSet?$filter=Dockey eq 'MED000000000000001000000093300000'&$expand=TONEONATAL&$format=json
     const urlEndpoint = `${baseURL}${config.apiZNDELIVERYRECORDSRV}/DeliveryRecordSet?$filter=Dockey eq '${req.query.dockey}' &$expand=TONEONATAL&$format=json`;
     console.log(urlEndpoint);
+    
+    request(
+        {
+            method: "GET",
+            uri: `${urlEndpoint}`,
+            json: true,
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+                "sap-client": config.client,
+                Cookie: mySAPSSO2Cookie,
+
+                //'Authorization': 'Basic cmFrc2hpdGQ6aWRoYUAxMjM=',
+            },
+        },
+        function (error, response, body) {
+            if (error) {
+                res.json(error);
+                return console.dir(error);
+            } else {
+                res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
+                res.header(
+                    "Access-Control-Allow-Methods",
+                    "GET,HEAD,PUT,PATCH,POST,DELETE"
+                );
+                res.header("Access-Control-Expose-Headers", "Content-Length");
+                res.header("Access-Control-Allow-Credentials", "true");
+                res.header(
+                    "Access-Control-Allow-Headers",
+                    "Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials"
+                );
+                if (response.statusCode != 200) {
+                    logger.log(
+                        "error",
+                        `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`
+                    );
+                }
+                return res.status(response.statusCode).json(body);
+            }
+        }
+    );
+};
+
+
+//this API if finalized! (to get 'Pediatrics Admission Assessment' latest doc)
+exports.getPediatricAdmAssesLatestDoc = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
+    let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
+    // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_PAEDIATRICS_ADM_SRV/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json
+    const urlEndpoint = `${baseURL}${config.apiZNPAEDIATRICSADMSRV}/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`;
     
     request(
         {

@@ -128,7 +128,7 @@ module.exports = {
     "apiZNRADDASHBOARDSRV": "ZN_RADDASHBOARD_SRV",
     "apiZNRICHMONDSCALESRV": "ZN_RICHMOND_SCALE_SRV",
     "apiZNRSSSRV": "ZN_RSS_SRV",
-
+    "apiZNPAEDIATRICSADMSRV" : "ZN_PAEDIATRICS_ADM_SRV",
     "apiDomain": "ach.jo",
     "AllowOriginDomain": "http://localhost:4200",
     "environment": "qa",
