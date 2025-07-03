@@ -377,7 +377,8 @@ router.get("/getHistoryOfPatientData/", (req, res) => {
     const {Einri,  DocKey } = req.query;
 
     const urlEndpoint = String.raw`${baseURL}/PatientDocumentHistorySet?$filter=Einri eq '${Einri}' and DocKey eq '${DocKey}'`;
-
+    console.log(urlEndpoint, "urlEndpoint");
+    
     const options = {
         url: `${urlEndpoint}`,
         headers: {

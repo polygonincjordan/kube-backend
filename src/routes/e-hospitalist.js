@@ -1118,6 +1118,8 @@ router.get("/getPatientSet/", (req, res) => {
   }
 
   const urlEndpoint = String.raw`${baseURL}${config.apiZABEMRPATORGSRV}/PatientSet?$expand=ToLab,ToRad,ToMed,ToAdm,ToSurg,ToConsult,ToPnote,ToNdoc&$filter=(Patnr  eq '${patnr}' ${falnrfilter} ${dateFromfilter})`;
+  console.log(urlEndpoint);
+  
   const options = {
     url: `${urlEndpoint}`,
     headers: {
