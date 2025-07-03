@@ -876,6 +876,24 @@ router.get("/fallStampLatestDoc", (req, res, next) => {
     emergencyController.fallStampLatestDoc(req, res);
 });
 
+// Labor Room Flow Sheet PMD Doc
+router.post("/saveLaborRoomDocument", (req, res, next) => {
+    emergencyController.saveLaborRoomDocument(req, res);
+});
+
+router.get("/fetcLaborRoomDocDetails", (req, res, next) => {
+    emergencyController.fetcLaborRoomDocDetails(req, res);
+});
+
+router.get("/LaborRoomDocumentLatestDoc", (req, res, next) => {
+    emergencyController.LaborRoomDocumentLatestDoc(req, res);
+});
+
+router.get("/deleteLaborRoomDocument", (req, res, next) => {
+    emergencyController.deleteLaborRoomDocument(req, res);
+});
+
+
 // Patient Documenting Delivery 
 router.post("/savePatientDelivery", (req, res, next) => {
     emergencyController.savePatientDelivery(req, res);
