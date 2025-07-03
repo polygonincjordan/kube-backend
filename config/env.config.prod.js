@@ -128,6 +128,7 @@ module.exports = {
   "apiZNRICHMONDSCALESRV": "ZN_RICHMOND_SCALE_SRV",
   "apiZNPAEDIATRICSADMSRV" : "ZN_PAEDIATRICS_ADM_SRV",
   "apiZNRADDASHBOARDSRV": "ZN_RADDASHBOARD_SRV",
+  "apiZNLABORSHEETSRV" : "ZN_LABOR_SHEET_SRV",
   "apiZNRSSSRV": "ZN_RSS_SRV",
   "apiDomain": "ach.jo",
   "AllowOriginDomain": "http://abdaliwebserver.ach.jo:8090",
