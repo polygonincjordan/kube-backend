@@ -889,7 +889,7 @@ router.get("/LaborRoomDocumentLatestDoc", (req, res, next) => {
     emergencyController.LaborRoomDocumentLatestDoc(req, res);
 });
 
-router.get("/deleteLaborRoomDocument", (req, res, next) => {
+router.delete("/deleteLaborRoomDocument", (req, res, next) => {
     emergencyController.deleteLaborRoomDocument(req, res);
 });
 

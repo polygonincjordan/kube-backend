@@ -14189,6 +14189,8 @@ exports.CreatePediatricAdmAssesDoc = (req, res) => {
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     const urlEndpoint = String.raw`${baseURL}${config.apiZNPAEDIATRICSADMSRV}/PaediatricsAdmSet`;
+    console.log(urlEndpoint);
+    
     request({
         method: 'POST',
         uri: urlEndpoint,
@@ -15482,7 +15484,9 @@ exports.saveLaborRoomDocument = (req, res) => {
 exports.LaborRoomDocumentLatestDoc = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    const urlEndpoint = `${baseURL}${config.apiZNLABORSHEETSRV}/LatestDocSet?$filter=Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Patnr eq '${req.body.Patnr}' and Lfdnr eq '${req.body.Lfdnr}'&$format=json`;
+    const urlEndpoint = `${baseURL}${config.apiZNLABORSHEETSRV}/LatestDocSet?$filter=Einri eq '${req.query.Einri}' and Falnr eq '${req.query.Falnr}' and Patnr eq '${req.query.Patnr}' and Lfdnr eq '${req.query.Lfdnr}'&$format=json`;
+    console.log(urlEndpoint);
+    
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_LABOR_SHEET_SRV/LatestDocSet?$filter=Einri eq '1000' and Falnr eq '0000001402' and Patnr eq '0000001101' and Lfdnr eq '00001'&$format=json
     request(
         {
@@ -15530,7 +15534,7 @@ exports.LaborRoomDocumentLatestDoc = (req, res) => {
 exports.fetcLaborRoomDocDetails = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
-    const urlEndpoint = `${baseURL}${config.apiZNLABORSHEETSRV}/LaborSheetSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TONEONATAL,TOALLERGY,TOSCALE,TOLABTEST&$format=json`;
+    const urlEndpoint = `${baseURL}${config.apiZNLABORSHEETSRV}/LaborSheetSet?$filter=Dockey eq '${req.query.dockey}'&$expand=TONEONATAL,TOALLERGY,TOSCALE,TOLABTEST&$format=json`;
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_LABOR_SHEET_SRV/LaborSheetSet?$filter=Dockey eq 'MED000000000000001000000094800000'&$expand=TONEONATAL,TOALLERGY,TOSCALE,TOLABTEST&$format=json
     console.log(urlEndpoint);
 
@@ -15582,6 +15586,7 @@ exports.deleteLaborRoomDocument = (req, res) => {
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     // http://ACHDEVEMR01.ach.jo:0/sap/opu/odata/sap/ZN_LABOR_SHEET_SRV/LaborSheetSet(Dockey='MED000000000000001000000094800000')
     const urlEndpoint = String.raw`${baseURL}${config.apiZNLABORSHEETSRV}/LaborSheetSet(Dockey='${req.query.Dockey}')`;
+    console.log(urlEndpoint);
     
     request(
         {
