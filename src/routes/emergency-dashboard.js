@@ -12680,7 +12680,7 @@ exports.getPediatricAdmAssesDocDetails = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies["MYSAPSSO2"]);
     let mySAPSSO2Cookie = "MYSAPSSO2=" + decodeURI(mysapSSO2Value);
     const urlEndpoint = `${baseURL}${config.apiZNPAEDIATRICSADMSRV}/PaediatricsAdmSet?$filter=Dockey eq '${req.query.Dockey}'&$expand=TOALLERGY,TOVITALSIGN,TOPHYEXAM,TOVACCINATION,TOINFECTIONS,TOFUNASS,TOADMMED,TOSCALE&$format=json`;
-
+    
     request(
         {
             method: "GET",
