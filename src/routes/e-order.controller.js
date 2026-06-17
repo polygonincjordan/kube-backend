@@ -1429,6 +1429,84 @@ exports.UserTemplateUpdate = (req, res) => {
    })
 }
 
+// Update a User-Level medication template. SAP handles this as validate -> delete -> re-create,
+// so the body is the same deep "create" payload. Forwarded to the Administration service
+// (same one used by POST /OrderTemplate and GET /OrderTemplateget).
+exports.OrderTemplateSetUpdate = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    const urlEndpoint = config.apiEndpointIntegrationAdministration + decodeURI(req.url)
+    request({
+        method: 'PUT',
+        body: req.body,
+        json: true,
+        uri: urlEndpoint,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode != 200 && response.statusCode != 204) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${JSON.stringify(body)}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
+// Soft-delete a User-Level medication template (SAP sets DEL_FLAG='X'). Owner-only is enforced
+// by SAP. No request body. Forwarded to the Administration service.
+exports.OrderTemplateSetDelete = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    const urlEndpoint = config.apiEndpointIntegrationAdministration + decodeURI(req.url)
+    request({
+        method: 'DELETE',
+        json: true,
+        uri: urlEndpoint,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode != 200 && response.statusCode != 204) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${JSON.stringify(body)}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
 exports.UserFavSetDelete = (req, res) => {
     //if(req.cookies['MYSAPSSO2'] != null && req.cookies['MYSAPSSO2'] !== undefined){
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);

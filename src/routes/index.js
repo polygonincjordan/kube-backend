@@ -333,6 +333,14 @@ router.put("/UserTemplateSet(:param1)", (req, res, next) => {
     orderController.UserTemplateUpdate(req, res);
 });
 
+router.put("/OrderTemplateSet(:param1)", (req, res, next) => {
+    orderController.OrderTemplateSetUpdate(req, res);
+});
+
+router.delete("/OrderTemplateSet(:param1)", (req, res, next) => {
+    orderController.OrderTemplateSetDelete(req, res);
+});
+
 router.post("/FeesFavouriteSet", (req, res, next) => {
     orderController.FeesFavouriteSet(req, res);
 });
