@@ -8708,9 +8708,10 @@ exports.getPainAssessment = (req, res) => {
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    let url = baseURL + config.apiZNPAINASSESSRV + `/PainAssesSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOPAINLOGS,TOFLOWSHEET&$format=json`;
     request({
         method: 'GET',
-        uri: baseURL + config.apiZNPAINASSESSRV + `/PainAssesSet?$filter=Dockey eq '${req.query.Dockey}' &$expand=TOPAINLOGS,TOFLOWSHEET&$format=json`,
+        uri: url,
 
         body: req.body,
         json: true,
@@ -8735,7 +8736,7 @@ exports.getPainAssessment = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${url}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -8775,7 +8776,7 @@ exports.getPALatestDoc = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${url}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -8815,7 +8816,7 @@ exports.getPABackGroundImage = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${url}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -8855,7 +8856,7 @@ exports.getPainAssessmentPDF = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
             if(response.statusCode != 200){
-                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:emergency-dashboard.js`);
+                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${url}\nFile Name:emergency-dashboard.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -8868,9 +8869,12 @@ exports.deletePainAssessmentDoc = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNPAINASSESSRV}/PainAssesSet(Dockey='${req.query.Dockey}')`
+
     request({
         method: 'DELETE',
-        uri: baseURL + config.apiZNPAINASSESSRV + `/PainAssesSet(Dockey='${req.query.Dockey}')`,
+        uri: `${urlEndpoint}`,
         json: true,
         headers: {
             'Content-Type': 'application/json',
