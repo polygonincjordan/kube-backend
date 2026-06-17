@@ -332,6 +332,65 @@ exports.WidgetActionRespSet = (req, res) => {
     })
 }
 
+// Generic GET proxy to the ZNEEMR_SRV OData service for the checked-results
+// entity sets (LabPrSetSet / RadPrSet). Rebuilds the SAP URL from the parsed
+// query so the $filter is cleanly re-encoded (Node's request lib rejects raw
+// spaces), carrying the user's MYSAPSSO2 cookie.
+const emrODataGet = (req, res) => {
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint);
+
+    const entitySet = req.path.replace(/^\//, '');
+    const filter = req.query['$filter'] || '';
+    const urlEndpoint = config.apiEndpointEMR + '/' + entitySet
+        + '?$filter=' + encodeURIComponent(filter) + '&$format=json'
+    const options = {
+        url: urlEndpoint,
+        headers: {
+            'User-Agent': 'request',
+            'spnego': 'disabled',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie': mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
+            }
+            if (response.statusCode == 401) {
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+}
+
+// Checked Lab results that already have a PR (checked) status.
+exports.LabPrSet = (req, res) => emrODataGet(req, res);
+
+// Checked Radiology reports that already have a PR (checked) status.
+exports.RadPrSet = (req, res) => emrODataGet(req, res);
+
 exports.EMRWidgetConfigSetPost = (req, res) => {
      let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);

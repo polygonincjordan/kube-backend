@@ -69,6 +69,14 @@ router.post("/WidgetActionRespSet", (req, res, next) => {
     emrController.WidgetActionRespSet(req, res);
 });
 
+router.get("/LabPrSetSet", (req, res, next) => {
+    emrController.LabPrSet(req, res);
+});
+
+router.get("/RadPrSet", (req, res, next) => {
+    emrController.RadPrSet(req, res);
+});
+
 router.get("/loginUser", (req, res, next) => {
     emrController.loginUser(req, res);
 });
