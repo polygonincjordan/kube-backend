@@ -69,6 +69,14 @@ router.post("/WidgetActionRespSet", (req, res, next) => {
     emrController.WidgetActionRespSet(req, res);
 });
 
+router.get("/LabPrSetSet", (req, res, next) => {
+    emrController.LabPrSet(req, res);
+});
+
+router.get("/RadPrSet", (req, res, next) => {
+    emrController.RadPrSet(req, res);
+});
+
 router.get("/loginUser", (req, res, next) => {
     emrController.loginUser(req, res);
 });
@@ -331,6 +339,14 @@ router.delete("/UserTemplateSet(:param1)", (req, res, next) => {
 
 router.put("/UserTemplateSet(:param1)", (req, res, next) => {
     orderController.UserTemplateUpdate(req, res);
+});
+
+router.put("/OrderTemplateSet(:param1)", (req, res, next) => {
+    orderController.OrderTemplateSetUpdate(req, res);
+});
+
+router.delete("/OrderTemplateSet(:param1)", (req, res, next) => {
+    orderController.OrderTemplateSetDelete(req, res);
 });
 
 router.post("/FeesFavouriteSet", (req, res, next) => {
