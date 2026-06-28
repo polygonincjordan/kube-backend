@@ -205,7 +205,7 @@ router.get("/medicationAdministrationUnitSet/", (req, res) => {
     request.get(options, (error, response, body) => {
         if (error) {
              logger.log('error',error.message);
-            res.json({ message: error.message });
+            res.json({ message: err });
             return console.dir(error);
         }
         else {
@@ -1043,15 +1043,15 @@ router.get("/EndOrdReasonMedication/", (req, res) => {
     });
 });
 
-router.put("/EditMedicationStatus/", async (req, res) => {
-    const { Meordid } = req.query;
-    const urlEndpoint = `${config.apiEndpointIntegrationOrderdetails}/EditOrderSet(Meordid='${Meordid}')`;
+router.post("/EditMedicationStatus/", async (req, res) => {
+    const orderDetailsEndpoint = `${config.apiEndpointIntegrationOrderdetails}`.replace(/\/+$/, '');
+    const urlEndpoint = `${orderDetailsEndpoint}/EditOrderSet`;
 
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     console.log(JSON.stringify(req.body));
     request({
-        method: 'PUT',
+        method: 'POST',
         uri: urlEndpoint,
         body: req.body,
         json: true,
@@ -1070,7 +1070,7 @@ router.put("/EditMedicationStatus/", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
+            if(response.statusCode < 200 || response.statusCode >= 300){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
