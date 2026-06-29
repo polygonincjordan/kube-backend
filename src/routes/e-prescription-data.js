@@ -474,6 +474,153 @@ router.get("/frequencyQ24Cycle/", (req, res) => {
     });
 });
 
+router.get("/CycleDefMasterSet/", (req, res) => {
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+
+    const { N1znr } = req.query;
+
+    const urlEndpoint = String.raw`${config.apiEndpointIntegrationAdministration}/CycleDefMasterSet?$filter=N1znr eq '${N1znr}'&$format=json`;
+
+    const options = {
+        url: `${urlEndpoint}`,
+        headers: {
+            'User-Agent': 'request',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie': mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+             logger.log('error',error.message);
+            res.json({ message: err });
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            }
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+});
+
+router.get("/OrdCycleDefSet/", (req, res) => {
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+
+    const { Meordid } = req.query;
+
+    const urlEndpoint = String.raw`${config.apiEndpointIntegrationAdministration}/OrdCycleDefSet?$filter=Meordid eq '${Meordid}'&$format=json`;
+
+    const options = {
+        url: `${urlEndpoint}`,
+        headers: {
+            'User-Agent': 'request',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie': mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+             logger.log('error',error.message);
+            res.json({ message: err });
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            }
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+});
+
+router.get("/TOCYCDEFSet/", (req, res) => {
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+
+    const { OrderId } = req.query;
+
+    const urlEndpoint = String.raw`${config.apiEndpointIntegrationAdministration}/TOCYCDEFSet?$filter=OrderId eq '${OrderId}'&$format=json`;
+
+    const options = {
+        url: `${urlEndpoint}`,
+        headers: {
+            'User-Agent': 'request',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie': mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+             logger.log('error',error.message);
+            res.json({ message: error.message });
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if(response.statusCode != 200){
+              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            }
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+});
+
 router.get("/employeeresponsible/", (req, res) => {
     let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
@@ -896,15 +1043,15 @@ router.get("/EndOrdReasonMedication/", (req, res) => {
     });
 });
 
-router.put("/EditMedicationStatus/", async (req, res) => {
-    const { Meordid } = req.query;
-    const urlEndpoint = `${config.apiEndpointIntegrationOrderdetails}/EditOrderSet(Meordid='${Meordid}')`;
+router.post("/EditMedicationStatus/", async (req, res) => {
+    const orderDetailsEndpoint = `${config.apiEndpointIntegrationOrderdetails}`.replace(/\/+$/, '');
+    const urlEndpoint = `${orderDetailsEndpoint}/EditOrderSet`;
 
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
     console.log(JSON.stringify(req.body));
     request({
-        method: 'PUT',
+        method: 'POST',
         uri: urlEndpoint,
         body: req.body,
         json: true,
@@ -923,7 +1070,7 @@ router.put("/EditMedicationStatus/", async (req, res) => {
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
+            if(response.statusCode < 200 || response.statusCode >= 300){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
