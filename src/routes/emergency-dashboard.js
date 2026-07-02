@@ -2244,7 +2244,7 @@ exports.getPhyAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Lfdnr eq '${req.body.Lfdnr}' )`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
@@ -4436,7 +4436,7 @@ exports.getPhyAssessment = (req, res) => {
 
     var j = request.jar();
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
-    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' )`
+    const urlEndpoint = String.raw`${baseURL}${config.apiZNERPHYSDOCSRV}/ErPhysDocSet?$filter=( Einri eq '${req.body.Einri}' and Falnr eq '${req.body.Falnr}' and Lfdnr eq '${req.body.Lfdnr}' )`
     request({
         method: 'GET',
         uri:`${urlEndpoint}`,
