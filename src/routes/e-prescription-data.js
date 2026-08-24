@@ -35,7 +35,7 @@ router.get("/DurationAdministrationUnitSet", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: error });
             return console.dir(error);
         }
@@ -45,8 +45,8 @@ router.get("/DurationAdministrationUnitSet", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -84,7 +84,7 @@ router.get("/LocalizationSet", (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
@@ -94,8 +94,8 @@ router.get("/LocalizationSet", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -126,7 +126,7 @@ router.get("/OrderSetSubtitleSet/", (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
@@ -136,8 +136,8 @@ router.get("/OrderSetSubtitleSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -164,14 +164,14 @@ router.post("/getEventSetData/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -204,7 +204,7 @@ router.get("/medicationAdministrationUnitSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -214,8 +214,8 @@ router.get("/medicationAdministrationUnitSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -253,7 +253,7 @@ router.get("/medicationDetails/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -263,8 +263,8 @@ router.get("/medicationDetails/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -302,7 +302,7 @@ router.get("/userTemplateMedication/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -312,8 +312,8 @@ router.get("/userTemplateMedication/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -351,7 +351,7 @@ router.get("/orderTemplateMedication/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -361,8 +361,8 @@ router.get("/orderTemplateMedication/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -401,7 +401,7 @@ router.get("/frequencyCycle/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -411,8 +411,8 @@ router.get("/frequencyCycle/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -450,7 +450,7 @@ router.get("/frequencyQ24Cycle/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -460,8 +460,8 @@ router.get("/frequencyQ24Cycle/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -499,7 +499,7 @@ router.get("/CycleDefMasterSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -509,8 +509,8 @@ router.get("/CycleDefMasterSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -548,7 +548,7 @@ router.get("/OrdCycleDefSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -558,8 +558,8 @@ router.get("/OrdCycleDefSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -597,7 +597,7 @@ router.get("/TOCYCDEFSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: error.message });
             return console.dir(error);
         }
@@ -607,8 +607,8 @@ router.get("/TOCYCDEFSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -645,7 +645,7 @@ router.get("/employeeresponsible/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -655,8 +655,8 @@ router.get("/employeeresponsible/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -693,7 +693,7 @@ router.get("/templatesearchtype/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -703,8 +703,8 @@ router.get("/templatesearchtype/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -743,7 +743,7 @@ router.get("/OrderingList/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -753,8 +753,8 @@ router.get("/OrderingList/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -789,7 +789,7 @@ router.get("/routeDropdownlist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -799,8 +799,8 @@ router.get("/routeDropdownlist/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -837,7 +837,7 @@ router.get("/DurgUnitlist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -847,8 +847,8 @@ router.get("/DurgUnitlist/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -871,7 +871,7 @@ router.get("/OrderHistorylist/", (req, res) => {
 
     const { Einri, Falnr, Lfdnr, Drugid } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationOrderdetails}/OrderHistorySet?$filter=Einri eq '${Einri}' and Falnr eq '${Falnr}'&$format=json`;
-
+    console.log('OrderHistorylist', urlEndpoint);
     const options = {
         url: `${urlEndpoint}`,
         headers: {
@@ -886,7 +886,7 @@ router.get("/OrderHistorylist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -896,8 +896,8 @@ router.get("/OrderHistorylist/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -931,14 +931,14 @@ router.put("/updateMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -971,7 +971,7 @@ router.get("/CancelMedicationStatus/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -981,8 +981,8 @@ router.get("/CancelMedicationStatus/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1019,7 +1019,7 @@ router.get("/EndOrdReasonMedication/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1029,8 +1029,8 @@ router.get("/EndOrdReasonMedication/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1064,14 +1064,14 @@ router.post("/EditMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode < 200 || response.statusCode >= 300){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode < 200 || response.statusCode >= 300) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1099,14 +1099,14 @@ router.put("/CopyMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1137,7 +1137,7 @@ router.get("/OrderEventMedicationStatus/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1147,8 +1147,8 @@ router.get("/OrderEventMedicationStatus/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1182,14 +1182,14 @@ router.put("/updateEventMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1220,7 +1220,7 @@ router.get("/SurgeryStatus/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1230,8 +1230,8 @@ router.get("/SurgeryStatus/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1267,14 +1267,14 @@ router.post("/VisitSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1303,14 +1303,14 @@ router.post("/SaveConsultationVisitSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1339,14 +1339,14 @@ router.post("/SaveAdmissionSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1374,14 +1374,14 @@ router.post("/getAdministerEvent/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1412,7 +1412,7 @@ router.get("/DoseReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1422,8 +1422,8 @@ router.get("/DoseReason/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1460,7 +1460,7 @@ router.get("/TimeReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1470,8 +1470,8 @@ router.get("/TimeReason/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1505,14 +1505,14 @@ router.post("/DrugReturnEvent/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1543,7 +1543,7 @@ router.get("/DrugReturnReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1553,8 +1553,8 @@ router.get("/DrugReturnReason/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1591,7 +1591,7 @@ router.get("/MaterialBatch/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1601,8 +1601,8 @@ router.get("/MaterialBatch/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1637,14 +1637,14 @@ router.post("/AdditionalSupply/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1675,7 +1675,7 @@ router.get("/RequestReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1685,8 +1685,8 @@ router.get("/RequestReason/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1721,14 +1721,14 @@ router.post("/OrderTemplate/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1760,7 +1760,7 @@ router.get("/VitalChart/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1770,8 +1770,8 @@ router.get("/VitalChart/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1808,7 +1808,7 @@ router.get("/OrderTemplateget", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1818,8 +1818,8 @@ router.get("/OrderTemplateget", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1854,14 +1854,14 @@ router.put("/updateFillSource/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1889,13 +1889,13 @@ router.post("/updateFillSourcepost/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-            logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
-            if(response.statusCode != 200){
-            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -1924,7 +1924,7 @@ router.get("/EventChangeLogListSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1934,8 +1934,8 @@ router.get("/EventChangeLogListSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-            logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -1971,7 +1971,7 @@ router.get("/FSourcelist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -1981,8 +1981,8 @@ router.get("/FSourcelist/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2019,7 +2019,7 @@ router.get("/EmarEventSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2029,8 +2029,8 @@ router.get("/EmarEventSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2067,7 +2067,7 @@ router.get("/RequestStat/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2077,8 +2077,8 @@ router.get("/RequestStat/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2115,7 +2115,7 @@ router.get("/ProtoHeadersearchedCode/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2125,8 +2125,8 @@ router.get("/ProtoHeadersearchedCode/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2164,7 +2164,7 @@ router.get("/ProtoHeadersearched/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2174,8 +2174,8 @@ router.get("/ProtoHeadersearched/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2213,7 +2213,7 @@ router.get("/ChemoHistory/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2223,8 +2223,8 @@ router.get("/ChemoHistory/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2258,14 +2258,14 @@ router.post("/ChemoHistorypost/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2297,7 +2297,7 @@ router.get("/RecentLabResults/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2307,8 +2307,8 @@ router.get("/RecentLabResults/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2346,7 +2346,7 @@ router.get("/ProtoDiagnosis/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2356,8 +2356,8 @@ router.get("/ProtoDiagnosis/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2395,7 +2395,7 @@ router.get("/PatHeightWeight/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2405,8 +2405,8 @@ router.get("/PatHeightWeight/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2426,7 +2426,7 @@ router.get("/PreviousCycle/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Patnr ,PrevProtoId} = req.query;
+    const { Patnr, PrevProtoId } = req.query;
     const urlEndpoint = String.raw`${config.apiEndpointIntegrationChemotherapy}/PreviousCycleSet?$filter=Patnr eq '${Patnr}' and PrevProtoId eq '${PrevProtoId}'&$format=json`;
 
 
@@ -2444,7 +2444,7 @@ router.get("/PreviousCycle/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2454,8 +2454,8 @@ router.get("/PreviousCycle/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2502,7 +2502,7 @@ router.get("/PreviousCycle/", (req, res) => {
 //             res.header('Access-Control-Expose-Headers', 'Content-Length');
 //             res.header('Access-Control-Allow-Credentials', 'true');
 //             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-           
+
 //if (response.statusCode == 401) {
 
 //                 return res.status(response.statusCode).json(body);
@@ -2538,7 +2538,7 @@ router.get("/getAttachDocument/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2548,8 +2548,8 @@ router.get("/getAttachDocument/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2583,14 +2583,14 @@ router.post("/postDocAttach/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2622,7 +2622,7 @@ router.get("/Protocal/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2632,8 +2632,8 @@ router.get("/Protocal/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2667,14 +2667,14 @@ router.post("/ChemoOrder/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2702,14 +2702,14 @@ router.post("/ChemoEvents", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2742,7 +2742,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2752,8 +2752,8 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2786,14 +2786,14 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2820,14 +2820,14 @@ router.post("/getFavoriteListSurgery/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2858,7 +2858,7 @@ router.get("/eOrderFavoriteSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2868,8 +2868,8 @@ router.get("/eOrderFavoriteSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2903,14 +2903,14 @@ router.post("/eOrderFavoriteSetSave/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -2940,7 +2940,7 @@ router.get("/protocolListget/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2950,8 +2950,8 @@ router.get("/protocolListget/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -2988,7 +2988,7 @@ router.get("/cycleNolist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -2998,8 +2998,8 @@ router.get("/cycleNolist/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -3037,7 +3037,7 @@ router.get("/ScalesList/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: error });
             return console.dir(error);
         }
@@ -3047,8 +3047,8 @@ router.get("/ScalesList/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -3082,14 +3082,14 @@ router.post("/PriorToAdmissionSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3114,14 +3114,14 @@ router.post("/CreateClinicConfigSet/", async (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3147,14 +3147,14 @@ router.post("/updateClinicConfigSet/", async (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3185,7 +3185,7 @@ router.get("/PriorToAdmissionget/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -3195,8 +3195,8 @@ router.get("/PriorToAdmissionget/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -3229,14 +3229,14 @@ router.put("/OrderActionSet/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3264,14 +3264,14 @@ router.put("/EditAdmissionSet/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -3305,7 +3305,7 @@ router.get("/OrderHistoryPatientSet/", (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json(error);
             return console.dir(error);
         }
@@ -3343,7 +3343,7 @@ router.get("/ApptgetSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -3353,8 +3353,8 @@ router.get("/ApptgetSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
 
@@ -3388,7 +3388,7 @@ router.get("/clinicConfigSet/", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -3398,8 +3398,8 @@ router.get("/clinicConfigSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
                 return res.status(response.statusCode).json(body);
@@ -3455,7 +3455,7 @@ router.get("/ExceptCheckedOut/", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -3465,8 +3465,8 @@ router.get("/ExceptCheckedOut/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
                 return res.status(response.statusCode).json(body);
@@ -3507,14 +3507,14 @@ router.get("/CheckedOut/", (req, res) => {
     } else {
         attendPhyFilter = `(${attendPhyArray.map(attendPhy => `AttendPhy eq '${attendPhy}'`).join(' or ')})`;
     }
-    
+
     let urlEndpoint = String.raw`${config.apiEndpointIntegrationExceptCheckedOut}/CheckedOutSet?$filter=(Einri eq '${einri}' and (Erdat eq datetime'${Erdat}' or Erdat eq datetime'${datetime}')`;
-    if (clinicArray &&  clinicArray[0] != 'undefined') {
+    if (clinicArray && clinicArray[0] != 'undefined') {
         urlEndpoint += ` and (${clinicFilter})`;
     }
     console.log(attendPhyFilter)
     if (attendPhyArray && attendPhyArray[0] != 'undefined') {
-      urlEndpoint += ` and (${attendPhyFilter})`;
+        urlEndpoint += ` and (${attendPhyFilter})`;
     }
 
     // Construct the URL endpoint with the updated filter conditions
@@ -3537,7 +3537,7 @@ router.get("/CheckedOut/", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
+            logger.log('error', error.message);
             res.json({ message: err });
             return console.dir(error);
         }
@@ -3547,8 +3547,8 @@ router.get("/CheckedOut/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
-              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
             if (response.statusCode == 401) {
                 return res.status(response.statusCode).json(body);

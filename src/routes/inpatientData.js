@@ -8,6 +8,7 @@ const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPC
 const baseDocumentURl = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNPATIENTDOCUMENTSRV}`;
 const baseDischargeURl = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiDischargeSummarySet}`;
 const baseDiagnosisURl = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZABEMRDIAGNOSISSRV}`;
+const basePhyDischargeURl = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNZMEDPHDISV2SRV}`;
 
 router.use((req, res, next) => {
     console.log("Patient Data Middleware Time: ", Date.now());
@@ -21,8 +22,8 @@ router.get("/getInPatientAllDocumentSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { einri, patnr,falnr} = req.query;
-    
+    const { einri, patnr, falnr } = req.query;
+
     const urlEndpoint = String.raw`${baseURL}/PatientDocumentSet?$filter=Einri eq '${einri}' and Patnr eq '${patnr}' &$format=json`;
 
     const options = {
@@ -40,7 +41,7 @@ router.get("/getInPatientAllDocumentSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -50,8 +51,8 @@ router.get("/getInPatientAllDocumentSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
 
@@ -70,8 +71,8 @@ router.get("/getInPatientAllDocumentFalnrSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { einri, patnr,falnr} = req.query;
-    
+    const { einri, patnr, falnr } = req.query;
+
     const urlEndpoint = String.raw`${baseURL}/PatientDocumentSet?$filter=Einri eq '${einri}' and Patnr eq '${patnr}' and Falnr eq '${falnr}' &$format=json`;
 
     const options = {
@@ -89,7 +90,7 @@ router.get("/getInPatientAllDocumentFalnrSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -99,7 +100,7 @@ router.get("/getInPatientAllDocumentFalnrSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -120,7 +121,7 @@ router.get("/getInPatientDocumentSet/", (req, res) => {
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
     const { einri, patnr, docKey } = req.query;
-    
+
     const urlEndpoint = String.raw`${baseDocumentURl}/PatientDocumentSet('${docKey}')?$expand=PATDOCTOOPERRPTDOCDETAIL,PATDOCTOSURGICALTEAM,PATDOCTOPREOPERATIVEDX,PATDOCTOPOSTOPERATIVEDX,DOCCATTOATTACHMENTS&$format=json`;
 
     const options = {
@@ -138,7 +139,7 @@ router.get("/getInPatientDocumentSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -148,7 +149,7 @@ router.get("/getInPatientDocumentSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -171,7 +172,7 @@ router.get("/getPatientCaseSet/", (req, res) => {
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
     const { einri, patnr } = req.query;
-    
+
     const urlEndpoint = String.raw`${baseURL}/PatientCaseSet?$filter=Einri eq '${einri}' and Patient eq '${patnr}' &$format=json`;
 
     const options = {
@@ -189,7 +190,7 @@ router.get("/getPatientCaseSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: error });
             return console.dir(error);
         }
@@ -199,7 +200,7 @@ router.get("/getPatientCaseSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -234,14 +235,14 @@ router.post("/saveInPatientDataSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -270,14 +271,14 @@ router.delete("/deleteInPatientData/:docKey", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -291,8 +292,8 @@ router.get("/getDiagnosisData/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Institution, PatientNumber, CaseNumber} = req.query;
-    
+    const { Institution, PatientNumber, CaseNumber } = req.query;
+
     const urlEndpoint = String.raw`${baseDocumentURl}/F4DiagnosisSet?$filter=Institution eq '${Institution}' and PatientNumber eq '${PatientNumber}' and CaseNumber eq '${CaseNumber}'&$format=json`;
 
     const options = {
@@ -310,7 +311,7 @@ router.get("/getDiagnosisData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -320,7 +321,7 @@ router.get("/getDiagnosisData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -341,8 +342,8 @@ router.get("/getSurgeryTeamData/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { SequenceNumberMovem, CaseNumber} = req.query;
-    
+    const { SequenceNumberMovem, CaseNumber } = req.query;
+
     const urlEndpoint = String.raw`${baseDocumentURl}/F4SurgicalTeamSet?$filter=SequenceNumberMovem eq '${SequenceNumberMovem}' and CaseNumber eq '${CaseNumber}' &$format=json`;
 
     const options = {
@@ -360,7 +361,7 @@ router.get("/getSurgeryTeamData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -370,7 +371,7 @@ router.get("/getSurgeryTeamData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -391,8 +392,8 @@ router.get("/getDischargeSummarySet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { Einri, Falnr} = req.query;
-    
+    const { Einri, Falnr } = req.query;
+
     const urlEndpoint = String.raw`${baseDischargeURl}/DischargeSummarySet?$filter=( Einri eq '${Einri}' and Falnr eq '${Falnr}')`;
 
     const options = {
@@ -410,7 +411,7 @@ router.get("/getDischargeSummarySet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -420,7 +421,7 @@ router.get("/getDischargeSummarySet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -456,14 +457,14 @@ router.post("/saveReleaseDischargeSummarySet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -472,7 +473,7 @@ router.post("/saveReleaseDischargeSummarySet/", async (req, res) => {
 
 
 router.post("/releaseDischargeSummarySet/", async (req, res) => {
-    const { DocKey} = req.query;
+    const { DocKey } = req.query;
     const urlEndpoint = `${baseDischargeURl}/DocRelease?DocKey='${DocKey}'`;
 
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
@@ -493,14 +494,14 @@ router.post("/releaseDischargeSummarySet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -514,8 +515,8 @@ router.get("/savedDocumentGetData/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { DocKey} = req.query;
-    
+    const { DocKey } = req.query;
+
     const urlEndpoint = `${baseDischargeURl}/DischargeSummarySet?$expand=ToFormData,ToDiagnosis,ToHospitalMed,ToDischargeMed&$filter=(Dockey eq '${DocKey}')`;
 
     const options = {
@@ -532,7 +533,7 @@ router.get("/savedDocumentGetData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -542,7 +543,7 @@ router.get("/savedDocumentGetData/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -577,14 +578,14 @@ router.delete("/deleteDischargeSummarySet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json(error);
             return console.dir(error);
         }
         else {
             //console.log(body);
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             return res.status(response.statusCode).json(body);
         }
@@ -598,8 +599,8 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { searchstring} = req.query;
-    
+    const { searchstring } = req.query;
+
     const urlEndpoint = String.raw`${baseDiagnosisURl}/DiagnosisCodeSet?$filter=(startswith(Dkey, '${searchstring}'))`;
 
     const options = {
@@ -617,7 +618,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -627,7 +628,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-            if(response.statusCode != 200){
+            if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
@@ -648,12 +649,12 @@ router.get("/getDiagnosisSet/", (req, res) => {
     var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
     j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
 
-    const { institutionid , caseid, patnr } = req.query;
+    const { institutionid, caseid, patnr } = req.query;
 
     let urlEndpoint = String.raw`${baseDiagnosisURl}/DiagnosisSet?$filter=(Institution eq '${institutionid}' and Patcaseid eq '${caseid}')`;
-  
-    if(patnr){
-        urlEndpoint = String.raw`${baseDiagnosisURl}/DiagnosisSet?$filter=(Patnr eq '${patnr}')`;  
+
+    if (patnr) {
+        urlEndpoint = String.raw`${baseDiagnosisURl}/DiagnosisSet?$filter=(Patnr eq '${patnr}')`;
     }
 
 
@@ -672,7 +673,7 @@ router.get("/getDiagnosisSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
+            logger.log('error', error.message)
             res.json({ message: err });
             return console.dir(error);
         }
@@ -682,8 +683,8 @@ router.get("/getDiagnosisSet/", (req, res) => {
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-             if(response.statusCode != 200){
-               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
             }
             if (response.statusCode == 401) {
 
@@ -694,6 +695,156 @@ router.get("/getDiagnosisSet/", (req, res) => {
             }
         }
     });
+});
+
+router.post("/saveReleasePhyDischSummarySet/", async (req, res) => {
+    const urlEndpoint = `${basePhyDischargeURl}/PhyDischSummarySet`;
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    console.log(JSON.stringify(req.body));
+    console.log('urlEndpoint', urlEndpoint);
+    request({
+        method: 'POST',
+        uri: urlEndpoint,
+        body: req.body,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response, body) {
+        console.log(response);
+        console.log(JSON.stringify(body));
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            //console.log(body);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+});
+
+router.get("/getPhyDischSummarySet/", (req, res) => {
+    let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    var j = request.jar();
+    var cookie = request.cookie('MYSAPSSO2' + '=' + mysapSSO2Value);
+    j.setCookie(cookie, config.apiEndpoint, { domain: config.apiDomain });
+
+    const { DocKey } = req.query;
+
+    // const urlEndpoint = `${baseDischargeURl}/PhyDischSummarySet?$expand=ToFormData,ToDiagnosis,ToHospitalMed,ToDischargeMed&$filter=(Dockey eq '${DocKey}')`;
+    const urlEndpoint = `${basePhyDischargeURl}/PhyDischSummarySet?$filter=(Dockey eq '${DocKey}')&$expand=TODISCHMED,TOHOSPMED&$format=json`;
+
+    const options = {
+        url: `${urlEndpoint}`,
+        headers: {
+            'User-Agent': 'request',
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie': mySAPSSO2Cookie,
+            'sap-client': config.client
+        },
+        jar: j
+    };
+
+    request.get(options, (error, response, body) => {
+        if (error) {
+            logger.log('error', error.message)
+            res.json({ message: err });
+            return console.dir(error);
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
+            if (response.statusCode == 401) {
+
+                return res.status(response.statusCode).json(body);
+            }
+            else {
+                return res.status(response.statusCode).json(JSON.parse(body));
+            }
+        }
+    });
+});
+
+router.post("/getPhyDischSummarySetPDF", async (req, res) => {
+    const urlEndpoint = String.raw`${basePhyDischargeURl}/PDFFileSet(Dockey='${req.body.Dockey}')?$format=json`;
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    console.log('urlEndpoint', urlEndpoint);
+    request({
+        method: 'GET',
+        uri: urlEndpoint,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            //console.log(body);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+});
+
+router.delete("/PhyDischSummarySet/", async (req, res) => {
+    const { DocKey } = req.query;
+    const urlEndpoint = `${basePhyDischargeURl}/PhyDischSummarySet(Dockey='${DocKey}')`;
+
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+    console.log(JSON.stringify(req.body));
+    request({
+        method: 'DELETE',
+        uri: urlEndpoint,
+        json: true,
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response, body) {
+        console.log(response);
+        console.log(JSON.stringify(body));
+        if (error) {
+            logger.log('error', error.message)
+            res.json(error);
+            return console.dir(error);
+        }
+        else {
+            //console.log(body);
+            if (response.statusCode != 200) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:inpatientData.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
 });
 
 module.exports = router;
