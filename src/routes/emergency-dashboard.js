@@ -250,6 +250,37 @@ exports.createCvcMainDoc = (req, res) => {
         }
     })
 }
+// ZN_AVAP_SRV enforces CSRF on writes, unlike the other services in this file.
+// SAP binds the token to the session that issued it, so the SAP_SESSIONID cookie
+// returned by the fetch must travel with the token on the follow-up request.
+const fetchAvapCsrfToken = (mySAPSSO2Cookie, callback) => {
+    const tokenEndpoint = String.raw`${baseURL}${config.apiZNAVAP}/`
+    request({
+        method: 'GET',
+        uri:`${tokenEndpoint}`,
+        json: true,
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-Token': 'Fetch',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response) {
+        if (error) {
+            return callback(error);
+        }
+        const token = response.headers['x-csrf-token'];
+        const sessionCookies = (response.headers['set-cookie'] || [])
+            .map(function (one) { return one.split(';')[0]; })
+            .join('; ');
+        const cookieHeader = sessionCookies
+            ? `${mySAPSSO2Cookie}; ${sessionCookies}`
+            : mySAPSSO2Cookie;
+        return callback(null, { token: token, cookieHeader: cookieHeader });
+    })
+}
+
 exports.createAvapDoc = (req, res) => {
     let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
@@ -257,18 +288,28 @@ exports.createAvapDoc = (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZNAVAP}/AvapSet`
     console.log(urlEndpoint,"createAvapDoc");
 
+    fetchAvapCsrfToken(mySAPSSO2Cookie, function (tokenError, csrf) {
+    if (tokenError) {
+        logger.log('error', tokenError.message)
+        res.json(tokenError);
+        return console.dir(tokenError);
+    }
+    const writeHeaders = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'sap-client': config.client,
+        'Cookie': csrf.cookieHeader,
+    };
+    if (csrf.token && csrf.token.toLowerCase() !== 'unsafe') {
+        writeHeaders['X-CSRF-Token'] = csrf.token;
+    }
     request({
         method: 'POST',
         uri:`${urlEndpoint}`,
         body: req.body,
         json: true,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            'sap-client': config.client,
-            'Cookie': mySAPSSO2Cookie,
-        }
+        headers: writeHeaders
     }, function (error, response, body) {
         if (error) {
             logger.log('error', error.message)
@@ -286,6 +327,7 @@ exports.createAvapDoc = (req, res) => {
             }
             return res.status(response.statusCode).json(body);
         }
+    })
     })
 }
 exports.createIntraOpNurRecSetDoc = (req, res) => {
@@ -9247,17 +9289,27 @@ exports.deleteAvapDoc = (req, res) => {
     const urlEndpoint = String.raw`${baseURL}${config.apiZNAVAP}/AvapSet(Dockey='${req.query.Dockey}')`
     console.log(urlEndpoint,"deleteAvapDoc");
 
+    fetchAvapCsrfToken(mySAPSSO2Cookie, function (tokenError, csrf) {
+    if (tokenError) {
+        logger.log('error', tokenError.message)
+        res.json(tokenError);
+        return console.dir(tokenError);
+    }
+    const writeHeaders = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'sap-client': config.client,
+        'Cookie': csrf.cookieHeader,
+    };
+    if (csrf.token && csrf.token.toLowerCase() !== 'unsafe') {
+        writeHeaders['X-CSRF-Token'] = csrf.token;
+    }
     request({
         method: 'DELETE',
         uri:`${urlEndpoint}`,
         json: true,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            'sap-client': config.client,
-            'Cookie': mySAPSSO2Cookie,
-        }
+        headers: writeHeaders
     }, function (error, response, body) {
         if (error) {
             res.json(error);
@@ -9274,6 +9326,7 @@ exports.deleteAvapDoc = (req, res) => {
             }
             return res.status(response.statusCode).json(body);
         }
+    })
     })
 }
 exports.deleteMewsSetDoc = (req, res) => {
