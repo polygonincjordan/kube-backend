@@ -171,6 +171,9 @@ router.post("/createBundlesDoc", (req, res, next) => {
 router.post("/createCvcMainDoc", (req, res, next) => {
     emergencyController.createCvcMainDoc(req, res);
 });
+router.post("/createAvapDoc", (req, res, next) => {
+    emergencyController.createAvapDoc(req, res);
+});
 router.post("/createIntraOpNurRecSetDoc", (req, res, next) => {
     emergencyController.createIntraOpNurRecSetDoc(req, res);
 });
@@ -774,6 +777,9 @@ router.get("/getBundlesDetail", (req, res, next) => {
 router.get("/getCvcMainDetail", (req, res, next) => {
     emergencyController.getCvcMainDetail(req, res);
 });
+router.get("/getAvapDetail", (req, res, next) => {
+    emergencyController.getAvapDetail(req, res);
+});
 router.get("/getIntraOpNurRecSetDetail", (req, res, next) => {
     emergencyController.getIntraOpNurRecSetDetail(req, res);
 });
@@ -957,6 +963,9 @@ router.delete("/deleteBundlesDoc", (req, res, next) => {
 router.delete("/deleteCvcMainDoc", (req, res, next) => {
     emergencyController.deleteCvcMainDoc(req, res);
 });
+router.delete("/deleteAvapDoc", (req, res, next) => {
+    emergencyController.deleteAvapDoc(req, res);
+});
 router.delete("/deleteMewsSetDoc", (req, res, next) => {
     emergencyController.deleteMewsSetDoc(req, res);
 });
@@ -983,6 +992,9 @@ router.post("/getBundlesDoc", (req, res, next) => {
 });
 router.post("/getCvcMainDoc", (req, res, next) => {
     emergencyController.getCvcMainDoc(req, res);
+});
+router.post("/getAvapDoc", (req, res, next) => {
+    emergencyController.getAvapDoc(req, res);
 });
 router.post("/getIntraOpNurRecSetMainDoc", (req, res, next) => {
     emergencyController.getIntraOpNurRecSetMainDoc(req, res);
@@ -1148,6 +1160,9 @@ router.get("/getBundlesPdf", (req, res, next) => {
 });
 router.get("/getCvcMainPdf", (req, res, next) => {
     emergencyController.getCvcMainPdf(req, res);
+});
+router.get("/getAvapPdf", (req, res, next) => {
+    emergencyController.getAvapPdf(req, res);
 });
 router.get("/getNurseAssMainPdf", (req, res, next) => {
     emergencyController.getNurseAssMainPdf(req, res);
