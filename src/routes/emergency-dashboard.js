@@ -5,6 +5,7 @@ const url = require('url');
 const querystring = require('querystring');
 const cookieLocal = require('cookie');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
@@ -31,9 +32,7 @@ exports.getOrderSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -71,9 +70,7 @@ exports.getOrderSetBySubtitles = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -111,9 +108,7 @@ exports.createOrderSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -151,9 +146,7 @@ exports.createNewBornPhysicalDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -191,9 +184,7 @@ exports.createBundlesDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -233,9 +224,7 @@ exports.createCvcMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -290,9 +279,7 @@ exports.createAvapDoc = (req, res) => {
 
     fetchAvapCsrfToken(mySAPSSO2Cookie, function (tokenError, csrf) {
     if (tokenError) {
-        logger.log('error', tokenError.message)
-        res.json(tokenError);
-        return console.dir(tokenError);
+        return sendUpstreamFailure(res, tokenError, 'emergency-dashboard.js');
     }
     const writeHeaders = {
         'Content-Type': 'application/json',
@@ -312,9 +299,7 @@ exports.createAvapDoc = (req, res) => {
         headers: writeHeaders
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -355,9 +340,7 @@ exports.createIntraOpNurRecSetDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -397,9 +380,7 @@ exports.createMewsSetDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -437,9 +418,7 @@ exports.createNurseAssMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -477,9 +456,7 @@ exports.createCriticalPainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -518,9 +495,7 @@ exports.createNicuSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -562,9 +537,7 @@ exports.getNewBornDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -604,9 +577,7 @@ exports.getNicuDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -645,9 +616,7 @@ exports.getFavSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -685,9 +654,7 @@ exports.getOrderSetByFavId = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -725,9 +692,7 @@ exports.emergencyListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -766,9 +731,7 @@ exports.emergencyListCheckInSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -808,9 +771,7 @@ exports.dayCaseListCheckInSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -849,9 +810,7 @@ exports.assignToMe = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -930,9 +889,7 @@ exports.nursingLabListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -970,9 +927,7 @@ exports.MedicationAdministrationSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1010,9 +965,7 @@ exports.actionlistSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1051,9 +1004,7 @@ exports.nursingLabListPrintSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1092,9 +1043,7 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1134,9 +1083,7 @@ exports.getCountField = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1178,9 +1125,7 @@ exports.triagePriorityList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1218,9 +1163,7 @@ exports.saveTriage = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1258,9 +1201,7 @@ exports.patientsListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1298,9 +1239,7 @@ exports.actionPhysicianSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1338,9 +1277,7 @@ exports.getRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1378,9 +1315,7 @@ exports.getRiskValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1419,9 +1354,7 @@ exports.saveRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1459,9 +1392,7 @@ exports.getCancelReasons = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1499,9 +1430,7 @@ exports.getAllergenValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1539,9 +1468,7 @@ exports.getAllergenGroupValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1579,9 +1506,7 @@ exports.getAllergyCertaintyValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1619,9 +1544,7 @@ exports.getAllergyEvaluationValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1659,9 +1582,7 @@ exports.getAllergyReactionValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1699,9 +1620,7 @@ exports.getSeverityValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1739,9 +1658,7 @@ exports.getAllergyTypeValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1779,9 +1696,7 @@ exports.getAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1819,9 +1734,7 @@ exports.SaveAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1859,9 +1772,7 @@ exports.getPatientLabHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1899,9 +1810,7 @@ exports.getPatientRadHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1940,9 +1849,7 @@ exports.getErRadPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1980,9 +1887,7 @@ exports.getMedCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2020,9 +1925,7 @@ exports.getMedNotCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2060,9 +1963,7 @@ exports.getVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2100,9 +2001,7 @@ exports.deleteVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2140,9 +2039,7 @@ exports.updateVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2180,9 +2077,7 @@ exports.createVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2220,9 +2115,7 @@ exports.deleteReasonsList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2260,9 +2153,7 @@ exports.getAllVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2301,9 +2192,7 @@ exports.getLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2341,9 +2230,7 @@ exports.getPhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2381,9 +2268,7 @@ exports.createPhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2421,9 +2306,7 @@ exports.updatePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2461,9 +2344,7 @@ exports.releasePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2501,9 +2382,7 @@ exports.getReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2541,9 +2420,7 @@ exports.deletePhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2582,9 +2459,7 @@ exports.PatientSearchSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2623,9 +2498,7 @@ exports.getMedLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2663,9 +2536,7 @@ exports.getMedReportData = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2703,9 +2574,7 @@ exports.createMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2743,9 +2612,7 @@ exports.deleteMedReport = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2783,9 +2650,7 @@ exports.updateMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2823,9 +2688,7 @@ exports.releaseMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2863,9 +2726,7 @@ exports.getMedReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2905,9 +2766,7 @@ exports.getAnalysisDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2946,9 +2805,7 @@ exports.getErBedList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2986,9 +2843,7 @@ exports.SaveBedForPatient = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3027,9 +2882,7 @@ exports.changePassword = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3073,9 +2926,7 @@ exports.getLevelOrderHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3112,9 +2963,7 @@ exports.actionlistSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3153,9 +3002,7 @@ exports.nursingLabListPrintSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3194,9 +3041,7 @@ exports.nursingLabSampleCollectedSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3236,9 +3081,7 @@ exports.getCountField = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3281,9 +3124,7 @@ exports.MedicationAdministrationCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3328,9 +3169,7 @@ exports.NoConsumablesSetCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3372,9 +3211,7 @@ exports.triagePriorityList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3412,9 +3249,7 @@ exports.saveTriage = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3452,9 +3287,7 @@ exports.patientsListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3492,9 +3325,7 @@ exports.actionPhysicianSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3532,9 +3363,7 @@ exports.getRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3572,9 +3401,7 @@ exports.getRiskValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3612,9 +3439,7 @@ exports.saveRiskList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3652,9 +3477,7 @@ exports.getCancelReasons = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3692,9 +3515,7 @@ exports.getAllergenValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3732,9 +3553,7 @@ exports.getAllergenGroupValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3772,9 +3591,7 @@ exports.getAllergyCertaintyValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3812,9 +3629,7 @@ exports.getAllergyEvaluationValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3852,9 +3667,7 @@ exports.getAllergyReactionValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3892,9 +3705,7 @@ exports.getSeverityValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3932,9 +3743,7 @@ exports.getAllergyTypeValues = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3972,9 +3781,7 @@ exports.getAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4012,9 +3819,7 @@ exports.SaveAllergyHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4052,9 +3857,7 @@ exports.getPatientLabHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4092,9 +3895,7 @@ exports.getPatientRadHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4132,9 +3933,7 @@ exports.getErRadPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4172,9 +3971,7 @@ exports.getMedCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4212,9 +4009,7 @@ exports.getMedNotCompletedHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4252,9 +4047,7 @@ exports.getVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4292,9 +4085,7 @@ exports.deleteVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4332,9 +4123,7 @@ exports.updateVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4372,9 +4161,7 @@ exports.createVitalSigns = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4412,9 +4199,7 @@ exports.deleteReasonsList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4452,9 +4237,7 @@ exports.getAllVitalList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4493,9 +4276,7 @@ exports.getLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4533,9 +4314,7 @@ exports.getPhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4573,9 +4352,7 @@ exports.createPhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4613,9 +4390,7 @@ exports.updatePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4653,9 +4428,7 @@ exports.releasePhyDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4693,9 +4466,7 @@ exports.getReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4733,9 +4504,7 @@ exports.deletePhyAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4774,9 +4543,7 @@ exports.PatientSearchSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4815,9 +4582,7 @@ exports.getMedLatestAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4855,9 +4620,7 @@ exports.getMedReportData = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4895,9 +4658,7 @@ exports.createMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4935,9 +4696,7 @@ exports.deleteMedReport = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -4975,9 +4734,7 @@ exports.updateMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5015,9 +4772,7 @@ exports.releaseMedDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5055,9 +4810,7 @@ exports.getMedReleasedPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5097,9 +4850,7 @@ exports.getAnalysisDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5138,9 +4889,7 @@ exports.getErBedList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5178,9 +4927,7 @@ exports.SaveBedForPatient = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5219,9 +4966,7 @@ exports.changePassword = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5262,9 +5007,7 @@ exports.getLevelOrderHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5304,9 +5047,7 @@ exports.getMaterialSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5346,9 +5087,7 @@ exports.getMaterialStockSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5386,9 +5125,7 @@ exports.saveConsumableDataSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5430,9 +5167,7 @@ exports.getConsumablesHistory = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5470,9 +5205,7 @@ exports.getNoConsumablesSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5511,9 +5244,7 @@ exports.nurEmrFaceScaleSetPost = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5559,9 +5290,7 @@ exports.nurEmrGlasgowScaleSetPost = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5607,9 +5336,7 @@ exports.nurEmrNumericScaleSetPost = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5656,9 +5383,7 @@ exports.getFacePainScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5707,9 +5432,7 @@ exports.getGlowgosScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5757,9 +5480,7 @@ exports.getNumericScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5803,9 +5524,7 @@ exports.getFeeServiceSearchSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5845,9 +5564,7 @@ exports.saveNurEmrTriage = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -5892,9 +5609,7 @@ exports.getRoomDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5932,9 +5647,7 @@ exports.getEmployeeId = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -5973,9 +5686,7 @@ exports.saveAssignedRoom = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6013,9 +5724,7 @@ exports.getAssignedRoom = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6054,9 +5763,7 @@ exports.getServiceHistorySet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6095,9 +5802,7 @@ exports.getLatestAssesmentResult = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6136,9 +5841,7 @@ exports.putGlasgowScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6177,9 +5880,7 @@ exports.putFaceScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6218,9 +5919,7 @@ exports.putNRSScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6259,9 +5958,7 @@ exports.postBradenScaleSet = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6308,9 +6005,7 @@ exports.getBradenScaleDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6354,8 +6049,7 @@ exports.putBradenScaleSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6431,9 +6125,7 @@ exports.getTriageLatestDocumentSet = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6477,9 +6169,7 @@ exports.getTriagePdfUrl = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6523,9 +6213,7 @@ exports.getTriageDataStatusDraft = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6568,9 +6256,7 @@ exports.getSocialHabitList = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6619,9 +6305,7 @@ exports.calculateAlcoholConsumption = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6669,9 +6353,7 @@ exports.postAlcoholHabitDrinkYes = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6719,9 +6401,7 @@ exports.postTabaccoHabitSmokeYes = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6769,9 +6449,7 @@ exports.postDrugsHabit = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6820,9 +6498,7 @@ exports.postOtherHabit = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -6867,9 +6543,7 @@ exports.getMissedDocsSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6907,9 +6581,7 @@ exports.getMissedDocsCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6947,9 +6619,7 @@ exports.getNoConsumablesCount = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -6988,9 +6658,7 @@ exports.getTriagePatientNo = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7030,9 +6698,7 @@ exports.getStoragelocationList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7071,9 +6737,7 @@ exports.getSentCartRecesive = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7112,9 +6776,7 @@ exports.addReceiveCart = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7154,9 +6816,7 @@ exports.getElepsedTime = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7196,9 +6856,7 @@ exports.postOfNurseEndsorment = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log('error', error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -7242,9 +6900,7 @@ exports.getNurseEndsorment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7281,9 +6937,7 @@ exports.getNurseEndsormentDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7323,9 +6977,7 @@ exports.updateNurseEndDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7363,9 +7015,7 @@ exports.deleteNurseEndDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7403,8 +7053,7 @@ exports.dialysisTAget = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7442,8 +7091,7 @@ exports.dialysisTAgetHis = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7481,8 +7129,7 @@ exports.Dialysisget = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7519,8 +7166,7 @@ exports.DialysisIPSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7561,8 +7207,7 @@ exports.getSurgicalPassportDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7600,8 +7245,7 @@ exports.getNewBornLesDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7639,8 +7283,7 @@ exports.getBundlesDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7678,8 +7321,7 @@ exports.getCvcMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7712,8 +7354,7 @@ exports.getAvapDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7751,8 +7392,7 @@ exports.getIntraOpNurRecSetMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7790,8 +7430,7 @@ exports.getMewsSetMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7829,8 +7468,7 @@ exports.getNurseAssMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7868,8 +7506,7 @@ exports.getCriticalPainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7910,8 +7547,7 @@ exports.getSurgicalPassportPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7950,8 +7586,7 @@ exports.getNewBornPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -7990,8 +7625,7 @@ exports.getBundlesPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8030,8 +7664,7 @@ exports.getCvcMainPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8065,8 +7698,7 @@ exports.getAvapPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8105,8 +7737,7 @@ exports.getNurseAssMainPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8145,8 +7776,7 @@ exports.getNurseIntraPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8185,8 +7815,7 @@ exports.getMewsSetMainPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8225,8 +7854,7 @@ exports.getCriticalPainPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8265,8 +7893,7 @@ exports.DailysisSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8307,8 +7934,7 @@ exports.postOfSurgicalPassp = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -8354,8 +7980,7 @@ exports.postOfNewBorn = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -8398,8 +8023,7 @@ exports.getSurgicalPassPortDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8436,8 +8060,7 @@ exports.getNewBornDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8474,8 +8097,7 @@ exports.getBundlesDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8512,8 +8134,7 @@ exports.getCvcMainDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8546,8 +8167,7 @@ exports.getAvapDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8584,8 +8204,7 @@ exports.getIntraOpNurRecSetDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8622,8 +8241,7 @@ exports.getMewsSetDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8656,8 +8274,7 @@ exports.mdLoginUser = (req, res) => {
     console.log(options);
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
              ////console.log(body);
@@ -8681,13 +8298,7 @@ exports.mdLoginUser = (req, res) => {
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
            
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     })
 }
@@ -8713,8 +8324,7 @@ exports.getNurseAssMainDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8751,8 +8361,7 @@ exports.getCriticalPainDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8789,8 +8398,7 @@ exports.ToGetFieldValues  = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8827,8 +8435,7 @@ exports.getNicuDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8869,8 +8476,7 @@ exports.savePainAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8909,8 +8515,7 @@ exports.getPainAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8949,8 +8554,7 @@ exports.getPALatestDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -8989,8 +8593,7 @@ exports.getPABackGroundImage = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9029,8 +8632,7 @@ exports.getPainAssessmentPDF = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9070,8 +8672,7 @@ exports.deletePainAssessmentDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9112,8 +8713,7 @@ exports.deletePediatricAdmAssesDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9150,8 +8750,7 @@ exports.deleteSurgicalPassDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9188,8 +8787,7 @@ exports.deleteNewBornPassDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9226,8 +8824,7 @@ exports.deleteBundlesDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9266,8 +8863,7 @@ exports.deleteCvcMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9291,9 +8887,7 @@ exports.deleteAvapDoc = (req, res) => {
 
     fetchAvapCsrfToken(mySAPSSO2Cookie, function (tokenError, csrf) {
     if (tokenError) {
-        logger.log('error', tokenError.message)
-        res.json(tokenError);
-        return console.dir(tokenError);
+        return sendUpstreamFailure(res, tokenError, 'emergency-dashboard.js');
     }
     const writeHeaders = {
         'Content-Type': 'application/json',
@@ -9312,8 +8906,7 @@ exports.deleteAvapDoc = (req, res) => {
         headers: writeHeaders
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9353,8 +8946,7 @@ exports.deleteMewsSetDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9393,8 +8985,7 @@ exports.deleteIntraOpNurRecSetDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9433,8 +9024,7 @@ exports.deleteNurseAssMainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9473,8 +9063,7 @@ exports.deleteCriticalPainDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9513,8 +9102,7 @@ exports.deleteNicuDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9553,8 +9141,7 @@ exports.updateSurgicalPassPortDetail = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9591,8 +9178,7 @@ exports.LatestDocSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9630,8 +9216,7 @@ exports.getDailysisSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9669,8 +9254,7 @@ exports.deleteDailysisSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9709,9 +9293,7 @@ exports.releaseDialysisDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9750,8 +9332,7 @@ exports.getDialysisPDF = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9789,8 +9370,7 @@ exports.LatestMorsefall = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9829,9 +9409,7 @@ exports.CreateMorsefall = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9869,8 +9447,7 @@ exports.getMorsefall = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9909,8 +9486,7 @@ exports.CreateNewMFSSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9948,8 +9524,7 @@ exports.getLatestHemoCatheterDoc = (req,res)=>{
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -9988,9 +9563,7 @@ exports.postHemoCatheterSet = (req,res)=>{
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10030,9 +9603,7 @@ exports.ReleaseHemoCatheterSet = (req,res)=>{
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10069,8 +9640,7 @@ exports.getHemoCatheterDocData = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10110,8 +9680,7 @@ exports.postOfPrdiatricWarningScale = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -10156,8 +9725,7 @@ exports.getPediatricEarlyWarningScore = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10196,8 +9764,7 @@ exports.copyPediatricWarningScore = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10237,8 +9804,7 @@ exports.fistulaGraftSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10276,8 +9842,7 @@ exports.getfistulaGraftSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10317,8 +9882,7 @@ exports.LatestFistulaGraftSet = (req,res)=>{
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10355,8 +9919,7 @@ exports.getFistulaGraftDocPDF = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10394,8 +9957,7 @@ exports.deleteFistulaGraftSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10434,9 +9996,7 @@ exports.DialysisMedicationAdministrationSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10473,9 +10033,7 @@ exports.getDialysisNoConsumablesSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10514,9 +10072,7 @@ exports.DialysisPatientSearchSet = (req,res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10555,9 +10111,7 @@ exports.saveReservationSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10595,9 +10149,7 @@ exports.getStoragelocationReservationList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10635,9 +10187,7 @@ exports.getCostCenterReservationList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10712,8 +10262,7 @@ exports.getHistoryReservationList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            console.error('Error:', error.message);
-            return res.status(500).json({ error: error.message });
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
 
         res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10754,9 +10303,7 @@ exports.getUnitReservationList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10799,9 +10346,7 @@ exports.emrLoginUser = (req, res) => {
     console.log(options);
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10814,13 +10359,7 @@ exports.emrLoginUser = (req, res) => {
             }
            
             
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     })
 }
@@ -10848,9 +10387,7 @@ exports.deleteNurEmrTriage = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10888,8 +10425,7 @@ exports.changeStatus = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10926,8 +10462,7 @@ exports.printPatientLabel = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -10964,8 +10499,7 @@ exports.fetchSnackList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11001,8 +10535,7 @@ exports.fetchNursingIndicatorsList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11039,8 +10572,7 @@ exports.fetchFoodPrefList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11076,8 +10608,7 @@ exports.fetchDietMasterList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11115,8 +10646,7 @@ exports.saveDeitMealOrder = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11154,8 +10684,7 @@ exports.confirmAndCancelDietOrder = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11191,8 +10720,7 @@ exports.fetchDietMealOrderDetails = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11229,8 +10757,7 @@ exports.fetchCompanionMealOrdering = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11267,8 +10794,7 @@ exports.fetchDislikeList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11306,8 +10832,7 @@ exports.fetchAssessmentList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11345,8 +10870,7 @@ exports.ioChartCategorySet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11383,8 +10907,7 @@ exports.ioChartCategoryTypeCodeSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11421,8 +10944,7 @@ exports.ioChartMainListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11461,8 +10983,7 @@ exports.saveIOChartData = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11501,8 +11022,7 @@ exports.saveStartNewIOChart = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11541,8 +11061,7 @@ exports.endTheCurrentIOChart = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11579,8 +11098,7 @@ exports.startEndChartInfo = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11617,8 +11135,7 @@ exports.iochartHistoryList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11654,8 +11171,7 @@ exports.ioChartViewHistorySap = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11695,8 +11211,7 @@ exports.saveNursingAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11730,9 +11245,7 @@ exports.deleteNursingAssessmentDoc = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        logger.log("error", error.message);
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -11779,8 +11292,7 @@ exports.nursingAssessmentLatestDoc = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -11828,8 +11340,7 @@ exports.fetchNursingDocumentDocDetails = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -11882,8 +11393,7 @@ exports.savePreCardiacCathDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -11917,9 +11427,7 @@ exports.deletePreCardiacCathDoc = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        logger.log("error", error.message);
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -11966,8 +11474,7 @@ exports.preCardiacCathLatestDoc = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12015,8 +11522,7 @@ exports.fetcPreCardiacCathDocDetails = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12062,9 +11568,7 @@ exports.preCardiacCathDocPDF = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -12117,8 +11621,7 @@ exports.saveCprDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -12152,9 +11655,7 @@ exports.deleteCprDocument = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        logger.log("error", error.message);
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12200,8 +11701,7 @@ exports.cprDocumentLatestDoc = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12248,8 +11748,7 @@ exports.fetcCprDocDetails = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12294,9 +11793,7 @@ exports.cprDocPDF = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -12348,8 +11845,7 @@ exports.cprDocPDF = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -12383,9 +11879,7 @@ exports.deleteCorrespondenceDocument = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        logger.log("error", error.message);
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12431,8 +11925,7 @@ exports.correspondenceSetDocumentLatestDoc = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12479,8 +11972,7 @@ exports.fetcCorrespondenceSetDocDetails = (req, res) => {
     },
     function (error, response, body) {
       if (error) {
-        res.json(error);
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -12525,9 +12017,7 @@ exports.correspondenceDocPDF = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -12579,8 +12069,7 @@ exports.saveModifiedAldreteDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -12614,8 +12103,7 @@ exports.ModifiedAldretSetDocumentLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -12661,8 +12149,7 @@ exports.fetcModifiedAldreteSetDocDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -12713,8 +12200,7 @@ exports.saveTimeoutCheckDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -12748,8 +12234,7 @@ exports.TimeoutCheckDocumentLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -12795,8 +12280,7 @@ exports.fetcTimeoutCheckDocDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -12847,8 +12331,7 @@ exports.saveNeonatalDischargeDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -12882,8 +12365,7 @@ exports.NeonatalDischargeDocumentLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -12932,8 +12414,7 @@ exports.getPediatricAdmAssesDocDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -12981,8 +12462,7 @@ exports.fetcNeonatalDischargeDocDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13028,9 +12508,7 @@ exports.NeonatalDischargeDocPDF = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -13076,9 +12554,7 @@ exports.NeonatalDischargeDocPDF = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -13130,8 +12606,7 @@ exports.saveCVCInsertionDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -13166,8 +12641,7 @@ exports.CVCInsertionDocumentLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13216,8 +12690,7 @@ exports.fetcCVCInsertionDocDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13263,9 +12736,7 @@ exports.CVCInsertionDocPDF = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13311,9 +12782,7 @@ exports.deleteCVCInsertionDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13364,8 +12833,7 @@ exports.saveFallRiskAssessment = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -13401,8 +12869,7 @@ exports.fallRiskAssessmentLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13447,9 +12914,7 @@ exports.getDocFallRiskAssessmentDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13499,8 +12964,7 @@ exports.savePatientDelivery = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -13537,8 +13001,7 @@ exports.fetchPatientDeliveryDetail = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13589,8 +13052,7 @@ exports.saveStampDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -13626,8 +13088,7 @@ exports.fetchStampDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13675,8 +13136,7 @@ exports.fallStampLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13726,8 +13186,7 @@ exports.adminAttechmentList = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13776,8 +13235,7 @@ exports.openAttechmentData = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13828,8 +13286,7 @@ exports.saveSBARNursingDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -13866,8 +13323,7 @@ exports.fetchSBARNursingDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13916,8 +13372,7 @@ exports.SBARNursingLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -13965,9 +13420,7 @@ exports.deleteSBARNursingDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14018,8 +13471,7 @@ exports.savePostCareRecord = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14055,8 +13507,7 @@ exports.fetchPostCareRecord = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14105,8 +13556,7 @@ exports.PostCareRecordLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14154,9 +13604,7 @@ exports.deletePostCareRecordDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14208,8 +13656,7 @@ exports.saveNursingInitialGyno = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14245,8 +13692,7 @@ exports.fetchNursingInitialGynoDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14295,8 +13741,7 @@ exports.NursingInitialGynoSetLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14344,9 +13789,7 @@ exports.deleteNursingInitialGynoDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14397,9 +13840,7 @@ exports.getPostCareRecordPdf = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14441,8 +13882,7 @@ exports.CreatePediatricAdmAssesDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14480,8 +13920,7 @@ exports.saveApgarScaleDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14518,8 +13957,7 @@ exports.fetchApgarScaleDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14568,8 +14006,7 @@ exports.ApgarScaleLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14620,8 +14057,7 @@ exports.saveObsFallRiskScale = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14658,8 +14094,7 @@ exports.fetchObsFallRiskScale = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14708,8 +14143,7 @@ exports.ObsFallRiskScaleLatest = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14760,8 +14194,7 @@ exports.saveDeliveryRecordDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -14798,8 +14231,7 @@ exports.fetchDeliveryRecordDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14849,8 +14281,7 @@ exports.getPediatricAdmAssesLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14899,8 +14330,7 @@ exports.DeliveryRecordLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -14948,9 +14378,7 @@ exports.deleteDeliveryRecordDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15001,9 +14429,7 @@ exports.getDeliveryRecordPDF = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15045,8 +14471,7 @@ exports.saveNewBornDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15083,8 +14508,7 @@ exports.fetchNewbornScaleDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15133,8 +14557,7 @@ exports.NewBornScaleLatest = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15185,8 +14608,7 @@ exports.saveConfusionDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15223,8 +14645,7 @@ exports.fetchConfusionDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15273,8 +14694,7 @@ exports.ConfusionLatestDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15326,8 +14746,7 @@ exports.saveRichmondScaleDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15364,8 +14783,7 @@ exports.fetchRichmondDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15414,8 +14832,7 @@ exports.RichmondLatestDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15465,8 +14882,7 @@ exports.getVacantBedsList = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15515,9 +14931,7 @@ exports.getRadiologyWorkList = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15559,8 +14973,7 @@ exports.saveRamsayScaleDoc = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15597,8 +15010,7 @@ exports.fetchRamsayDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15647,8 +15059,7 @@ exports.RamsayLatestDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15701,8 +15112,7 @@ exports.saveLaborRoomDocument = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -15739,8 +15149,7 @@ exports.LaborRoomDocumentLatestDoc = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15789,8 +15198,7 @@ exports.fetcLaborRoomDocDetails = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(
@@ -15838,9 +15246,7 @@ exports.deleteLaborRoomDocument = (req, res) => {
         },
         function (error, response, body) {
             if (error) {
-                logger.log("error", error.message);
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'emergency-dashboard.js');
             } else {
                 res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
                 res.header(

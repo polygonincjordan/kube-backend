@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
@@ -43,9 +44,7 @@ router.get("/getPhyOrderSet/", (req, res) => {
   
     request.get(options, (error, response, body) => {
       if (error) {
-         logger.log('error',error.message)
-        res.json({ message: err });
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -61,11 +60,7 @@ router.get("/getPhyOrderSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
-        if (response.statusCode == 401) {
-          return res.status(response.statusCode).json(body);
-        } else {
-          return res.status(response.statusCode).json(JSON.parse(body));
-        }
+        return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
     });
   });
@@ -95,9 +90,7 @@ router.get("/getTemplateSet/", (req, res) => {
   
     request.get(options, (error, response, body) => {
       if (error) {
-         logger.log('error',error.message)
-        res.json({ message: err });
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -113,11 +106,7 @@ router.get("/getTemplateSet/", (req, res) => {
         if(response.statusCode != 200){
           logger.log('error',`${response.statusCode + ' ' + body}`)
         }
-        if (response.statusCode == 401) {
-          return res.status(response.statusCode).json(body);
-        } else {
-          return res.status(response.statusCode).json(JSON.parse(body));
-        }
+        return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
     });
   });
@@ -144,9 +133,7 @@ router.post("/saveTemplateSet", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-           logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'admission-process.controller.js');
         }
         else {
             //console.log(body);
@@ -181,9 +168,7 @@ router.delete("/deleteTemplateSet/:templateKey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -234,9 +219,7 @@ router.get("/getProgressNote/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -253,11 +236,7 @@ router.get("/getProgressNote/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -288,9 +267,7 @@ router.get("/getCategorySet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -307,11 +284,7 @@ router.get("/getCategorySet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -342,9 +315,7 @@ router.get("/getCancelReasonSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -361,11 +332,7 @@ router.get("/getCancelReasonSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -394,9 +361,7 @@ router.get("/getTextModulesSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -413,11 +378,7 @@ router.get("/getTextModulesSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -445,9 +406,7 @@ router.delete("/deleteProgressNote/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -481,9 +440,7 @@ router.post("/replaceProgressNote/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -532,9 +489,7 @@ router.get("/getDiagnosisSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -551,11 +506,7 @@ router.get("/getDiagnosisSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -582,9 +533,7 @@ router.post("/saveDiagnosisSet", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -623,9 +572,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -642,11 +589,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -679,9 +622,7 @@ router.get("/getDiagnosisImport/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -698,11 +639,7 @@ router.get("/getDiagnosisImport/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -742,9 +679,7 @@ router.get("/getFavrDiagnosisSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -761,11 +696,7 @@ router.get("/getFavrDiagnosisSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -791,9 +722,7 @@ router.post("/updateDiagnosisFavrOUSet", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -843,9 +772,7 @@ router.get("/getProfileDocsSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -862,11 +789,7 @@ router.get("/getProfileDocsSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -893,9 +816,7 @@ router.post("/saveEduAssesSet", async (req, res) => {
     console.log(response);
     console.log(JSON.stringify(body));
     if (error) {
-       logger.log('error',error.message)
-      res.json(error);
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     }
     else {
       //console.log(body);
@@ -933,9 +854,7 @@ router.get("/getEduAssesSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -952,11 +871,7 @@ router.get("/getEduAssesSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -986,9 +901,7 @@ router.post("/getEduAssesLatestDocSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1005,11 +918,7 @@ router.post("/getEduAssesLatestDocSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1036,9 +945,7 @@ router.delete("/deleteEduAssesSet/:dockey", async (req, res) => {
     console.log(response);
     console.log(JSON.stringify(body));
     if (error) {
-       logger.log('error',error.message)
-      res.json(error);
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     }
     else {
       //console.log(body);
@@ -1074,9 +981,7 @@ router.get("/getPDFFileSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1093,11 +998,7 @@ router.get("/getPDFFileSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1124,9 +1025,7 @@ router.get("/getPDFFileSoapSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1143,11 +1042,7 @@ router.get("/getPDFFileSoapSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
       
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1175,9 +1070,7 @@ router.get("/getPatientProfilePDFFileSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1193,11 +1086,7 @@ router.get("/getPatientProfilePDFFileSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1224,9 +1113,7 @@ router.post("/saveProgressNotesTemplate", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -1257,9 +1144,7 @@ router.post("/saveVisitNoteDocument", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);
@@ -1295,9 +1180,7 @@ router.get("/getVisitNoteDocument/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'admission-process.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1313,11 +1196,7 @@ router.get("/getVisitNoteDocument/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:admission-process.controller.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1379,9 +1258,7 @@ router.delete("/deleteVisitNotDocument/:dockey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'admission-process.controller.js');
       }
       else {
           //console.log(body);

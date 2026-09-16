@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
@@ -43,9 +44,7 @@ router.get("/getOrderSetHeaderSet/", (req, res) => {
   
     request.get(options, (error, response, body) => {
       if (error) {
-         logger.log('error',error.message)
-        res.json({ message: err });
-        return console.dir(error);
+          return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
       } else {
         res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
         res.header(
@@ -61,11 +60,7 @@ router.get("/getOrderSetHeaderSet/", (req, res) => {
         if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-        if (response.statusCode == 401) {
-          return res.status(response.statusCode).json(body);
-        } else {
-          return res.status(response.statusCode).json(JSON.parse(body));
-        }
+        return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
     });
   });
@@ -95,9 +90,7 @@ router.get("/getDeptSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -113,11 +106,7 @@ router.get("/getDeptSet/", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -146,9 +135,7 @@ router.get("/getEmployeeResponsibleSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: error });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -164,11 +151,7 @@ router.get("/getEmployeeResponsibleSet/", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -197,9 +180,7 @@ router.get("/getAgeRangeSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -215,11 +196,7 @@ router.get("/getAgeRangeSet/", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -250,9 +227,7 @@ router.get("/getOrderSetByOrderId/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -268,11 +243,7 @@ router.get("/getOrderSetByOrderId/", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -298,9 +269,7 @@ router.post("/saveOrderSetHeaderSet/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
       }
       else {
           //console.log(body);
@@ -340,9 +309,7 @@ router.get("/getOrdersetSubtitle/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -358,11 +325,7 @@ router.get("/getOrdersetSubtitle/", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -388,9 +351,7 @@ router.post("/saveOrdersetSubtitle/", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
       }
       else {
           //console.log(body);
@@ -424,9 +385,7 @@ router.get("/sendForStatusChange/", (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
       }
       else {
           //console.log(body);
@@ -465,9 +424,7 @@ router.get("/getOrderServicesSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -483,11 +440,7 @@ router.get("/getOrderServicesSet", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -519,9 +472,7 @@ router.get("/getOrderServicesSetWithDistinct", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -537,11 +488,7 @@ router.get("/getOrderServicesSetWithDistinct", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -573,9 +520,7 @@ router.get("/getOrderTreatmentOUSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -591,11 +536,7 @@ router.get("/getOrderTreatmentOUSet", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -626,9 +567,7 @@ router.get("/getOrderTreatmentDOUSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -644,11 +583,7 @@ router.get("/getOrderTreatmentDOUSet", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -680,9 +615,7 @@ router.get("/getOrderDeptOUSet", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-       logger.log('error',error.message)
-      res.json({ message: err });
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -698,11 +631,7 @@ router.get("/getOrderDeptOUSet", (req, res) => {
       if(response.statusCode != 200){
          logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:order-dashboard.controller.js`);
         }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -730,9 +659,7 @@ router.delete("/deleteOrderSetHeaderSet/:ordersetkey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-         logger.log('error',error.message)
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'order-dashboard.controller.js');
       }
       else {
           //console.log(body);

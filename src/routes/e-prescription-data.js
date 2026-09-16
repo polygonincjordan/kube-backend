@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 router.use((req, res, next) => {
     console.log("Patient Data Middleware Time: ", Date.now());
     next();
@@ -35,9 +36,7 @@ router.get("/DurationAdministrationUnitSet", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: error });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -48,13 +47,7 @@ router.get("/DurationAdministrationUnitSet", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -84,9 +77,7 @@ router.get("/LocalizationSet", (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -126,9 +117,7 @@ router.get("/OrderSetSubtitleSet/", (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -164,9 +153,7 @@ router.post("/getEventSetData/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -204,9 +191,7 @@ router.get("/medicationAdministrationUnitSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -217,13 +202,7 @@ router.get("/medicationAdministrationUnitSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -253,9 +232,7 @@ router.get("/medicationDetails/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -266,13 +243,7 @@ router.get("/medicationDetails/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -302,9 +273,7 @@ router.get("/userTemplateMedication/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -315,13 +284,7 @@ router.get("/userTemplateMedication/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -351,9 +314,7 @@ router.get("/orderTemplateMedication/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -364,13 +325,7 @@ router.get("/orderTemplateMedication/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -401,9 +356,7 @@ router.get("/frequencyCycle/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -414,13 +367,7 @@ router.get("/frequencyCycle/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -450,9 +397,7 @@ router.get("/frequencyQ24Cycle/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -463,13 +408,7 @@ router.get("/frequencyQ24Cycle/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -499,9 +438,7 @@ router.get("/CycleDefMasterSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -512,13 +449,7 @@ router.get("/CycleDefMasterSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -548,9 +479,7 @@ router.get("/OrdCycleDefSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -561,13 +490,7 @@ router.get("/OrdCycleDefSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -597,9 +520,7 @@ router.get("/TOCYCDEFSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: error.message });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -610,13 +531,7 @@ router.get("/TOCYCDEFSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -645,9 +560,7 @@ router.get("/employeeresponsible/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -658,13 +571,7 @@ router.get("/employeeresponsible/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -693,9 +600,7 @@ router.get("/templatesearchtype/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -706,13 +611,7 @@ router.get("/templatesearchtype/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -743,9 +642,7 @@ router.get("/OrderingList/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -756,13 +653,7 @@ router.get("/OrderingList/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -789,9 +680,7 @@ router.get("/routeDropdownlist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -802,13 +691,7 @@ router.get("/routeDropdownlist/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -837,9 +720,7 @@ router.get("/DurgUnitlist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -850,13 +731,7 @@ router.get("/DurgUnitlist/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -886,9 +761,7 @@ router.get("/OrderHistorylist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -899,13 +772,7 @@ router.get("/OrderHistorylist/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -931,9 +798,7 @@ router.put("/updateMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -971,9 +836,7 @@ router.get("/CancelMedicationStatus/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -984,13 +847,7 @@ router.get("/CancelMedicationStatus/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1019,9 +876,7 @@ router.get("/EndOrdReasonMedication/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1032,13 +887,7 @@ router.get("/EndOrdReasonMedication/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1064,9 +913,7 @@ router.post("/EditMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1099,9 +946,7 @@ router.put("/CopyMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1137,9 +982,7 @@ router.get("/OrderEventMedicationStatus/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1150,13 +993,7 @@ router.get("/OrderEventMedicationStatus/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1182,9 +1019,7 @@ router.put("/updateEventMedicationStatus/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1220,9 +1055,7 @@ router.get("/SurgeryStatus/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1233,13 +1066,7 @@ router.get("/SurgeryStatus/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1267,9 +1094,7 @@ router.post("/VisitSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1303,9 +1128,7 @@ router.post("/SaveConsultationVisitSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1339,9 +1162,7 @@ router.post("/SaveAdmissionSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1374,9 +1195,7 @@ router.post("/getAdministerEvent/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1412,9 +1231,7 @@ router.get("/DoseReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1425,13 +1242,7 @@ router.get("/DoseReason/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1460,9 +1271,7 @@ router.get("/TimeReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1473,13 +1282,7 @@ router.get("/TimeReason/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1505,9 +1308,7 @@ router.post("/DrugReturnEvent/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1543,9 +1344,7 @@ router.get("/DrugReturnReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1556,13 +1355,7 @@ router.get("/DrugReturnReason/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1591,9 +1384,7 @@ router.get("/MaterialBatch/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1604,13 +1395,7 @@ router.get("/MaterialBatch/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1637,9 +1422,7 @@ router.post("/AdditionalSupply/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1675,9 +1458,7 @@ router.get("/RequestReason/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1688,13 +1469,7 @@ router.get("/RequestReason/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1721,9 +1496,7 @@ router.post("/OrderTemplate/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1760,9 +1533,7 @@ router.get("/VitalChart/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1773,13 +1544,7 @@ router.get("/VitalChart/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1808,9 +1573,7 @@ router.get("/OrderTemplateget", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1821,13 +1584,7 @@ router.get("/OrderTemplateget", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1854,9 +1611,7 @@ router.put("/updateFillSource/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -1889,9 +1644,7 @@ router.post("/updateFillSourcepost/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-            logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             if(response.statusCode != 200){
@@ -1924,9 +1677,7 @@ router.get("/EventChangeLogListSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1937,13 +1688,7 @@ router.get("/EventChangeLogListSet/", (req, res) => {
             if(response.statusCode != 200){
             logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -1971,9 +1716,7 @@ router.get("/FSourcelist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1984,13 +1727,7 @@ router.get("/FSourcelist/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2019,9 +1756,7 @@ router.get("/EmarEventSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2032,13 +1767,7 @@ router.get("/EmarEventSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2067,9 +1796,7 @@ router.get("/RequestStat/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2080,13 +1807,7 @@ router.get("/RequestStat/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2115,9 +1836,7 @@ router.get("/ProtoHeadersearchedCode/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2128,13 +1847,7 @@ router.get("/ProtoHeadersearchedCode/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2164,9 +1877,7 @@ router.get("/ProtoHeadersearched/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2177,13 +1888,7 @@ router.get("/ProtoHeadersearched/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2213,9 +1918,7 @@ router.get("/ChemoHistory/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2226,13 +1929,7 @@ router.get("/ChemoHistory/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2258,9 +1955,7 @@ router.post("/ChemoHistorypost/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2297,9 +1992,7 @@ router.get("/RecentLabResults/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2310,13 +2003,7 @@ router.get("/RecentLabResults/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2346,9 +2033,7 @@ router.get("/ProtoDiagnosis/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2359,13 +2044,7 @@ router.get("/ProtoDiagnosis/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2395,9 +2074,7 @@ router.get("/PatHeightWeight/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2408,13 +2085,7 @@ router.get("/PatHeightWeight/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2444,9 +2115,7 @@ router.get("/PreviousCycle/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2457,13 +2126,7 @@ router.get("/PreviousCycle/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2538,9 +2201,7 @@ router.get("/getAttachDocument/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2551,13 +2212,7 @@ router.get("/getAttachDocument/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2583,9 +2238,7 @@ router.post("/postDocAttach/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2622,9 +2275,7 @@ router.get("/Protocal/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2635,13 +2286,7 @@ router.get("/Protocal/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2667,9 +2312,7 @@ router.post("/ChemoOrder/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2702,9 +2345,7 @@ router.post("/ChemoEvents", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2742,9 +2383,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2755,13 +2394,7 @@ router.get("/getDiagnosisCodeSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2786,9 +2419,7 @@ router.post("/updateFavoriteSurgery/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2820,9 +2451,7 @@ router.post("/getFavoriteListSurgery/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2858,9 +2487,7 @@ router.get("/eOrderFavoriteSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2871,13 +2498,7 @@ router.get("/eOrderFavoriteSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2903,9 +2524,7 @@ router.post("/eOrderFavoriteSetSave/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -2940,9 +2559,7 @@ router.get("/protocolListget/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2953,13 +2570,7 @@ router.get("/protocolListget/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -2988,9 +2599,7 @@ router.get("/cycleNolist/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3001,13 +2610,7 @@ router.get("/cycleNolist/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -3037,9 +2640,7 @@ router.get("/ScalesList/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: error });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3050,13 +2651,7 @@ router.get("/ScalesList/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -3082,9 +2677,7 @@ router.post("/PriorToAdmissionSet/", async (req, res) => {
         console.log(response);
         console.log(JSON.stringify(body));
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -3114,9 +2707,7 @@ router.post("/CreateClinicConfigSet/", async (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -3147,9 +2738,7 @@ router.post("/updateClinicConfigSet/", async (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -3185,9 +2774,7 @@ router.get("/PriorToAdmissionget/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3198,13 +2785,7 @@ router.get("/PriorToAdmissionget/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -3229,9 +2810,7 @@ router.put("/OrderActionSet/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -3264,9 +2843,7 @@ router.put("/EditAdmissionSet/", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             //console.log(body);
@@ -3305,9 +2882,7 @@ router.get("/OrderHistoryPatientSet/", (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message);
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3343,9 +2918,7 @@ router.get("/ApptgetSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3356,13 +2929,7 @@ router.get("/ApptgetSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -3388,9 +2955,7 @@ router.get("/clinicConfigSet/", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3401,12 +2966,7 @@ router.get("/clinicConfigSet/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -3455,9 +3015,7 @@ router.get("/ExceptCheckedOut/", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3468,12 +3026,7 @@ router.get("/ExceptCheckedOut/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -3537,9 +3090,7 @@ router.get("/CheckedOut/", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message);
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-prescription-data.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -3550,12 +3101,7 @@ router.get("/CheckedOut/", (req, res) => {
             if(response.statusCode != 200){
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-prescription-data.js`);
             }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });

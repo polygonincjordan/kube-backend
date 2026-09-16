@@ -5,6 +5,7 @@ const url = require('url');
 const querystring = require('querystring');
 const cookieLocal = require('cookie');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 exports.EMRWidgetConfigSet = (req,res) =>{
     let mysapSSO2Value = decodeURIComponent(req.cookies['MYSAPSSO2']);
     let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
@@ -28,9 +29,7 @@ exports.EMRWidgetConfigSet = (req,res) =>{
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -42,12 +41,7 @@ exports.EMRWidgetConfigSet = (req,res) =>{
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 }
@@ -75,9 +69,7 @@ exports.WidgetInfoSet = (req,res) =>{
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -89,13 +81,7 @@ exports.WidgetInfoSet = (req,res) =>{
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 }
@@ -123,9 +109,7 @@ exports.WidgetFltFldPropSet = (req,res) =>{
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             
@@ -138,13 +122,7 @@ exports.WidgetFltFldPropSet = (req,res) =>{
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 }
@@ -172,9 +150,7 @@ exports.WidgetFieldVHelpSet = (req,res) =>{
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             
@@ -187,13 +163,7 @@ exports.WidgetFieldVHelpSet = (req,res) =>{
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 }
@@ -222,9 +192,7 @@ exports.EMRPATFALAPPSet = (req,res) =>{
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             
@@ -237,13 +205,7 @@ exports.EMRPATFALAPPSet = (req,res) =>{
               logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
             
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 }
@@ -270,9 +232,7 @@ exports.WidgetDataSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             
@@ -312,9 +272,7 @@ exports.WidgetActionRespSet = (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -362,9 +320,7 @@ const emrODataGet = (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -375,12 +331,7 @@ const emrODataGet = (req, res) => {
             if (response.statusCode != 200) {
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-emr.controller.js`);
             }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 }
@@ -413,9 +364,7 @@ exports.EMRWidgetConfigSetPost = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -467,9 +416,7 @@ exports.EMRWidgetConfigSetDelete = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -506,9 +453,7 @@ exports.loginUser = (req, res) => {
     console.log(options);
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-emr.controller.js');
         }
         else {
              ////console.log(body);
@@ -540,13 +485,7 @@ exports.loginUser = (req, res) => {
             }
            
             
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     })
 }
@@ -615,9 +554,7 @@ exports.InPatientList = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -660,9 +597,7 @@ exports.getWardList = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -702,9 +637,7 @@ exports.getHighDependencyOfPatientList = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -744,9 +677,7 @@ exports.HighDependencyOfPatientList = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -786,9 +717,7 @@ exports.getConfigTools = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -828,9 +757,7 @@ exports.postConfigTools = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -891,9 +818,7 @@ exports.getCountForModules = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -940,9 +865,7 @@ exports.getCountForPhOrderModules = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -986,9 +909,7 @@ exports.physicianOrderSet = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1027,9 +948,7 @@ exports.CancelReasonSet = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1068,9 +987,7 @@ exports.createPhysicianOrder = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1109,9 +1026,7 @@ exports.createMultiplePhysicianOrder = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1150,9 +1065,7 @@ exports.occupationalGroupList = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1191,9 +1104,7 @@ exports.createProgressEntry = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1232,9 +1143,7 @@ exports.consultationCompletion = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1272,9 +1181,7 @@ exports.changeStatus = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1312,9 +1219,7 @@ exports.physicianOrderText = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-emr.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);

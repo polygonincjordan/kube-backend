@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require("../../config/env.config");
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
@@ -95,9 +96,7 @@ router.get("/getIpListSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -115,11 +114,7 @@ router.get("/getIpListSet/", (req, res) => {
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
     
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -281,9 +276,7 @@ router.get("/getHospitalSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',response.statusMessage)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -300,11 +293,7 @@ router.get("/getHospitalSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-    if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+    return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -335,9 +324,7 @@ router.get("/getArrivalList/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',response.statusMessage)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -354,11 +341,7 @@ router.get("/getArrivalList/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-    if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+    return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -389,9 +372,7 @@ router.get("/getSurgeryWorkList/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',response.statusMessage)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -408,11 +389,7 @@ router.get("/getSurgeryWorkList/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-    if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+    return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -474,9 +451,7 @@ router.get("/getPhysicianList/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -493,11 +468,7 @@ router.get("/getPhysicianList/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -528,9 +499,7 @@ router.get("/getIplistCountSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -547,11 +516,7 @@ router.get("/getIplistCountSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -581,9 +546,7 @@ router.get("/getDeptOUSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: error });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -600,11 +563,7 @@ router.get("/getDeptOUSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -632,9 +591,7 @@ router.post("/getNotPhysicionOrder/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -651,11 +608,7 @@ router.post("/getNotPhysicionOrder/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -757,8 +710,7 @@ router.post("/getInPatientList", async (req, res) => {
     }
   }, function (error, response, body) {
     if (error) {
-      res.json(error);
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     }
     else {
       res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -822,9 +774,7 @@ router.post("/getCountInPatientList", async (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -841,11 +791,7 @@ router.post("/getCountInPatientList", async (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -873,8 +819,7 @@ router.post("/getLabDocCheckinSet", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -911,9 +856,7 @@ router.get("/getLabServicesSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -930,11 +873,7 @@ router.get("/getLabServicesSet/", (req, res) => {
         logger.log('error',`${response.statusCode + '' + body}`)
       }
 
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -960,8 +899,7 @@ router.post("/createLabServicesSet", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1024,9 +962,7 @@ router.get("/getHospitalCountSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1043,11 +979,7 @@ router.get("/getHospitalCountSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1077,9 +1009,7 @@ console.log(urlEndpoint);
 
   request.get(options, (error, response, body) => {
       if (error) {
-          res.json({ message: err });
-          logger.log('error',error.message)
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1087,13 +1017,7 @@ console.log(urlEndpoint);
           res.header('Access-Control-Expose-Headers', 'Content-Length');
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-          if (response.statusCode == 401) {
-
-              return res.status(response.statusCode).json(body);
-          }
-          else {
-              return res.status(response.statusCode).json(JSON.parse(body));
-          }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 });
@@ -1135,9 +1059,7 @@ router.get("/getPatientSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: error });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'e-hospitalist.js');
     } else {
       res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
       res.header(
@@ -1154,11 +1076,7 @@ router.get("/getPatientSet/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-      if (response.statusCode == 401) {
-        return res.status(response.statusCode).json(body);
-      } else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });
@@ -1182,8 +1100,7 @@ router.post("/createObpptSet", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1216,8 +1133,7 @@ router.post("/updateObpptSet", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1252,8 +1168,7 @@ router.delete("/deleteObpptSet/:docKey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1291,9 +1206,7 @@ router.get("/getObpptSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
       if (error) {
-          res.json({ message: err });
-          logger.log('error',error.message)
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1301,13 +1214,7 @@ router.get("/getObpptSet/", (req, res) => {
           res.header('Access-Control-Expose-Headers', 'Content-Length');
           res.header('Access-Control-Allow-Credentials', 'true');
           res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
-          if (response.statusCode == 401) {
-
-              return res.status(response.statusCode).json(body);
-          }
-          else {
-              return res.status(response.statusCode).json(JSON.parse(body));
-          }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 
@@ -1336,8 +1243,7 @@ router.post("/createObantSet", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1370,8 +1276,7 @@ router.post("/updateObantSet", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1406,8 +1311,7 @@ router.delete("/deleteObantSet/:docKey", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1445,9 +1349,7 @@ router.get("/getObantSet/", (req, res) => {
 
   request.get(options, (error, response, body) => {
       if (error) {
-          res.json({ message: err });
-          logger.log('error',error.message)
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1458,13 +1360,7 @@ router.get("/getObantSet/", (req, res) => {
           if(response.statusCode != 200){
             logger.log('error',`${response.statusCode + ' ' + body}`)
         }
-          if (response.statusCode == 401) {
-
-              return res.status(response.statusCode).json(body);
-          }
-          else {
-              return res.status(response.statusCode).json(JSON.parse(body));
-          }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 
@@ -1541,9 +1437,7 @@ console.log(urlEndpoint);
 
   request.get(options, (error, response, body) => {
       if (error) {
-          res.json({ message: err });
-          logger.log('error',error.message)
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1554,13 +1448,7 @@ console.log(urlEndpoint);
           if(response.statusCode != 200){
             logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
           }
-          if (response.statusCode == 401) {
-
-              return res.status(response.statusCode).json(body);
-          }
-          else {
-              return res.status(response.statusCode).json(JSON.parse(body));
-          }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 });
@@ -1585,8 +1473,7 @@ router.post("/createObsGyn", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1616,8 +1503,7 @@ router.post("/getObsGynData", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1646,8 +1532,7 @@ router.post("/updateObsGynDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1679,8 +1564,7 @@ router.post("/deleteObsGynDoc", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1710,8 +1594,7 @@ router.post("/releaseObsGynDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1741,8 +1624,7 @@ router.post("/getObsGynReleasedPdf", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1775,8 +1657,7 @@ router.post("/createNeoNatalDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1806,8 +1687,7 @@ router.post("/getNeoNatalData", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1836,8 +1716,7 @@ router.post("/updateNeoNatalDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1869,8 +1748,7 @@ router.post("/deleteNeoNatalDoc", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1900,8 +1778,7 @@ router.post("/releaseNeoNatalDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1931,8 +1808,7 @@ router.post("/getNeoNatalReleasedPdf", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1965,8 +1841,7 @@ router.post("/createNeoNatalMRDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -1996,8 +1871,7 @@ router.post("/getNeoNatalMRData", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2026,8 +1900,7 @@ router.post("/updateNeoNatalMRDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2059,8 +1932,7 @@ router.post("/deleteNeoNatalMRDoc", async (req, res) => {
       console.log(response);
       console.log(JSON.stringify(body));
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2090,8 +1962,7 @@ router.post("/releaseNeoNatalMRDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2121,8 +1992,7 @@ router.post("/getNeoNatalMRReleasedPdf", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2155,8 +2025,7 @@ router.post("/getPhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2188,8 +2057,7 @@ router.post("/createPhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2221,8 +2089,7 @@ router.post("/getPhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2254,8 +2121,7 @@ router.post("/createPhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2287,8 +2153,7 @@ router.post("/updatePhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2320,8 +2185,7 @@ router.post("/releasePhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2353,8 +2217,7 @@ router.post("/deletePhysicianAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2384,8 +2247,7 @@ router.post("/getPhysicianAssessDocPDF", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2415,8 +2277,7 @@ router.post("/getNicuAddNoteDocPDF", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2456,9 +2317,7 @@ router.get("/getTransferAssessDoc/", (req, res) => {
 
   request.get(options, (error, response, body) => {
       if (error) {
-          res.json({ message: err });
-          logger.log('error',error.message)
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2469,13 +2328,7 @@ router.get("/getTransferAssessDoc/", (req, res) => {
           if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
       }
-          if (response.statusCode == 401) {
-
-              return res.status(response.statusCode).json(body);
-          }
-          else {
-              return res.status(response.statusCode).json(JSON.parse(body));
-          }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 });
@@ -2506,9 +2359,7 @@ router.get("/getTransferAssessDoc/", (req, res) => {
 
   request.get(options, (error, response, body) => {
       if (error) {
-          res.json({ message: err });
-          logger.log('error',error.message)
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2520,12 +2371,7 @@ router.get("/getTransferAssessDoc/", (req, res) => {
              logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-hospitalist.js`);
           }
           
-          if (response.statusCode == 401) {
-            return res.status(response.statusCode).json(body);
-          }
-          else {
-              return res.status(response.statusCode).json(JSON.parse(body));
-          }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 });
@@ -2550,8 +2396,7 @@ router.post("/getTransferAssSetDocPDF", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2584,8 +2429,7 @@ router.post("/createTransferAssessDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2617,8 +2461,7 @@ router.post("/updateTransferDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2649,8 +2492,7 @@ router.post("/releaseTransferDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);
@@ -2685,8 +2527,7 @@ router.post("/deleteTransferDoc", async (req, res) => {
       }
   }, function (error, response, body) {
       if (error) {
-          res.json(error);
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'e-hospitalist.js');
       }
       else {
           //console.log(body);

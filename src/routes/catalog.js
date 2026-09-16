@@ -4,6 +4,7 @@ const axios = require("axios");
 const request = require('request');
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiCatalogEndpoint}`;
 
 const auth = {
@@ -42,9 +43,7 @@ router.get("/getAll", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json({ message: err });
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'catalog.js');
         }
         else {
             //res.header('Access-Control-Allow-Origin', 'http://abdaliwebserver.ach.jo:8090');
@@ -56,13 +55,7 @@ router.get("/getAll", (req, res) => {
             if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:catalog.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 
@@ -93,9 +86,7 @@ router.put("/update/:catKey/:catItemKey", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-            res.json(error);
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'catalog.js');
         }
         else {
             //console.log(body);

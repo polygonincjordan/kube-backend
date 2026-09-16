@@ -1,6 +1,7 @@
 const request = require('request');
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}`;
 
 exports.dayCaseListCheckInSet = (req, res) => {
@@ -27,9 +28,7 @@ exports.dayCaseListCheckInSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -69,9 +68,7 @@ exports.getPlannedDepartures = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -111,9 +108,7 @@ exports.getActualDepartures = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -153,9 +148,7 @@ exports.getFinancialClearance = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -194,9 +187,7 @@ exports.getPatientAdministration = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -276,9 +267,7 @@ exports.nursingLabListSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -314,9 +303,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -361,9 +348,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -409,8 +394,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -456,8 +440,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -502,8 +485,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -547,8 +529,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -593,9 +574,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -640,9 +619,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -691,9 +668,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -740,9 +715,7 @@ exports.createNursingCarePlan = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -779,9 +752,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -825,8 +796,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -875,8 +845,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -920,8 +889,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(
@@ -968,9 +936,7 @@ exports.createNursingCarePlan = (req, res) => {
       },
       function (error, response, body) {
         if (error) {
-          logger.log("error", error.message);
-          res.json(error);
-          return console.dir(error);
+            return sendUpstreamFailure(res, error, 'day-case-dashboard.js');
         } else {
           res.header("Access-Control-Allow-Origin", config.AllowOriginDomain);
           res.header(

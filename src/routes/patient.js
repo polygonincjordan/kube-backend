@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPEndpoint}${config.apiPatientEndpoint}`;
 
 
@@ -44,9 +45,7 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
 
   request.get(options, (error, response, body) => {
       if (error) {
-           logger.log('error',error.message)
-          res.json({ message: error });
-          return console.dir(error);
+          return sendUpstreamFailure(res, error, 'patient.js');
       }
       else {
           //res.header('Access-Control-Allow-Origin', 'http://abdaliwebserver.ach.jo:8090');
@@ -58,13 +57,7 @@ router.get("/getDataPatient/:encounterId", (req, res) => {
           if(response.statusCode != 200){
             logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patient.js`);
           }
-          if (response.statusCode == 401) {
-
-            return res.status(response.statusCode).json(body);
-        }
-        else {
-            return res.status(response.statusCode).json(JSON.parse(body));
-        }
+          return res.status(response.statusCode).json(parseUpstreamBody(body));
       }
   });
 });
@@ -95,9 +88,7 @@ router.get("/getDataConsultations/:encounterId", (req, res) => {
     
       request.get(options, (error, response, body) => {
           if (error) {
-               logger.log('error',error.message)
-              res.json({ message: err });
-              return console.dir(error);
+              return sendUpstreamFailure(res, error, 'patient.js');
           }
           else {
               //res.header('Access-Control-Allow-Origin', 'http://abdaliwebserver.ach.jo:8090');
@@ -109,13 +100,7 @@ router.get("/getDataConsultations/:encounterId", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patient.js`);
               }
-              if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+              return res.status(response.statusCode).json(parseUpstreamBody(body));
           }
       });
 });

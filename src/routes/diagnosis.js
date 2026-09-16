@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZGENERICSRV}`;
 
 router.use((req, res, next) => {
@@ -39,9 +40,7 @@ router.get("/DIAMASTERSET/", (req, res) => {
 
         request.get(options, (error, response, body) => {
             if (error) {
-                res.json({ message: err });
-                logger.log('error',error.message)
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'diagnosis.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -52,13 +51,7 @@ router.get("/DIAMASTERSET/", (req, res) => {
                 if(response.statusCode != 200){
                     logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:diagnosis.js`);
                 }
-                if (response.statusCode == 401) {
-
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         });
     }
@@ -91,9 +84,7 @@ router.get("/DIAFAVSET/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json({ message: err });
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'diagnosis.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -104,13 +95,7 @@ router.get("/DIAFAVSET/", (req, res) => {
             if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:diagnosis.js`);
               }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 
@@ -143,9 +128,7 @@ router.get("/DIAGNOSISSET/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json({ message: err });
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'diagnosis.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -156,13 +139,7 @@ router.get("/DIAGNOSISSET/", (req, res) => {
             if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:diagnosis.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 

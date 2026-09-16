@@ -7,6 +7,7 @@ const url = require('url');
 const querystring = require('querystring');
 const cookieLocal = require('cookie');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 router.use((req, res, next) => {
     console.log("Patient Data Middleware Time: ", Date.now());
     next();
@@ -42,9 +43,7 @@ exports.CASESET = (req, res) => {
         ////console.log(response);
         ////console.log(body);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -56,12 +55,7 @@ exports.CASESET = (req, res) => {
             if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     })
 }
@@ -96,9 +90,7 @@ exports.PrescriptionSet = (req, res) => {
         ////console.log(response);
         ////console.log(body);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -110,12 +102,7 @@ exports.PrescriptionSet = (req, res) => {
             if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     })
 }
@@ -156,12 +143,7 @@ exports.LocalizationSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -172,12 +154,7 @@ exports.LocalizationSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -226,12 +203,7 @@ exports.OrderSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -242,12 +214,7 @@ exports.OrderSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -296,12 +263,7 @@ exports.OrderConfigSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -312,13 +274,7 @@ exports.OrderConfigSet = (req, res) => {
                 if(response.statusCode != 200){
                     logger.log('error',`${response.statusCode + ' ' + body}`)
                 }
-                if (response.statusCode == 401) {
-
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -367,12 +323,7 @@ exports.SearchSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -383,13 +334,7 @@ exports.SearchSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -440,12 +385,7 @@ exports.FeesOrderSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -456,12 +396,7 @@ exports.FeesOrderSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -510,12 +445,7 @@ exports.FeesFavouriteSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -526,12 +456,7 @@ exports.FeesFavouriteSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -580,12 +505,7 @@ exports.SearchMSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -596,12 +516,7 @@ exports.SearchMSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -649,12 +564,7 @@ exports.FeeServiceSearchSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -665,12 +575,7 @@ exports.FeeServiceSearchSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -719,12 +624,7 @@ exports.ClinServiceSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -735,12 +635,7 @@ exports.ClinServiceSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -789,12 +684,7 @@ exports.FrequencySet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -805,12 +695,7 @@ exports.FrequencySet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -859,12 +744,7 @@ exports.DurationUnitSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -875,12 +755,7 @@ exports.DurationUnitSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -929,12 +804,7 @@ exports.DrugPropSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -945,12 +815,7 @@ exports.DrugPropSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -992,9 +857,7 @@ exports.OrderSetPost = (req, res) => {
     }, function (error, response, body) {
         ////console.log(response);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -1043,9 +906,7 @@ exports.PrescriptionSetpost = (req, res) => {
     }, function (error, response, body) {
         ////console.log(response);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -1091,9 +952,7 @@ exports.ClinFavouriteSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', '*');
@@ -1133,9 +992,7 @@ exports.FeesOrderSetPost = (req, res) => {
     }, function (error, response, body) {
         ////console.log(response);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -1181,9 +1038,7 @@ exports.FeesFavouriteSet = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-order.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', '*');
@@ -1232,9 +1087,7 @@ exports.FeesFavouriteSetDelete = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', '*');
@@ -1271,9 +1124,7 @@ exports.UserFavSet = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', '*');
@@ -1323,9 +1174,7 @@ exports.ClinFavouriteSetDelete = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', '*');
@@ -1364,9 +1213,7 @@ exports.UserTemplateSet = (req, res) => {
     }, function (error, response, body) {
         ////console.log(response);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1411,9 +1258,7 @@ exports.UserTemplateUpdate = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-order.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1451,9 +1296,7 @@ exports.OrderTemplateSetUpdate = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1489,9 +1332,7 @@ exports.OrderTemplateSetDelete = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-            logger.log('error', error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1542,9 +1383,7 @@ exports.UserFavSetDelete = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', '*');
@@ -1582,9 +1421,7 @@ exports.PATCASEDETSET = (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -1596,12 +1433,7 @@ exports.PATCASEDETSET = (req, res) => {
             if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-            if (response.statusCode == 401) {
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     })
 }
@@ -1628,9 +1460,7 @@ exports.OrderConfigSetPost = (req, res) => {
        }
    }, function (error, response, body) {
        if (error) {
-         logger.log('error',error.message)
-           res.json(error);
-           return console.dir(error);
+           return sendUpstreamFailure(res, error, 'e-order.controller.js');
        }
        else {
            res.header('Access-Control-Allow-Origin', '*');
@@ -1661,9 +1491,7 @@ exports.loginUser = (req, res) => {
     ////console.log(options.url);
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
             //////console.log(body);
@@ -1725,12 +1553,7 @@ exports.OrderPrintSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1741,12 +1564,7 @@ exports.OrderPrintSet = (req, res) => {
                 if(response.statusCode != 200){
                  logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -1795,12 +1613,7 @@ exports.EmarSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                ////console.log(error);
-                ////console.log(response.statusCode);
-                res.json(error);
-                ////console.log(response.statusCode);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1811,12 +1624,7 @@ exports.EmarSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -1863,9 +1671,7 @@ exports.EmarSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1876,12 +1682,7 @@ exports.EmarSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -1918,9 +1719,7 @@ exports.EmarEventSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1931,12 +1730,7 @@ exports.EmarEventSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -1973,9 +1767,7 @@ exports.EorderSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -1986,12 +1778,7 @@ exports.EorderSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -2020,9 +1807,7 @@ exports.EorderSetPost = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 
@@ -2070,9 +1855,7 @@ exports.PatientMedicationsSet = (req, res) => {
         }
         else {
             if (error) {
-                 logger.log('error',error.message)
-                res.json(error);
-                return console.dir(error);
+                return sendUpstreamFailure(res, error, 'e-order.controller.js');
             }
             else {
                 res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -2083,12 +1866,7 @@ exports.PatientMedicationsSet = (req, res) => {
                 if(response.statusCode != 200){
                   logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
                 }
-                if (response.statusCode == 401) {
-                    return res.status(response.statusCode).json(body);
-                }
-                else {
-                    return res.status(response.statusCode).json(JSON.parse(body));
-                }
+                return res.status(response.statusCode).json(parseUpstreamBody(body));
             }
         }
 
@@ -2113,9 +1891,7 @@ exports.EstdordSetPost = (req, res) => {
         }
     }, function (error, response, body) {
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
 

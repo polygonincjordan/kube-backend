@@ -4,6 +4,7 @@ const axios = require("axios");
 const request = require('request');
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPEndpoint}`;
 
 const auth = {
@@ -30,7 +31,7 @@ router.get("/getByKey", (req, res) => {
     }
   })
     .then((response) => res.status(200).json(response.data))
-    .catch((err) => res.status(500).json({ message: err }));
+    .catch((err) => sendUpstreamFailure(res, err, 'vital.js'));
 
   return res;
 });
@@ -86,21 +87,13 @@ router.get("/getByFilters", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'vital.js');
     }
     else {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
       }
-      if (response.statusCode == 401) {
-
-        return res.status(response.statusCode).json(body);
-      }
-      else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
   return res;
@@ -174,9 +167,7 @@ router.get("/getByDates/", (req, res) => {
 
   request.get(options, (error, response, body) => {
     if (error) {
-      res.json({ message: err });
-      logger.log('error',error.message)
-      return console.dir(error);
+        return sendUpstreamFailure(res, error, 'vital.js');
     }
     else {
       res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -187,13 +178,7 @@ router.get("/getByDates/", (req, res) => {
       if(response.statusCode != 200){
         logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
       }
-      if (response.statusCode == 401) {
-
-        return res.status(response.statusCode).json(body);
-      }
-      else {
-        return res.status(response.statusCode).json(JSON.parse(body));
-      }
+      return res.status(response.statusCode).json(parseUpstreamBody(body));
     }
   });
 });

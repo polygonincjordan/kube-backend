@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNPOINTSALESRV}`;
 router.use((req, res, next) => {
     console.log("Patient Data Middleware Time: ", Date.now());
@@ -34,9 +35,7 @@ router.post("/getPatientInfoByCase/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json({ message: err });
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'pointOfSale.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -47,13 +46,7 @@ router.post("/getPatientInfoByCase/", (req, res) => {
             if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
               }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -81,9 +74,7 @@ router.get("/getStorageLocations/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json({ message: err });
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'pointOfSale.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -94,13 +85,7 @@ router.get("/getStorageLocations/", (req, res) => {
             if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -129,9 +114,7 @@ router.post("/getMaterialDetailsSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-            res.json({ message: err });
-            logger.log('error',error.message)
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'pointOfSale.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -142,13 +125,7 @@ router.post("/getMaterialDetailsSet/", (req, res) => {
             if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:pointOfSale.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });

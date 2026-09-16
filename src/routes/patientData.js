@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require("axios");
 const config = require('../../config/env.config');
 const logger = require('../../utils/logger');
+const { parseUpstreamBody, sendUpstreamFailure } = require('../../utils/upstream');
 const baseURL = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiPatientUserEndpoint}`;
 const baseURLSoap = `${config.apiEndpoint}:${config.apiEndpointPort}${config.apiSAPCatlogEndpoint}${config.apiZNSOAPSRV}`;
 router.use((req, res, next) => {
@@ -33,9 +34,7 @@ router.get("/UserConfigSet", (req, res) => {
     };
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -46,13 +45,7 @@ router.get("/UserConfigSet", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 
@@ -83,9 +76,7 @@ router.put("/updateUserConfigSet/:vma", async (req, res) => {
     }, function (error, response, body) {
         //console.log(response);
         if (error) {
-             logger.log('error',error.message)
-            res.json(error);
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             //console.log(body);
@@ -134,9 +125,7 @@ router.get("/PatientVisitDataSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -147,13 +136,7 @@ router.get("/PatientVisitDataSet/", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -194,9 +177,7 @@ router.get("/PatientVisitfalnrSet/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -207,13 +188,7 @@ router.get("/PatientVisitfalnrSet/", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -243,9 +218,7 @@ console.log(urlEndpoint);
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -256,13 +229,7 @@ console.log(urlEndpoint);
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -292,9 +259,7 @@ router.get("/getSoapPatientVisitData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -305,13 +270,7 @@ router.get("/getSoapPatientVisitData/", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -342,9 +301,7 @@ router.get("/getAttachmentData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -355,13 +312,7 @@ router.get("/getAttachmentData/", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
@@ -394,9 +345,7 @@ router.get("/getHistoryOfPatientData/", (req, res) => {
 
     request.get(options, (error, response, body) => {
         if (error) {
-             logger.log('error',error.message)
-            res.json({ message: err });
-            return console.dir(error);
+            return sendUpstreamFailure(res, error, 'patientData.js');
         }
         else {
             res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
@@ -407,13 +356,7 @@ router.get("/getHistoryOfPatientData/", (req, res) => {
               if(response.statusCode != 200){
                 logger.log('error', `Status Code: ${response.statusCode}\nBody: ${body}\nURL Endpoint: ${urlEndpoint}\nFile Name:patientData.js`);
             }
-            if (response.statusCode == 401) {
-
-                return res.status(response.statusCode).json(body);
-            }
-            else {
-                return res.status(response.statusCode).json(JSON.parse(body));
-            }
+            return res.status(response.statusCode).json(parseUpstreamBody(body));
         }
     });
 });
