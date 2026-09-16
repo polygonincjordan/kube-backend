@@ -955,7 +955,7 @@ exports.ClinFavouriteSet = (req, res) => {
             return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
-            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
@@ -1041,7 +1041,7 @@ exports.FeesFavouriteSet = (req, res) => {
            return sendUpstreamFailure(res, error, 'e-order.controller.js');
        }
        else {
-           res.header('Access-Control-Allow-Origin', '*');
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
            res.header('Access-Control-Expose-Headers', 'Content-Length');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
@@ -1090,7 +1090,7 @@ exports.FeesFavouriteSetDelete = (req, res) => {
             return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
-            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
@@ -1127,7 +1127,7 @@ exports.UserFavSet = (req, res) => {
             return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
-            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
@@ -1177,7 +1177,7 @@ exports.ClinFavouriteSetDelete = (req, res) => {
             return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
-            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
@@ -1386,7 +1386,7 @@ exports.UserFavSetDelete = (req, res) => {
             return sendUpstreamFailure(res, error, 'e-order.controller.js');
         }
         else {
-            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
             res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
             res.header('Access-Control-Expose-Headers', 'Content-Length');
             res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
@@ -1463,7 +1463,7 @@ exports.OrderConfigSetPost = (req, res) => {
            return sendUpstreamFailure(res, error, 'e-order.controller.js');
        }
        else {
-           res.header('Access-Control-Allow-Origin', '*');
+           res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
            res.header('Access-Control-Expose-Headers', 'Content-Length');
            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range');
