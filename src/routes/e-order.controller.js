@@ -1475,6 +1475,44 @@ exports.OrderConfigSetPost = (req, res) => {
    })
 }
 
+exports.OrderConfigSetPut = (req, res) => {
+    let mysapSSO2Value = decodeURI(req.cookies['MYSAPSSO2']);
+    let mySAPSSO2Cookie = 'MYSAPSSO2=' + decodeURI(mysapSSO2Value);
+
+    // Updating the stored configuration is a PUT on the entity, not a POST to
+    // the collection: SAP accepts a create for an existing key but keeps the
+    // stored flags, so the saved options never take effect.
+    const urlEndpoint = config.apiEndpointIntegrationOrder + decodeURI(req.url);
+    request({
+        method: 'PUT',
+        body: req.body,
+        json: true,
+        uri: urlEndpoint,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'sap-client': config.client,
+            'Cookie': mySAPSSO2Cookie,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            return sendUpstreamFailure(res, error, 'e-order.controller.js');
+        }
+        else {
+            res.header('Access-Control-Allow-Origin', config.AllowOriginDomain);
+            res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+            res.header('Access-Control-Expose-Headers', 'Content-Length');
+            res.header('Access-Control-Allow-Credentials', 'true');
+            res.header('Access-Control-Allow-Headers', 'Access-Control-Allow-Origin,sap-client,Accept, Authorization, Content-Type, X-Requested-With, Range,Access-Control-Allow-Credentials');
+            if (response.statusCode != 200 && response.statusCode != 204) {
+                logger.log('error', `Status Code: ${response.statusCode}\nBody: ${JSON.stringify(body)}\nURL Endpoint: ${urlEndpoint}\nFile Name:e-order.controller.js`);
+            }
+            return res.status(response.statusCode).json(body);
+        }
+    })
+}
+
 exports.loginUser = (req, res) => {
     const urlEndpoint= config.apiEndpointIntegrationPatCase + "/$metadata"
     const options = {
