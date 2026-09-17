@@ -264,6 +264,9 @@ router.get("/OrderConfigSet(:param1)", (req, res, next) => {
 router.post("/OrderConfigSet", (req, res, next) => {
     orderController.OrderConfigSetPost(req, res);
 });
+router.put("/OrderConfigSet(:param1)", (req, res, next) => {
+    orderController.OrderConfigSetPut(req, res);
+});
 
 router.get("/SearchSet", (req, res, next) => {
     orderController.SearchSet(req, res);
